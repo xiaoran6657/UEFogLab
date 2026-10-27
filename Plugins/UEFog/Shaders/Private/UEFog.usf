@@ -1,0 +1,200 @@
+#include "/Engine/Private/Common.ush"
+
+int2 FogSize;
+int2 ViewMin;
+int2 ViewSize;
+float4x4 ClipToTranslatedWorld;
+float3 CameraTranslated;
+float3 SphereTranslated;
+float SphereRadiusCm;
+float ExtinctionPerMetre;
+float EarlyOutThreshold;
+uint StepCount;
+uint DensityMode;
+float ScatteringAlbedo;
+float HGg;
+float3 IncidentWeightRGB;
+float3 PhotonDirectionWorld;
+uint Reconstruction;
+uint DebugMode;
+Texture2D<float> SceneDepthTexture;
+Texture2D SceneColorTexture;
+Texture2D FogTexture;
+Texture2D RayDepthTexture;
+RWTexture2D<float4> OutFog;
+RWTexture2D<float> OutRayDepth;
+RWTexture2D<float4> OutSceneData;
+RWTexture2D<float4> OutReconstructed;
+float4 ReconstructFog(float2 UV, float TargetDepth);
+
+// M2's validated domain guarantees finite nonnegative S/T below 58. D3D's
+// float32->float16 conversions (including f32tof16) use toward-zero rounding.
+// Select a representable half value first, with explicit ties-to-even rounding.
+float RoundPositiveHalfEven(float Value)
+{
+    if (Value < 0.00006103515625) // half subnormal spacing = 2^-24
+        return round(Value * 16777216.0) * 0.000000059604644775390625;
+    uint Bits = asuint(Value);
+    return asfloat((Bits + 0xfff + ((Bits >> 13) & 1)) & 0xffffe000);
+}
+
+float3 Unproject(float2 ViewUV, float DeviceZ)
+{
+    float4 P = mul(float4(ViewUV.x * 2.0 - 1.0, 1.0 - ViewUV.y * 2.0, DeviceZ, 1), ClipToTranslatedWorld);
+    return P.xyz / P.w;
+}
+
+float RayDepth(float2 ViewUV, int2 ScenePixel)
+{
+    float DeviceZ = SceneDepthTexture.Load(int3(ScenePixel, 0)).r;
+    return DeviceZ <= 1e-7 ? 1e8 : length(Unproject(ViewUV, DeviceZ) - CameraTranslated);
+}
+
+float DensityAt(float3 Position)
+{
+    if (DensityMode == 0) return 1.0;
+    float3 P = (Position - SphereTranslated) / SphereRadiusCm;
+    float D = saturate(1.0 - dot(P, P));
+    D *= D;
+    if (DensityMode == 2)
+    {
+        // Deterministic analytic modulation, not a simulated or stochastic density field.
+        D *= 0.65 + 0.35 * sin(P.x * 13) * sin(P.y * 17) * sin(P.z * 11);
+    }
+    return D;
+}
+
+[numthreads(8, 8, 1)]
+void DiagnosticsCS(uint3 Id : SV_DispatchThreadID)
+{
+    int2 P = Id.xy;
+    if (any(P >= ViewSize)) return;
+    float2 UV = (float2(P) + 0.5) / float2(ViewSize);
+    int2 Q = ViewMin + P;
+    OutSceneData[P] = float4(SceneDepthTexture.Load(int3(Q, 0)).r, RayDepth(UV,Q), View.PreExposure, 0);
+    OutReconstructed[P] = ReconstructFog(UV, RayDepth(UV,Q));
+}
+
+[numthreads(8, 8, 1)]
+void IntegrateCS(uint3 DispatchId : SV_DispatchThreadID)
+{
+    int2 Pixel = DispatchId.xy;
+    if (any(Pixel >= FogSize)) return;
+    float2 UV = (float2(Pixel) + 0.5) / float2(FogSize);
+    // Exact floor((Pixel+0.5)*ViewSize/FogSize). Floating UV*ViewSize
+    // can fall just below an integer at even 2x centres and sample a neighbor.
+    // Even at 32768 per axis the largest product is 2147450880 (< INT_MAX).
+    // ViewMin is added once; rays continue to use the canonical fog UV above.
+    int2 ScenePixel = ViewMin + min(((2 * Pixel + 1) * ViewSize) / (2 * FogSize), ViewSize - 1);
+    float Depth = RayDepth(UV, ScenePixel);
+    OutRayDepth[Pixel] = Depth;
+    float3 Direction = normalize(Unproject(UV, 1.0) - CameraTranslated);
+    float3 Offset = CameraTranslated - SphereTranslated;
+    float B = dot(Offset, Direction);
+    float Disc = B * B - (dot(Offset, Offset) - SphereRadiusCm * SphereRadiusCm);
+    float T = 1.0;
+    float3 S = 0.0;
+    if (Disc > 0)
+    {
+        float Root = sqrt(Disc);
+        float Begin = max(0.0, -B - Root);
+        float End = min(Depth, -B + Root);
+        if (End > Begin)
+        {
+            float StepCm = (End - Begin) / float(StepCount);
+            // Manual parallel light with unit light-path transmittance/visibility.
+            // k propagates light -> sample; outgoing v=-Direction (sample -> camera).
+#if UEFOG_MANUAL_LIGHTING
+            float Mu = clamp(dot(PhotonDirectionWorld, -Direction), -1.0, 1.0);
+            float Denominator = 1.0 + HGg * HGg - 2.0 * HGg * Mu;
+            float Phase = (1.0 - HGg * HGg) / (12.566370614359172 * Denominator * sqrt(Denominator));
+            float3 SourceFunction = ScatteringAlbedo * IncidentWeightRGB * Phase;
+            // Ray-constant J permits one closed solution after the same midpoint
+            // density samples. Compensated optical depth avoids step-count-
+            // dependent product/segment roundoff crossing bright half bins.
+            precise float TauSum = 0.0;
+            precise float TauCorrection = 0.0;
+#else
+            // Prescribed constant J=q/sigma_t. This is NOT UE light integration.
+            const float3 SourceFunction = float3(0.35, 0.60, 0.90);
+#endif
+            [loop] for (uint I = 0; I < StepCount; ++I)
+            {
+                float3 Position = CameraTranslated + Direction * (Begin + (I + 0.5) * StepCm);
+                float Tau = ExtinctionPerMetre * DensityAt(Position) * StepCm * 0.01;
+#if UEFOG_MANUAL_LIGHTING
+                precise float CorrectedTau = Tau - TauCorrection;
+                precise float NextTau = TauSum + CorrectedTau;
+                TauCorrection = (NextTau - TauSum) - CorrectedTau;
+                TauSum = NextTau;
+                if (EarlyOutThreshold > 0 && exp(-TauSum) < EarlyOutThreshold) break;
+#else
+                float SegmentT = exp(-Tau);
+                // Stable small-optical-depth evaluation of 1-exp(-tau).
+                float Alpha = Tau < 0.001 ? Tau * (1.0 - 0.5 * Tau) : 1.0 - SegmentT;
+                S += T * Alpha * SourceFunction;
+                T *= SegmentT;
+                if (EarlyOutThreshold > 0 && T < EarlyOutThreshold) break;
+#endif
+            }
+#if UEFOG_MANUAL_LIGHTING
+            T = exp(-TauSum);
+            float Alpha = TauSum < 0.001 ? TauSum * (1.0 - 0.5 * TauSum) : 1.0 - T;
+            S = SourceFunction * Alpha;
+#endif
+        }
+    }
+#if UEFOG_MANUAL_LIGHTING
+    // These remain real half-precision UAV outputs used by normal composition.
+    OutFog[Pixel] = float4(RoundPositiveHalfEven(S.r), RoundPositiveHalfEven(S.g),
+                          RoundPositiveHalfEven(S.b), RoundPositiveHalfEven(T));
+#else
+    OutFog[Pixel] = float4(S, T);
+#endif
+}
+
+float4 ReconstructFog(float2 UV, float TargetDepth)
+{
+    // Full resolution already has one integration result at each pixel centre.
+    if (all(FogSize == ViewSize))
+        return FogTexture.Load(int3(clamp(int2(UV * ViewSize), int2(0,0), FogSize-1), 0));
+    float2 P = UV * float2(FogSize) - 0.5;
+    int2 Base = int2(floor(P));
+    float2 Fraction = frac(P);
+    float4 Sum = 0;
+    float Total = 0;
+    float BestDelta = 1e30;
+    float4 Fallback = float4(0, 0, 0, 1);
+    [unroll] for (int Y = 0; Y < 2; ++Y)
+    {
+        [unroll] for (int X = 0; X < 2; ++X)
+        {
+            int2 Q = clamp(Base + int2(X, Y), int2(0, 0), FogSize - 1);
+            float D = RayDepthTexture.Load(int3(Q, 0)).r;
+            float4 F = FogTexture.Load(int3(Q, 0));
+            float Delta = abs(D - TargetDepth);
+            if (Delta < BestDelta) { BestDelta = Delta; Fallback = F; }
+            float W = (X ? Fraction.x : 1.0 - Fraction.x) * (Y ? Fraction.y : 1.0 - Fraction.y);
+            if (Reconstruction != 0) W *= exp(-Delta / max(2.0, TargetDepth * 0.01));
+            Sum += W * F;
+            Total += W;
+        }
+    }
+    return Total > 1e-6 ? Sum / Total : Fallback;
+}
+
+void CompositePS(noperspective float4 UVAndScreenPos : TEXCOORD0, out float4 OutColor : SV_Target0)
+{
+    // Match FScreenPassVS and use canonical pixel centres in both observation and composition.
+    uint TextureWidth, TextureHeight;
+    SceneColorTexture.GetDimensions(TextureWidth, TextureHeight);
+    float2 ScenePosition = UVAndScreenPos.xy * float2(TextureWidth, TextureHeight);
+    int2 ScenePixel = clamp(int2(ScenePosition), ViewMin, ViewMin + ViewSize - 1);
+    float2 UV = (float2(ScenePixel - ViewMin) + 0.5) / float2(ViewSize);
+    float4 Fog = ReconstructFog(UV, RayDepth(UV, ScenePixel));
+    float4 Scene = SceneColorTexture.Load(int3(ScenePixel, 0));
+    float3 Result = Fog.rgb * View.PreExposure + Fog.a * Scene.rgb;
+    if (DebugMode == 1) Result = Fog.aaa * View.PreExposure;
+    if (DebugMode == 2) Result = Fog.rgb * View.PreExposure;
+    OutColor = float4(Result, Scene.a);
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "modelKey": "ManualDirectionalHG-v1",
+  "defaults": {"Width":321,"Height":181,"Steps":64,"DensityMode":1,"Extinction":0.35,"Fixture":"Diagnostic","Camera":"Outside","Preset":"High","Albedo":0.8,"HGg":0.5,"IncidentWeight":"4,3,2","PhotonDirection":"-1,-1,0.15"},
+  "validation": [
+    {"id":"isotropic","overrides":{"HGg":0}},
+    {"id":"forward","overrides":{}},
+    {"id":"backward","overrides":{"HGg":-0.5}},
+    {"id":"high-forward","overrides":{"HGg":0.8,"Albedo":1,"IncidentWeight":"16,16,16"}},
+    {"id":"high-backward","overrides":{"HGg":-0.8,"DensityMode":2}},
+    {"id":"reverse-direction","overrides":{"PhotonDirection":"1,1,-0.15"}},
+    {"id":"double-light","overrides":{"IncidentWeight":"8,6,4"}},
+    {"id":"half-albedo","overrides":{"Albedo":0.4}},
+    {"id":"zero-light","overrides":{"IncidentWeight":"0,0,0"}},
+    {"id":"zero-albedo","overrides":{"Albedo":0}},
+    {"id":"unit-albedo","overrides":{"Albedo":1}},
+    {"id":"vacuum","overrides":{"Extinction":0,"Fixture":"Empty"}},
+    {"id":"uniform","overrides":{"DensityMode":0,"Fixture":"Empty"}},
+    {"id":"uniform-low-extinction","overrides":{"DensityMode":0,"Fixture":"Empty","Extinction":0.175}},
+    {"id":"inside","overrides":{"DensityMode":0,"Fixture":"Empty","Camera":"Inside","HGg":0}},
+    {"id":"oblique","overrides":{"Fixture":"Empty","Camera":"Oblique","HGg":-0.5}},
+    {"id":"occluded","overrides":{"DensityMode":0,"Fixture":"Occluded"}},
+    {"id":"oddhalf","overrides":{"Preset":"Medium"}},
+    {"id":"exposure","overrides":{"PreExposure":2}},
+    {"id":"translated","overrides":{"Fixture":"Empty","OriginOffset":10000000}}
+  ],
+  "convergence": [
+    {"id":"radial-forward","overrides":{"DensityMode":1,"HGg":0.5}},
+    {"id":"sine-backward","overrides":{"DensityMode":2,"HGg":-0.5}},
+    {"id":"high-forward","overrides":{"DensityMode":1,"HGg":0.8,"Albedo":1,"IncidentWeight":"16,16,16"}}
+  ],
+  "reconstruction": {"id":"radial-forward","overrides":{"DensityMode":1,"HGg":0.5},"sizes":[[640,360],[321,181]]}
+}

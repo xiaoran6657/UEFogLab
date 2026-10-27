@@ -1,0 +1,454 @@
+{
+  "kind": "UEFogLab.MobileUniformFogProfile",
+  "schemaVersion": 1,
+  "modelKey": "MobileUniformPrescribedFull64-v1",
+  "state": "frozen CPU/protocol; GPU not implemented by FOG-01",
+  "steps": 64,
+  "earlyOut": 0,
+  "density": "Uniform=1 inside one sphere; zero outside",
+  "sphereCentreCm": [
+    800,
+    0,
+    0
+  ],
+  "sphereRadiusCm": 400,
+  "sourceJ": [
+    0.35,
+    0.6,
+    0.9
+  ],
+  "viewSize": [
+    1552,
+    720
+  ],
+  "viewMin": [
+    0,
+    0
+  ],
+  "sampleUV": [
+    [
+      0.35,
+      0.45
+    ],
+    [
+      0.4,
+      0.5
+    ],
+    [
+      0.45,
+      0.55
+    ],
+    [
+      0.6,
+      0.45
+    ],
+    [
+      0.65,
+      0.5
+    ],
+    [
+      0.7,
+      0.55
+    ],
+    [
+      0.2,
+      0.1
+    ],
+    [
+      0.5,
+      0.1
+    ],
+    [
+      0.8,
+      0.1
+    ],
+    [
+      0.49,
+      0.5
+    ],
+    [
+      0.51,
+      0.5
+    ],
+    [
+      0.5,
+      0.25
+    ],
+    [
+      0.5,
+      0.75
+    ],
+    [
+      0.28,
+      0.5
+    ],
+    [
+      0.16,
+      0.5
+    ],
+    [
+      0.84,
+      0.5
+    ],
+    [
+      0.95,
+      0.5
+    ],
+    [
+      0.05,
+      0.5
+    ],
+    [
+      0.5,
+      0.9
+    ],
+    [
+      0.4,
+      0.3
+    ],
+    [
+      0.65,
+      0.3
+    ],
+    [
+      0.8,
+      0.7
+    ],
+    [
+      0.2,
+      0.8
+    ],
+    [
+      0.88,
+      0.3
+    ],
+    [
+      0.12,
+      0.3
+    ]
+  ],
+  "planningProjection": {
+    "worldToClip": [
+      0,
+      0,
+      0,
+      1,
+      1.428495690402245,
+      0,
+      0,
+      0,
+      0,
+      3.0792018358086515,
+      0,
+      0,
+      0,
+      0,
+      10,
+      0
+    ],
+    "clipToWorld": [
+      0,
+      0.700037113670545,
+      0,
+      0,
+      0,
+      0,
+      0.32475948421789075,
+      0,
+      0,
+      0,
+      0,
+      0.1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "projectionSignY": 1,
+    "source": {
+      "path": "historical-local-record/probe.stdout",
+      "bytes": 3418,
+      "sha256": "e6daf819a9ab8ec613dd2427d9e5c898753227cbd35e6984cf97dc0ef03604d2"
+    },
+    "meaning": "accepted PRE actual matrix, used to preselect nonedge points; new runs must record their actual matrices"
+  },
+  "fixture": {
+    "cameraCm": [
+      0,
+      0,
+      0
+    ],
+    "cameraForward": [
+      1,
+      0,
+      0
+    ],
+    "requestedCameraFov": 60,
+    "nearOptionsCm": [
+      400,
+      600
+    ],
+    "nearBoxY": [
+      -240,
+      0
+    ],
+    "nearBoxZ": [
+      -60,
+      60
+    ],
+    "farBoxX": [
+      1200,
+      1202
+    ],
+    "farBoxY": [
+      0,
+      700
+    ],
+    "farBoxZ": [
+      -120,
+      120
+    ],
+    "material": "/Engine/EngineDebugMaterials/LevelColorationUnlitMaterial.LevelColorationUnlitMaterial",
+    "materialRGB": [
+      0.25,
+      0.5,
+      2
+    ],
+    "alphaOut": 1
+  },
+  "buffer": {
+    "dtype": "<f4",
+    "stride": 16,
+    "headerFloat4": 2,
+    "sampleFloat4": 4,
+    "sampleCount": 25,
+    "float4Count": 102,
+    "bytes": 1632,
+    "rowPitch": "not applicable; tightly packed structured buffer",
+    "header0": [
+      "runTagLow10",
+      "runTagHigh10",
+      "actualFrame",
+      "modelCode=1"
+    ],
+    "header1": [
+      "View.PreExposure",
+      "NearCm",
+      "SigmaPerMetre",
+      "steps=64"
+    ],
+    "sampleRows": [
+      [
+        "nativeDeviceZ",
+        "viewAxisDepthCm",
+        "pixelX",
+        "pixelY"
+      ],
+      [
+        "S.r",
+        "S.g",
+        "S.b",
+        "T"
+      ],
+      [
+        "actualCin.r",
+        "actualCin.g",
+        "actualCin.b",
+        "actualCin.a"
+      ],
+      [
+        "actualConsumerInput.r",
+        "actualConsumerInput.g",
+        "actualConsumerInput.b",
+        "actualConsumerInput.a"
+      ]
+    ]
+  },
+  "formats": {
+    "ST": "RGBA16F/PF_FloatRGBA/Vk97, full view compute UAV->SRV",
+    "returnedCout": "RGBA16F/PF_FloatRGBA/Vk97 render target->engine delegate chain->observer SRV",
+    "Cin": "actual native BeforeDOF FloatR11G11B10/Vk122",
+    "depth": "preserved native DepthStencil/Vk129, FORCE_DEPTH_TEXTURE_READS=1"
+  },
+  "limits": {
+    "depthAbsCm": 1,
+    "depthRelative": 0.01,
+    "STAbsolute": 0.001,
+    "hdrAbsoluteFloor": 0.0002,
+    "hdrULP16": 1,
+    "halfFiniteMax": 65504,
+    "halfSubnormalULP": 5.960464477539063e-08,
+    "markerAbsolute": 1e-05
+  },
+  "launch": {
+    "mode": "FogLabMobileFog=Off|Full",
+    "near": "FogLabFogNear=400|600",
+    "sigma": "FogLabFogSigma=0|0.35|0.70",
+    "exposure": "FogLabPreExposure=1|2",
+    "diagnostics": "FogLabFogReadback=0|1; Full sample once at BeforeDOF index180 when1; Off fog work remains zero",
+    "mutualExclusion": "FogLabMobileProbe must be absent; old fog/native CVars zero"
+  },
+  "cases": [
+    {
+      "id": "off400",
+      "mode": "Off",
+      "nearCm": 400,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "vacuum400",
+      "mode": "Full",
+      "nearCm": 400,
+      "extinctionPerMetre": 0,
+      "preExposure": 1
+    },
+    {
+      "id": "full400",
+      "mode": "Full",
+      "nearCm": 400,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "full600",
+      "mode": "Full",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "exposure600",
+      "mode": "Full",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 2
+    },
+    {
+      "id": "extinction600",
+      "mode": "Full",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.7,
+      "preExposure": 2
+    }
+  ],
+  "negativeCases": [
+    "wrong-runid",
+    "wrong-gpu-frame",
+    "missing-completion",
+    "missing-bytes",
+    "desktop-sm5",
+    "gles",
+    "wrong-exposure",
+    "vacuum-st",
+    "uncomposited-output",
+    "missing-cm-to-m",
+    "wrong-consumer-resource"
+  ],
+  "coverage": "full-view execution; numerical acceptance at25 frozen points only; geometry independent and ST conditioned on independently decoded actual native depth",
+  "samplePercentInt": [
+    [
+      35,
+      45
+    ],
+    [
+      40,
+      50
+    ],
+    [
+      45,
+      55
+    ],
+    [
+      60,
+      45
+    ],
+    [
+      65,
+      50
+    ],
+    [
+      70,
+      55
+    ],
+    [
+      20,
+      10
+    ],
+    [
+      50,
+      10
+    ],
+    [
+      80,
+      10
+    ],
+    [
+      49,
+      50
+    ],
+    [
+      51,
+      50
+    ],
+    [
+      50,
+      25
+    ],
+    [
+      50,
+      75
+    ],
+    [
+      28,
+      50
+    ],
+    [
+      16,
+      50
+    ],
+    [
+      84,
+      50
+    ],
+    [
+      95,
+      50
+    ],
+    [
+      5,
+      50
+    ],
+    [
+      50,
+      90
+    ],
+    [
+      40,
+      30
+    ],
+    [
+      65,
+      30
+    ],
+    [
+      80,
+      70
+    ],
+    [
+      20,
+      80
+    ],
+    [
+      88,
+      30
+    ],
+    [
+      12,
+      30
+    ]
+  ],
+  "pixelSelection": "integer-percent: (PercentInt * ViewSize) // 100",
+  "pixelRuleRevision": 1,
+  "pixelRuleFix": "FOG01-PIXEL-CENTRE-01; same UV and thresholds, sample21=(1241,504); before any GPU"
+}

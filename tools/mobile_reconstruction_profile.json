@@ -1,0 +1,473 @@
+{
+  "kind": "UEFogLab.MobileReconstructionProfile",
+  "schemaVersion": 1,
+  "modelKey": "MobileUniformReconstruction64-v1",
+  "state": "frozen before formal reconstruction GPU; GPU not implemented or validated by RECON-01",
+  "baselineRevision": "1e189fa8dbc4c9f779140587443f457fd35ee199",
+  "oldFullImplementation": "4c19d230615cfc857b782cc4e241329f8717b79f",
+  "sceneSize": [
+    1552,
+    720
+  ],
+  "viewMin": [
+    0,
+    0
+  ],
+  "grids": {
+    "Full": [
+      1552,
+      720
+    ],
+    "Half": [
+      776,
+      360
+    ],
+    "Odd": [
+      775,
+      359
+    ]
+  },
+  "profileCodes": {
+    "Off": 0,
+    "Full64": 1,
+    "HalfB64": 2,
+    "HalfG64": 3,
+    "GuideProbe": 4
+  },
+  "steps": 64,
+  "earlyOut": 0,
+  "sphereCentreCm": [
+    800,
+    0,
+    0
+  ],
+  "sphereRadiusCm": 400,
+  "sourceJ": [
+    0.35,
+    0.6,
+    0.9
+  ],
+  "nominalUV": "(f+0.5)/F",
+  "canonicalDepth": "min(V-1, ((2*f+1)*V)//(2*F))",
+  "reconstructionCoordinate": "n=(2*p+1)*F-V; base=floor_div(n,2*V); frac=(n-base*(2*V))/(2*V)",
+  "neighborOrder": [
+    "00",
+    "10",
+    "01",
+    "11"
+  ],
+  "border": "clamp each logical neighbor; retain duplicate weights",
+  "guide": {
+    "storageCandidate": "R32_FLOAT texture UAV -> SRV, unverified until real probe",
+    "skySentinelCm": 0,
+    "kind": "view-axis cm",
+    "probeValues": [
+      0,
+      400.125,
+      1200.75
+    ],
+    "probeMustBeBitExact": true,
+    "geometryToleranceCm": 0.01,
+    "geometryRelativeTolerance": 1e-05,
+    "crossSkyGeometryWeight": 0,
+    "sameSkyWeight": 1,
+    "maximumDeltaCm": 25,
+    "sigmaCm": 10,
+    "weight": "exp(-abs(actual_low_guide-actual_query_guide)/10) if same geometry and delta<=25 else sky rules",
+    "normalize": true,
+    "fallbackThreshold": 1e-06,
+    "fallbackThresholdStorage": "float32",
+    "fallback": "max original spatial weight; ties first logical 00/10/01/11; ST only"
+  },
+  "lowGridRows": [
+    "actual half-stored S.rgb,T",
+    "native DeviceZ, actual R32 view-axis guide cm, canonical pixelX,pixelY"
+  ],
+  "sceneRows": [
+    "native DeviceZ, actual query view-axis cm, compatible logical neighbor count, fallback index (-1=none)",
+    "actual half-stored reconstructed S.rgb,T",
+    "actual original Cin.rgba",
+    "actual engine-consumer Cout.rgba"
+  ],
+  "headerRows": [
+    "tagLow10,tagHigh10,captureFrame,modelCode2",
+    "actual PreExposure,nearCm,sigmaFloat32,steps64",
+    "sceneWidth,sceneHeight,fogWidth,fogHeight",
+    "R32 probe[0],probe[1],probe[2],profileCode"
+  ],
+  "buffer": {
+    "dtype": "<f4",
+    "strideBytes": 16,
+    "headerRecords": 4,
+    "lowRecordsPerCell": 2,
+    "sceneRecordsPerCell": 4,
+    "offBytes": 0,
+    "rowPitch": "not applicable; tightly packed structured buffer",
+    "budgets": {
+      "Full": {
+        "fogSize": [
+          1552,
+          720
+        ],
+        "records": 6704644,
+        "bytes": 107274304
+      },
+      "Half": {
+        "fogSize": [
+          776,
+          360
+        ],
+        "records": 5028484,
+        "bytes": 80455744
+      },
+      "Odd": {
+        "fogSize": [
+          775,
+          359
+        ],
+        "records": 5026214,
+        "bytes": 80419424
+      }
+    },
+    "controlBytes": 64,
+    "frozenCeilingBytes": 134217728,
+    "completion": "one same-view same-frame capture; IsReady/Lock later frame; never exact completion-frame number",
+    "diagnosticFrame": 180,
+    "regularReadback": false
+  },
+  "numeric": {
+    "lowSTAbsolute": 0.001,
+    "reconstructionAbsoluteFloor": 0.0002,
+    "reconstructionHalfUlps": 1,
+    "hdrAbsoluteFloor": 0.0002,
+    "hdrHalfUlps": 1,
+    "depthGuideAbsoluteCm": 0.01,
+    "depthGuideRelative": 1e-05,
+    "oldKnownGeometryAbsoluteCm": 1,
+    "oldKnownGeometryRelative": 0.01,
+    "expectedReference": "double analytic conditioned on independently decoded actual native depth; no GPU loop as truth",
+    "reconExpected": "float64 rational spatial weights and exp on actual stored float32 guides / actual half ST; compare per-component half ULP",
+    "gpuHalfRneClaim": false
+  },
+  "quality": {
+    "metrics": [
+      "MAE",
+      "RMSE",
+      "p95",
+      "p99",
+      "max"
+    ],
+    "quantile": "linear interpolation",
+    "channels": [
+      "S.r",
+      "S.g",
+      "S.b",
+      "T"
+    ],
+    "rois": {
+      "whole": [
+        0,
+        0,
+        1552,
+        720
+      ],
+      "plane-step": [
+        768,
+        256,
+        784,
+        464
+      ],
+      "near-sky": [
+        320,
+        256,
+        344,
+        464
+      ],
+      "thin-neighborhood": [
+        992,
+        292,
+        1009,
+        428
+      ],
+      "thin-hit": [
+        1000,
+        300,
+        1001,
+        420
+      ]
+    },
+    "experimentalGlobalBudget": {
+      "ST_MAE": 0.01,
+      "ST_RMSE": 0.03,
+      "HDR_MAE": 0.02,
+      "HDR_RMSE": 0.06
+    },
+    "roiBudget": "descriptive with full statistics, never require Guided to beat Bilinear; no default replacement",
+    "pairRequirements": "same actual scene depth,Cin,view/matrices,fixture,near,sigma,exposure and package; compare actual GPU Full",
+    "defaultRemains": "Full; no performance or default suitability claim",
+    "supportedProfiles": [
+      "Full64",
+      "HalfB64",
+      "HalfG64"
+    ]
+  },
+  "thinStripe": {
+    "frontCm": 600,
+    "thicknessCm": 0.02,
+    "centreCm": [
+      600.01,
+      121.51417424152376,
+      0
+    ],
+    "scale": [
+      0.0002,
+      0.003247594857234487,
+      0.6495189684357814
+    ],
+    "boundsMinCm": [
+      600,
+      121.35179449866203,
+      -32.47594842178907
+    ],
+    "boundsMaxCm": [
+      600.02,
+      121.67655398438549,
+      32.47594842178907
+    ],
+    "targetPixelX": 1000,
+    "targetRows": [
+      300,
+      420
+    ],
+    "widthScenePixels": 0.6,
+    "expectedHitPixels": 120,
+    "expectedHalfCanonicalHits": 0,
+    "plannedFallbackWitness": [
+      1000,
+      350
+    ],
+    "geometry": "third opaque unlit cube; original two planes unchanged; front and back projection both checked",
+    "actualAcceptance": "120 target pixels must hit stripe depth600 +/-1cm; low native depths must miss; target fallback compatible0/index3; nonempty ROI",
+    "projectionAgreementAbsolute": 1e-06
+  },
+  "matrix": [
+    {
+      "id": "off-planes",
+      "profile": "Off",
+      "fixture": "Planes",
+      "grid": "Half",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "vacuum-halfg",
+      "profile": "HalfG64",
+      "fixture": "Planes",
+      "grid": "Half",
+      "nearCm": 600,
+      "extinctionPerMetre": 0,
+      "preExposure": 1
+    },
+    {
+      "id": "full-planes",
+      "profile": "Full64",
+      "fixture": "Planes",
+      "grid": "Full",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "halfb-planes",
+      "profile": "HalfB64",
+      "fixture": "Planes",
+      "grid": "Half",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "halfg-planes",
+      "profile": "HalfG64",
+      "fixture": "Planes",
+      "grid": "Half",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "halfg-exposure2",
+      "profile": "HalfG64",
+      "fixture": "Planes",
+      "grid": "Half",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 2
+    },
+    {
+      "id": "oddb-planes",
+      "profile": "HalfB64",
+      "fixture": "Planes",
+      "grid": "Odd",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "oddg-planes",
+      "profile": "HalfG64",
+      "fixture": "Planes",
+      "grid": "Odd",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "full-thin",
+      "profile": "Full64",
+      "fixture": "ThinStripe",
+      "grid": "Full",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "halfb-thin",
+      "profile": "HalfB64",
+      "fixture": "ThinStripe",
+      "grid": "Half",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    },
+    {
+      "id": "halfg-thin",
+      "profile": "HalfG64",
+      "fixture": "ThinStripe",
+      "grid": "Half",
+      "nearCm": 600,
+      "extinctionPerMetre": 0.35,
+      "preExposure": 1
+    }
+  ],
+  "oldSemanticCases": [
+    "wrong-runid",
+    "wrong-gpu-frame",
+    "missing-completion",
+    "missing-bytes",
+    "desktop-sm5",
+    "gles",
+    "wrong-exposure",
+    "vacuum-st",
+    "uncomposited-output",
+    "missing-cm-to-m",
+    "wrong-consumer-resource"
+  ],
+  "newSemanticCases": [
+    "scene-fog-confusion",
+    "canonical-neighbor",
+    "guide-metres",
+    "guide-sky-class",
+    "substituted-low-ST",
+    "bilinear-as-guided",
+    "unnormalized-guided",
+    "wrong-fallback"
+  ],
+  "cli": {
+    "run": "AndroidRecon.ps1 -Profile Off|GuideProbe|Full64|HalfB64|HalfG64 -Fixture Planes|ThinStripe -Grid Half|Odd -NearCm 400|600 -Extinction 0|0.35|0.70 -PreExposure 1|2 -Candidate ... -Output newIgnored",
+    "reference": "MobileReconstructionReference.ps1 -Output newIgnored",
+    "analyze": "mobile_reconstruction_reference.py analyze --metadata ... --buffer ... --output ...",
+    "quality": "mobile_reconstruction_reference.py quality --metadata ... --buffer ... --reference-metadata ... --reference-buffer ... --output ..."
+  },
+  "oldFullProfile": {
+    "path": "historical-local-record/mobile_fog_profile.json",
+    "bytes": 7418,
+    "sha256": "ec522a16595462c70eeb55981df08dc235355bc986fc1da4f358fa73669a7062"
+  },
+  "planningProjection": {
+    "worldToClip": [
+      0,
+      0,
+      0,
+      1,
+      1.428495690402245,
+      0,
+      0,
+      0,
+      0,
+      3.0792018358086515,
+      0,
+      0,
+      0,
+      0,
+      10,
+      0
+    ],
+    "clipToWorld": [
+      0,
+      0.700037113670545,
+      0,
+      0,
+      0,
+      0,
+      0.32475948421789075,
+      0,
+      0,
+      0,
+      0,
+      0.1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "projectionSignY": 1,
+    "source": {
+      "path": "historical-local-record/probe.stdout",
+      "bytes": 3418,
+      "sha256": "e6daf819a9ab8ec613dd2427d9e5c898753227cbd35e6984cf97dc0ef03604d2"
+    },
+    "meaning": "accepted PRE actual matrix, used to preselect nonedge points; new runs must record their actual matrices"
+  },
+  "protocolRevision": 2,
+  "controlResources": {
+    "Off": {
+      "fogSizeMeaning": "configuration only; no fog allocation",
+      "allocatedFogSize": [
+        0,
+        0
+      ],
+      "allocatedReconstructionSize": [
+        0,
+        0
+      ],
+      "probeTextureExtent": null,
+      "bufferBytes": 0,
+      "readbackFile": false,
+      "runtimeNumeric": "skip dense decoder; verify zero work and absent GPU resources/readback file",
+      "cpuOnlyOffFixture": "explicit empty host file tests decoder extra-byte rejection; never DeviceRun evidence"
+    },
+    "GuideProbe": {
+      "fogSizeMeaning": "header2 configuration only; no low-grid ST/guide allocation",
+      "allocatedFogSize": [
+        0,
+        0
+      ],
+      "allocatedReconstructionSize": [
+        0,
+        0
+      ],
+      "probeTextureExtent": [
+        3,
+        1
+      ],
+      "probeTextureFormat": "R32_FLOAT",
+      "bufferBytes": 64,
+      "actualProof": "texture UAV write -> actual SRV read -> ready/lock; CPU header sample is not proof",
+      "fogIntegration": false,
+      "stReconstruction": false,
+      "hdrComposition": false
+    }
+  }
+}

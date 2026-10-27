@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UEFogLab · 展示候选 / Showcase candidate</title>
+<meta name="description" content="Local fog integration, depth-guided reconstruction and bounded quality/cost evidence. Reviewable candidate, not published.">
+<style>
+:root{font-family:system-ui,sans-serif;color:#eaf0f4;background:#101820;color-scheme:dark}*{box-sizing:border-box}body{margin:0 auto;max-width:1100px;padding:32px 20px 64px}a{color:#e9bb74}h1{font-size:clamp(36px,7vw,70px);margin:12px 0}h2{margin-top:48px}p{line-height:1.7;max-width:85ch;color:#bfccd5}.tag{letter-spacing:.08em;color:#e9bb74;font-size:13px}video,img{display:block;width:100%;height:auto;border:1px solid #34424d;border-radius:8px}video{margin-top:24px;background:#000}nav{display:flex;flex-wrap:wrap;gap:24px;margin:24px 0}figure{margin:24px 0}figcaption{font-size:14px;line-height:1.7;color:#bfccd5;margin-top:12px}.note{border-left:3px solid #e9bb74;padding-left:16px}footer{margin-top:48px;border-top:1px solid #34424d;padding-top:20px;color:#bfccd5}
+</style>
+<body>
+<header><p class="tag">UE 5.8 · C++ / HLSL · MIT ORIGINAL WORK / 原创部分采用 MIT</p><h1>UEFogLab</h1><p>局部雾积分与深度引导重建。固定真机场景中，Half积分较便宜，但重建使总雾成本更高；Full64保持默认。</p><p>Local fog integration and depth-guided reconstruction. The measured half-resolution paths have higher total fog cost in this fixture. Full64 remains the default.</p></header>
+<nav aria-label="Case and data"><a href="CASE.zh.md">中文案例</a><a href="CASE.en.md">English case</a><a href="data/results.json">精简数据 / Compact data</a><a href="media-manifest.json">素材SHA / Media manifest</a></nav>
+<main>
+<section aria-labelledby="video-title"><h2 id="video-title">48秒静帧展示剪辑 / Still-image showcase edit</h2><p class="note" id="video-description">六张静帧各8秒，无音轨。24fps仅为编码属性，不是实时录屏、GPU FPS或运动稳定性证据。The silent edit contains six still slides; encoding rate is not measured FPS.</p><video controls preload="none" poster="media/cover.png" width="1280" height="720" aria-describedby="video-description"><source src="media/showcase.mp4" type="video/mp4"><a href="media/showcase.mp4">下载视频 / Download video</a></video></section>
+<section><h2>成本与保留的反例 / Cost and retained failure</h2><figure><a href="media/mobile-cost-quality.png"><img src="media/mobile-cost-quality.png" width="1280" height="620" alt="Development MEIZU21 BOP FogTotal为Full0.651ms、HalfB0.918ms、HalfG1.144ms；ThinStripe的T MAE约0.428" loading="lazy"></a><figcaption>UE5.8.4 / MEIZU21 / Adreno750 / Vulkan ES3_1 Forward HDR / Uniform Prescribed64 / scene1552×720，Full1552×720、Half776×360。Timing native fea3f13 / host fd7e335；quality 36724b7，分属不同APK。Four-trial median and range of medians; BOP instrumentation perturbs scheduling. Whole GPU frame, FPS and energy unavailable.</figcaption></figure></section>
+<section><h2>同模型重建 / Same-model reconstruction</h2><figure><a href="media/reconstruction-triptych.png"><img src="media/reconstruction-triptych.png" width="1280" height="500" alt="Prescribed透射率High Full64、Medium Half64 bilinear和guided并排，保留相同T显示范围" loading="lazy"></a><figcaption>Historical UE5.8.2 / RX9070 / D3D12 SM6，Prescribed/radial，scene640×360，full640×360、half320×180、64steps。Read the cases for local regressions, model differences and fixed scope.</figcaption></figure></section>
+</main><footer>原创部分采用MIT，UE及第三方保留权利；候选尚未发布。Coding agents assisted development and independent review; owner study remains pending. Historical startup SIGSEGV root cause remains unresolved.</footer>
+</body></html>

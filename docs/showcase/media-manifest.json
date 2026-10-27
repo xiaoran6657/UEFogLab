@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "kind": "UEFogLab.PublicMediaManifest",
+  "status": "mit_local_publication_candidate_not_published",
+  "pathBase": "docs/showcase",
+  "sourcePathBase": "historical_internal_repository_identifiers_only",
+  "generator": {
+    "path": "build_showcase.py",
+    "bytes": 14292,
+    "sha256": "e692cf0ff3daada4e81d59103c082e22c252fe0d1b70ed8f4365d9601c06d53c"
+  },
+  "generatorRevision": "fdd6341ab410deb6430a22bd4c80370dd9534613",
+  "dataFiles": [
+    {
+      "path": "data/results.json",
+      "bytes": 16207,
+      "sha256": "28914137ccc7b4a97f6faaeecb2ef99aacee70ee8f8958c80629c58fc631e833"
+    },
+    {
+      "path": "data/source-map.json",
+      "bytes": 4064,
+      "sha256": "dc45e3ecd877ffcd1c3a27c90ff5467c63f378cf1034c3e90822a1e3465255e0"
+    }
+  ],
+  "environment": {
+    "Python": "3.12.14",
+    "Pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.9",
+    "fonts": [
+      {
+        "name": "arial.ttf",
+        "sha256": "c9b76220a5be42ead4733611e417cd65c5fd8aeaa33eb56576ac378a37d130a1"
+      },
+      {
+        "name": "arialbd.ttf",
+        "sha256": "766f06ac8761f82f25d032a220e89438f6064591af9915061f20b949efdedf69"
+      }
+    ],
+    "ffmpegVersion": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "files": [
+    {
+      "path": "media/desktop-st.png",
+      "source": {
+        "repoPath": "docs/evidence/M1-FIX-01-figures-20261022/640x360-ST.png",
+        "bytes": 366237,
+        "sha256": "3e5acaf2f3c7965219cdb9ede3b28d5db911e8ebfda4e435620ab7d39a1788dd"
+      },
+      "sourceRevision": "0881f5bcac34b8381b6f67789a324bcffd22613d",
+      "sourceBlobRevision": "f9b6a41ca35ab94cb544b4deb4d3e4f1f39ae572",
+      "transformation": "byte-for-byte copy",
+      "scope": "M1-FIX-01 Prescribed/schema1 repaired S/T visualization",
+      "bytes": 366237,
+      "sha256": "3e5acaf2f3c7965219cdb9ede3b28d5db911e8ebfda4e435620ab7d39a1788dd",
+      "width": 1920,
+      "height": 2304
+    },
+    {
+      "path": "media/desktop-counterexample.png",
+      "source": {
+        "repoPath": "docs/evidence/M1-FIX-01-figures-20261022/640x360-counterexample.png",
+        "bytes": 31766,
+        "sha256": "5be435d6b848dd6359076b2c45c583af0fe0aaf7f001a681ec8cb5043b4c353c"
+      },
+      "sourceRevision": "0881f5bcac34b8381b6f67789a324bcffd22613d",
+      "sourceBlobRevision": "f9b6a41ca35ab94cb544b4deb4d3e4f1f39ae572",
+      "transformation": "byte-for-byte copy",
+      "scope": "Preserved same-model local reconstruction regression",
+      "bytes": 31766,
+      "sha256": "5be435d6b848dd6359076b2c45c583af0fe0aaf7f001a681ec8cb5043b4c353c",
+      "width": 792,
+      "height": 1728
+    },
+    {
+      "path": "media/native-comparison.png",
+      "source": {
+        "repoPath": "docs/evidence/M3-20261023/M3-main.png",
+        "bytes": 538696,
+        "sha256": "a6e736bf85b881fb63162d15d6e8ab69ffc5df92acb647b6e71c34dd8bd7f7f7"
+      },
+      "sourceRevision": "7730ebaec808ff124c0998e12197261ee3c64718",
+      "sourceBlobRevision": "2252e870047f074263f6d0e6a713f9945576eae4",
+      "transformation": "byte-for-byte copy",
+      "scope": "Native feature/display comparison; no common-model accuracy ranking",
+      "bytes": 538696,
+      "sha256": "a6e736bf85b881fb63162d15d6e8ab69ffc5df92acb647b6e71c34dd8bd7f7f7",
+      "width": 2640,
+      "height": 1050
+    },
+    {
+      "path": "media/native-edge.png",
+      "source": {
+        "repoPath": "docs/evidence/M3-20261023/M3-edge.png",
+        "bytes": 262988,
+        "sha256": "a7bd29aa6783cbbd5a09f5ba59f8da0f06cb69bef4e5d89ae52a836aca4be0d2"
+      },
+      "sourceRevision": "7730ebaec808ff124c0998e12197261ee3c64718",
+      "sourceBlobRevision": "2252e870047f074263f6d0e6a713f9945576eae4",
+      "transformation": "byte-for-byte copy",
+      "scope": "Post-capture illustrative Manual display edge regression",
+      "bytes": 262988,
+      "sha256": "a7bd29aa6783cbbd5a09f5ba59f8da0f06cb69bef4e5d89ae52a836aca4be0d2",
+      "width": 2080,
+      "height": 1260
+    },
+    {
+      "path": "media/mobile-planes-roi.png",
+      "source": {
+        "repoPath": "docs/evidence/images/m4-recon-20261026/planes-roi.png",
+        "bytes": 111073,
+        "sha256": "ac46927885db3e1d59c2e6f505bcde71f788a8da0928f5f981ba0a523b889181"
+      },
+      "sourceRevision": "36724b755c7ad73269294ea64c2adbe3f26891aa",
+      "sourceBlobRevision": "d504cecfe063547e426c4e59f4c7495058f76be6",
+      "transformation": "byte-for-byte copy",
+      "scope": "Actual GPU ST/guide diagnostic visualization; fixed Planes ROIs",
+      "bytes": 111073,
+      "sha256": "ac46927885db3e1d59c2e6f505bcde71f788a8da0928f5f981ba0a523b889181",
+      "width": 1950,
+      "height": 1050
+    },
+    {
+      "path": "media/mobile-thin-roi.png",
+      "source": {
+        "repoPath": "docs/evidence/images/m4-recon-20261026/thin-roi-fallback.png",
+        "bytes": 103198,
+        "sha256": "a4f754fbae492c9f25088ff7ac78cc6c0b65878b101e69022c05302de5a07ee2"
+      },
+      "sourceRevision": "36724b755c7ad73269294ea64c2adbe3f26891aa",
+      "sourceBlobRevision": "d504cecfe063547e426c4e59f4c7495058f76be6",
+      "transformation": "byte-for-byte copy",
+      "scope": "Actual ThinStripe miss/fallback diagnostic visualization",
+      "bytes": 103198,
+      "sha256": "a4f754fbae492c9f25088ff7ac78cc6c0b65878b101e69022c05302de5a07ee2",
+      "width": 1800,
+      "height": 1200
+    },
+    {
+      "path": "sources/manual-high.png",
+      "source": {
+        "repoPath": "Saved/M3/M3-02-20261023/matrix-v2/A-ours-high/frame.png",
+        "bytes": 497421,
+        "sha256": "0ff5b13f06e08f0e0147b7b4ab49e18121789049b0a57c16b087d829a2c13067"
+      },
+      "sourceRevision": "7730ebaec808ff124c0998e12197261ee3c64718",
+      "sourceReport": "docs/evidence/M3-03-20261023.json",
+      "sourceReportSelector": "inputs[case=A-ours-high].image",
+      "transformation": "byte-for-byte copy",
+      "scope": "actual 1280x720 Manual HG High64 screenshot, UE5.8.2; not realtime footage",
+      "bytes": 497421,
+      "sha256": "0ff5b13f06e08f0e0147b7b4ab49e18121789049b0a57c16b087d829a2c13067",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "media/cover.png",
+      "derivedFrom": [
+        "sources/manual-high.png"
+      ],
+      "transformation": "opaque caption bands only; original screenshot also included",
+      "bytes": 302609,
+      "sha256": "d695d9b42db1e2d23dabadafb4dbedc52135d15d89b42e10265a189a8b7c08df",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "media/reconstruction-triptych.png",
+      "derivedFrom": [
+        "media/desktop-st.png"
+      ],
+      "transformation": "exact T-cell crops then uniform 400x225 LANCZOS; no numerical analysis",
+      "cropBoxesXYXY": [
+        [
+          0,
+          408,
+          640,
+          768
+        ],
+        [
+          0,
+          792,
+          640,
+          1152
+        ],
+        [
+          0,
+          1176,
+          640,
+          1536
+        ]
+      ],
+      "bytes": 75769,
+      "sha256": "dbb75e97fd6e3ee46a1e59655988347119642ed81e759ab126a24661cf2c3e14",
+      "width": 1280,
+      "height": 500
+    },
+    {
+      "path": "media/mobile-cost-quality.png",
+      "derivedFrom": [
+        "data/results.json"
+      ],
+      "transformation": "Matplotlib plot of published compact data; no new timing or quality capture",
+      "bytes": 75672,
+      "sha256": "4bbc8dcd7adafb49e9cb4155ae2f5ae41f64309606179d20fb3a2f01284dcb49",
+      "width": 1280,
+      "height": 620
+    },
+    {
+      "path": "media/showcase.mp4",
+      "derivedFrom": [
+        "media/cover.png",
+        "media/reconstruction-triptych.png",
+        "media/native-comparison.png",
+        "media/mobile-cost-quality.png",
+        "media/mobile-thin-roi.png",
+        "data/results.json"
+      ],
+      "transformation": "six still slides, 8s each; cuts only; no motion interpolation; silent H.264 yuv420p 1280x720/24 encoded fps",
+      "durationSeconds": 48,
+      "frameRateIsEncodingProperty": true,
+      "videoKind": "still-image showcase edit",
+      "slideTimeRangesSeconds": [
+        [
+          0,
+          8
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          16,
+          24
+        ],
+        [
+          24,
+          32
+        ],
+        [
+          32,
+          40
+        ],
+        [
+          40,
+          48
+        ]
+      ],
+      "nativeSlideCropsXYWH": [
+        [
+          16,
+          164,
+          640,
+          360
+        ],
+        [
+          672,
+          164,
+          640,
+          360
+        ],
+        [
+          672,
+          608,
+          640,
+          360
+        ],
+        [
+          1328,
+          608,
+          640,
+          360
+        ]
+      ],
+      "bytes": 452798,
+      "sha256": "34b5bfe241e6f17212ee2f2a9019d94ec9f46072e21a99769ed38afddf47f61b",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "totalMediaBytes": 2818227,
+  "licensing": "MIT / 2026 xiaoran6657 for original project work; UE and third-party rights retained; font/tool/engine binaries not included",
+  "rawBuffersIncluded": false
+}

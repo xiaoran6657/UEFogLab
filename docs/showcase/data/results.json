@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 1,
+  "kind": "UEFogLab.CompactPublicResults",
+  "status": "mit_local_publication_candidate_not_published",
+  "snapshotRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+  "pathBase": "repository_root",
+  "sourceReports": [
+    {
+      "repoPath": "docs/evidence/M1-FIX-01-20261022.json",
+      "bytes": 320241,
+      "sha256": "c41c81f8e1b597517dcf3c9d642b1a0cab0facd6a092f1a44eedfe0de1625a8e",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 320241,
+        "sha256": "c41c81f8e1b597517dcf3c9d642b1a0cab0facd6a092f1a44eedfe0de1625a8e",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M3-03-20261023.json",
+      "bytes": 27947,
+      "sha256": "8ca63ed1534b7242dff013eec8483b72b3b217ab949f9395dbdcc5b310dabb98",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 28710,
+        "sha256": "8e7b46da7eeb487916b228208488a79d0f3419a5c0ca2be0c84cb6000bbf183d",
+        "sameBytesAsGitBlob": false,
+        "difference": "CRLF working snapshot versus LF versioned blob; parsed JSON equal"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M4-RECON-03-20261026.json",
+      "bytes": 105947,
+      "sha256": "0a4760970931507a384c893b7e7b530fe0ca9af4f5d5fa473ca97bb34f97b2f5",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 105947,
+        "sha256": "0a4760970931507a384c893b7e7b530fe0ca9af4f5d5fa473ca97bb34f97b2f5",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M4-PERF-03-20261026.json",
+      "bytes": 22751,
+      "sha256": "aab4471f8c0a4f82f94ba483b89e80e23470eb87f7455219001907d64ad9ed48",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 22751,
+        "sha256": "aab4471f8c0a4f82f94ba483b89e80e23470eb87f7455219001907d64ad9ed48",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M4-PERF-coordinator-acceptance-20261026.json",
+      "bytes": 31368,
+      "sha256": "7029b5dc72af9c593846abb47f895e3664fbce61b1a52502d834b1aebb5af932",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 31368,
+        "sha256": "7029b5dc72af9c593846abb47f895e3664fbce61b1a52502d834b1aebb5af932",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M5-01-independent-review-20261026.json",
+      "bytes": 68166,
+      "sha256": "f4571a4bf4bdc9f94febe80471bbf04397556f17d3c6c1057f2a10bce58389f3",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 68166,
+        "sha256": "f4571a4bf4bdc9f94febe80471bbf04397556f17d3c6c1057f2a10bce58389f3",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    }
+  ],
+  "desktop": {
+    "engine": "5.8.2 / CL 56702186",
+    "hardware": "RX 9070 / Win64 / D3D12 SM6",
+    "prescribed": {
+      "sourceRevision": "0881f5bcac34b8381b6f67789a324bcffd22613d",
+      "scene": [
+        640,
+        360
+      ],
+      "fullFog": [
+        640,
+        360
+      ],
+      "halfFog": [
+        320,
+        180
+      ],
+      "steps": 64,
+      "sourceFunction": [
+        0.35,
+        0.6,
+        0.9
+      ],
+      "scope": "repaired same-model S/T visualizations; references only converged in frozen fixtures"
+    },
+    "nativeDisplay": {
+      "captureRevision": "7730ebaec808ff124c0998e12197261ee3c64718",
+      "scene": [
+        1280,
+        720
+      ],
+      "fullFog": [
+        1280,
+        720
+      ],
+      "halfFog": [
+        640,
+        360
+      ],
+      "steps": 64,
+      "model": "ManualDirectionalHG",
+      "albedo": 0.8,
+      "g": 0.5,
+      "E": [
+        4,
+        3,
+        2
+      ],
+      "photonDirection": [
+        -1,
+        -1,
+        0.15
+      ],
+      "comparison": "standalone LFV and LFV density injected into VF have different density, light units and transport; display/path comparison only",
+      "edgeCounterexample": {
+        "xy": [
+          799,
+          411
+        ],
+        "guidedVsHighMaxRGBCode": 2,
+        "bilinearVsHighMaxRGBCode": 0,
+        "selection": "post-capture illustrative selection; High is a display baseline"
+      }
+    }
+  },
+  "mobile": {
+    "engine": "5.8.4 / CL 58902052",
+    "hardware": "MEIZU21 / Adreno750",
+    "renderer": "Vulkan ES3_1 Mobile Forward HDR / MSAA1 / retained native depth",
+    "scene": [
+      1552,
+      720
+    ],
+    "halfFog": [
+      776,
+      360
+    ],
+    "viewMin": [
+      0,
+      0
+    ],
+    "model": "Uniform Prescribed",
+    "steps": 64,
+    "extinctionPerMetre": 0.35,
+    "preExposure": 1,
+    "timing": {
+      "build": "Development",
+      "fixture": "Planes",
+      "nativeSourceRevision": "fea3f1332419d7f87207d6054dcdcb13407f19c2",
+      "hostSourceRevision": "fd7e33500f9257b0792b4e5947bcf941a26abcad",
+      "apkSHA256": "055b4322d512344b0efb5888d25b0e479addb716d98e3c3b12cc5f20a1155cb8",
+      "authorTrials": 16,
+      "authorFrames": 7708,
+      "independentTrials": 4,
+      "independentFrames": 1925,
+      "unit": "ms",
+      "statistic": "median of four per-trial p50 values; range=min/max of those four medians, not confidence intervals",
+      "scope": "instrumented BOP FogTotal marker1-to4; includes marker/barrier and current Full R32-guide cost; not whole GPU frame",
+      "modes": [
+        {
+          "name": "Off",
+          "FogTotal": {
+            "trialMedianMs": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "medianOfTrialMediansMs": 0.0,
+            "rangeOfTrialMediansMs": [
+              0.0,
+              0.0
+            ]
+          },
+          "IntegrateWithGuide": {
+            "trialMedianMs": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "medianOfTrialMediansMs": 0.0,
+            "rangeOfTrialMediansMs": [
+              0.0,
+              0.0
+            ]
+          },
+          "ReconstructST": {
+            "trialMedianMs": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "medianOfTrialMediansMs": 0.0,
+            "rangeOfTrialMediansMs": [
+              0.0,
+              0.0
+            ]
+          },
+          "CompositeHDR": {
+            "trialMedianMs": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "medianOfTrialMediansMs": 0.0,
+            "rangeOfTrialMediansMs": [
+              0.0,
+              0.0
+            ]
+          },
+          "freshFogTotalMs": 0.0
+        },
+        {
+          "name": "Full64",
+          "FogTotal": {
+            "trialMedianMs": [
+              0.6531249840545654,
+              0.6553906089992523,
+              0.6470833175354004,
+              0.6481770675086975
+            ],
+            "medianOfTrialMediansMs": 0.6506510257816315,
+            "rangeOfTrialMediansMs": [
+              0.6470833175354004,
+              0.6553906089992523
+            ]
+          },
+          "IntegrateWithGuide": {
+            "trialMedianMs": [
+              0.44052082257843017,
+              0.44007811425590515,
+              0.439218739276886,
+              0.4397395725975037
+            ],
+            "medianOfTrialMediansMs": 0.43990884342670444,
+            "rangeOfTrialMediansMs": [
+              0.439218739276886,
+              0.44052082257843017
+            ]
+          },
+          "ReconstructST": {
+            "trialMedianMs": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "medianOfTrialMediansMs": 0.0,
+            "rangeOfTrialMediansMs": [
+              0.0,
+              0.0
+            ]
+          },
+          "CompositeHDR": {
+            "trialMedianMs": [
+              0.21161457816696166,
+              0.2143229114341736,
+              0.20708332827758788,
+              0.20781249492645262
+            ],
+            "medianOfTrialMediansMs": 0.20971353654670716,
+            "rangeOfTrialMediansMs": [
+              0.20708332827758788,
+              0.2143229114341736
+            ]
+          },
+          "freshFogTotalMs": 0.6467708175430298
+        },
+        {
+          "name": "HalfB64",
+          "FogTotal": {
+            "trialMedianMs": [
+              0.9161458109664917,
+              0.9163281026287078,
+              0.9187760192356109,
+              0.9202083108673096
+            ],
+            "medianOfTrialMediansMs": 0.9175520609321594,
+            "rangeOfTrialMediansMs": [
+              0.9161458109664917,
+              0.9202083108673096
+            ]
+          },
+          "IntegrateWithGuide": {
+            "trialMedianMs": [
+              0.2234374945449829,
+              0.22291666122436524,
+              0.22364582787322998,
+              0.2242708278579712
+            ],
+            "medianOfTrialMediansMs": 0.22354166120910646,
+            "rangeOfTrialMediansMs": [
+              0.22291666122436524,
+              0.2242708278579712
+            ]
+          },
+          "ReconstructST": {
+            "trialMedianMs": [
+              0.4883593630771637,
+              0.4904947796916962,
+              0.4897656130428314,
+              0.49161457133102415
+            ],
+            "medianOfTrialMediansMs": 0.4901301963672638,
+            "rangeOfTrialMediansMs": [
+              0.4883593630771637,
+              0.49161457133102415
+            ]
+          },
+          "CompositeHDR": {
+            "trialMedianMs": [
+              0.20348957836532594,
+              0.20184895340538023,
+              0.20421874501419068,
+              0.2032291617050171
+            ],
+            "medianOfTrialMediansMs": 0.20335937003517152,
+            "rangeOfTrialMediansMs": [
+              0.20184895340538023,
+              0.20421874501419068
+            ]
+          },
+          "freshFogTotalMs": 0.9156770609779358
+        },
+        {
+          "name": "HalfG64",
+          "FogTotal": {
+            "trialMedianMs": [
+              1.1420312221183777,
+              1.1415624721298219,
+              1.1469010136661528,
+              1.1671353881721496
+            ],
+            "medianOfTrialMediansMs": 1.1444661178922653,
+            "rangeOfTrialMediansMs": [
+              1.1415624721298219,
+              1.1671353881721496
+            ]
+          },
+          "IntegrateWithGuide": {
+            "trialMedianMs": [
+              0.22158853625679015,
+              0.2215104112586975,
+              0.22302082788848876,
+              0.2276562444419861
+            ],
+            "medianOfTrialMediansMs": 0.22230468207263945,
+            "rangeOfTrialMediansMs": [
+              0.2215104112586975,
+              0.2276562444419861
+            ]
+          },
+          "ReconstructST": {
+            "trialMedianMs": [
+              0.7198176907596587,
+              0.719322899105072,
+              0.7172395658226013,
+              0.7296874821853637
+            ],
+            "medianOfTrialMediansMs": 0.7195702949323654,
+            "rangeOfTrialMediansMs": [
+              0.7172395658226013,
+              0.7296874821853637
+            ]
+          },
+          "CompositeHDR": {
+            "trialMedianMs": [
+              0.199661453458786,
+              0.1996874951248169,
+              0.20591145330619812,
+              0.20843749491119384
+            ],
+            "medianOfTrialMediansMs": 0.2027994742155075,
+            "rangeOfTrialMediansMs": [
+              0.199661453458786,
+              0.20843749491119384
+            ]
+          },
+          "freshFogTotalMs": 1.1445312220573425
+        }
+      ],
+      "wholeGPUFrameMs": null,
+      "FPS": null,
+      "energy": null,
+      "frequency": "unavailable; battery temperature is a proxy, not evidence of fixed frequency"
+    },
+    "quality": {
+      "sourceRevision": "36724b755c7ad73269294ea64c2adbe3f26891aa",
+      "apkSHA256": "53729aa73b1e015388009ca426bbcd68af5012f56c07a5689b6de345521b956f",
+      "reference": "actual same-model Full64, not physical ground truth",
+      "scope": "separate accepted RECON APK; unchanged model/shaders and protected payloads support bounded reuse, not a fresh quality matrix on timing APK",
+      "rois": {
+        "whole": [
+          0,
+          0,
+          1552,
+          720
+        ],
+        "plane-step": [
+          768,
+          256,
+          784,
+          464
+        ],
+        "near-sky": [
+          320,
+          256,
+          344,
+          464
+        ],
+        "thin-neighborhood": [
+          992,
+          292,
+          1009,
+          428
+        ],
+        "thin-hit": [
+          1000,
+          300,
+          1001,
+          420
+        ]
+      },
+      "rows": {
+        "HalfB64": {
+          "planeWholeTRMSE": 0.010698195032432339,
+          "planeStepTRMSE": 0.03846669882448361,
+          "nearSkyTRMSE": 0.06366028625861744,
+          "planeWholeHDRBlueRMSE": 0.010602294712608864,
+          "thinHitTMAE": 0.4280466715494792
+        },
+        "HalfG64": {
+          "planeWholeTRMSE": 0.0014533933279432102,
+          "planeStepTRMSE": 2.997166863603077e-05,
+          "nearSkyTRMSE": 0.0002764564184161921,
+          "planeWholeHDRBlueRMSE": 0.0013734670637392742,
+          "thinHitTMAE": 0.4279703776041667
+        }
+      },
+      "thinGeometry": {
+        "fixture": "ThinStripe",
+        "fullHits": 120,
+        "lowCanonicalHits": 0,
+        "guidedZeroCompatibleFallbackPixels": 120
+      }
+    },
+    "default": "Full64",
+    "startup": "historical startup SIGSEGV root cause unresolved; successful bounded retries do not establish stable startup"
+  },
+  "freshDesktopReproduction": {
+    "engine": "5.8.4 / CL 58902052",
+    "authorPrescribedSource": "29ff89a278fc2798047553efda89925d2f0d24fa",
+    "independentManualSource": "e1095607a889b6d611fa92ec2efd3b63f69e270f",
+    "reviewRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+    "scope": "two separate clean-project builds/CPU plus new default Prescribed and explicit Manual GPU optical checks; eight historical core arrays byte-identical; ideal geometry differences retained"
+  },
+  "agentContribution": "Coding agents assisted implementation, execution and independent review. Owner learning and individual technical mastery are not certified.",
+  "rawBuffersIncluded": false,
+  "sourceByteIdentityNote": "sourceReports bytes/sha256 refer to the exact versioned Git blob; originalFrozenWorking retains the historical local evidence identity. Original evidence files have not been rewritten.",
+  "license": {
+    "spdx": "MIT",
+    "copyright": "2026 xiaoran6657",
+    "scope": "owner-authorizable original project code, self-written documentation and figures; UE and third-party rights retained"
+  },
+  "snapshotRevisionMeaning": "historical internal result snapshot identifier; not a reachable commit in the independent public Git",
+  "sourceReportsAvailability": "historical internal records identified by relative technical name/revision and SHA; not bundled or linked as public Git blobs; see evidence/summary.md"
+}

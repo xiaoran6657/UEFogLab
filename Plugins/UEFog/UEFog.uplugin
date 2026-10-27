@@ -1,0 +1,12 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.0.1",
+  "FriendlyName": "UE Fog Lab Renderer",
+  "Description": "Experimental local fog integration and depth-guided upsampling.",
+  "Category": "Rendering",
+  "CanContainContent": false,
+  "Modules": [
+    { "Name": "UEFog", "Type": "Runtime", "LoadingPhase": "PostConfigInit" }
+  ]
+}

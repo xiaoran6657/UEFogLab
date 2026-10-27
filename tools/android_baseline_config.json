@@ -1,0 +1,28 @@
+{
+  "kind": "UEFogLab.AndroidBaselineProfile",
+  "schemaVersion": 1,
+  "profile": "VulkanMobileForwardHDR",
+  "engine": {"MajorVersion": 5, "MinorVersion": 8, "PatchVersion": 4, "Changelist": 58902052},
+  "platform": "Android",
+  "cookPlatform": "Android_ASTC",
+  "configuration": "Development",
+  "abi": "arm64-v8a",
+  "cookShaderTarget": "SF_VULKAN_ES31_ANDROID",
+  "shaderBackend": "VULKAN_ES3_1_ANDROID",
+  "hostCookOverrides": {
+    "bBuildForES31": "False",
+    "bSupportsVulkan": "True",
+    "bSupportsVulkanSM5": "False"
+  },
+  "applicationId": "com.uefoglab.mobilebaseline",
+  "versionCode": 10001,
+  "versionName": "0.0.1-pre01",
+  "minSdk": 26,
+  "targetSdk": 36,
+  "compileSdk": 36,
+  "map": "/Engine/Maps/Entry",
+  "cube": "/Engine/BasicShapes/Cube",
+  "contentLayout": "single APK with embedded OBB containing pak; no content server",
+  "stagingStrategy": "fresh default Saved/StagedBuilds/Android_ASTC required by installed UEDeployAndroid; preserve prior files and snapshot this run under its output",
+  "scope": "cook and package only; no installation, device rendering, fog port or resource probe"
+}

@@ -1,0 +1,91 @@
+#include "/Engine/Private/Common.ush"
+#define FORCE_DEPTH_TEXTURE_READS 1
+#include "/Engine/Private/SceneTexturesCommon.ush"
+
+float4x4 ClipToTranslatedWorld;
+float3 CameraTranslated;
+float3 SphereTranslated;
+float ExtinctionPerMetre;
+float FogNearCm;
+float FogProjectionSignY;
+uint RunTagA;
+uint RunTagB;
+uint FogFrame;
+int2 FogViewMin;
+int2 FogViewSize;
+int2 SceneExtent;
+RWTexture2D<float4> STOutput;
+Texture2D<float4> STInput;
+Texture2D CinInput;
+Texture2D ConsumedInput;
+RWStructuredBuffer<float4> FogSamples;
+
+[numthreads(8, 8, 1)]
+void IntegrateUniformCS(uint3 Id : SV_DispatchThreadID)
+{
+    if (any(Id.xy >= (uint2)FogViewSize)) return;
+    int2 Pixel = FogViewMin + int2(Id.xy);
+    float2 ViewUV = (float2(Id.xy) + .5) / float2(FogViewSize);
+    float4 H = mul(float4(ViewUV.x * 2 - 1, (1 - ViewUV.y * 2) / FogProjectionSignY, 1, 1), ClipToTranslatedWorld);
+    float3 D = normalize(H.xyz / H.w - CameraTranslated);
+    float3 O = CameraTranslated - SphereTranslated;
+    float B = dot(O, D);
+    float Discriminant = B * B - (dot(O, O) - 400.0 * 400.0);
+    float LengthCm = 0;
+    if (Discriminant > 0)
+    {
+        float Root = sqrt(Discriminant);
+        float Entry = max(0.0, -B - Root);
+        float Exit = -B + Root;
+        float Z = LookupDeviceZ((float2(Pixel) + .5) / float2(SceneExtent));
+        if (Z > 0) Exit = min(Exit, ConvertFromDeviceZ(Z) / max(D.x, 1e-6));
+        LengthCm = max(0.0, Exit - Entry);
+    }
+    // Uniform density/source: every midpoint has the same segment coefficient.
+    // Hoist that coefficient, then accumulate all 64 segments (no early-out).
+    float SegmentTau = ExtinctionPerMetre * LengthCm * .01 / 64.0;
+    float SegmentT = exp(-SegmentTau);
+    float Alpha = SegmentTau < .001
+        ? SegmentTau * (1.0 - .5 * SegmentTau + SegmentTau * SegmentTau / 6.0)
+        : 1.0 - SegmentT;
+    float3 S = 0;
+    float T = 1;
+    [loop] for (uint Step = 0; Step < 64; ++Step)
+    {
+        S += T * float3(.35, .60, .90) * Alpha;
+        T *= SegmentT;
+    }
+    STOutput[Id.xy] = float4(S, T);
+}
+
+void CompositeUniformPS(float4 Position : SV_POSITION, noperspective float2 UV : TEXCOORD0, out float4 Out : SV_Target0)
+{
+    // Consume the matching FScreenPassVS interpolant; integer Load, no filtering.
+    int2 Pixel = int2(UV * float2(SceneExtent));
+    float4 ST = STInput.Load(int3(Pixel - FogViewMin, 0));
+    float3 Cin = CinInput.Load(int3(Pixel, 0)).rgb;
+    Out = float4(ST.rgb * View.PreExposure + ST.a * Cin, 1.0);
+}
+
+[numthreads(32, 1, 1)]
+void ObserveReturnedCS(uint3 Id : SV_DispatchThreadID)
+{
+    uint I = Id.x;
+    if (I == 0) FogSamples[0] = float4(RunTagA, RunTagB, FogFrame, 1);
+    if (I == 1) FogSamples[1] = float4(View.PreExposure, FogNearCm, ExtinctionPerMetre, 64);
+    if (I >= 25) return;
+    // Exact decimal percentages: fixes FOG01-PIXEL-CENTRE-01 before GPU work.
+    const uint2 Percent[25] = {
+        uint2(35,45),uint2(40,50),uint2(45,55),uint2(60,45),uint2(65,50),
+        uint2(70,55),uint2(20,10),uint2(50,10),uint2(80,10),uint2(49,50),
+        uint2(51,50),uint2(50,25),uint2(50,75),uint2(28,50),uint2(16,50),
+        uint2(84,50),uint2(95,50),uint2(5,50),uint2(50,90),uint2(40,30),
+        uint2(65,30),uint2(80,70),uint2(20,80),uint2(88,30),uint2(12,30)};
+    int2 Pixel = FogViewMin + int2((Percent[I] * uint2(FogViewSize)) / 100u);
+    float Z = LookupDeviceZ((float2(Pixel) + .5) / float2(SceneExtent));
+    FogSamples[2 + I * 4] = float4(Z, ConvertFromDeviceZ(Z), Pixel);
+    FogSamples[3 + I * 4] = STInput.Load(int3(Pixel - FogViewMin, 0));
+    FogSamples[4 + I * 4] = CinInput.Load(int3(Pixel, 0));
+    // This is the actual Inputs.SceneColor delivered by the ENGINE to observer.
+    FogSamples[5 + I * 4] = ConsumedInput.Load(int3(Pixel, 0));
+}

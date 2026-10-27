@@ -1,0 +1,43 @@
+#include "/Engine/Private/Common.ush"
+// Standalone compute cannot use a render-subpass depth fetch. The opt-in host
+// protocol preserves native depth with r.Mobile.ForceDepthResolve=1 (MSAA1).
+#define FORCE_DEPTH_TEXTURE_READS 1
+#include "/Engine/Private/SceneTexturesCommon.ush"
+
+float ProbeScale;
+uint RunTagA;
+uint RunTagB;
+uint ProbeFrame;
+int2 ProbeViewMin;
+int2 ProbeViewSize;
+int2 ProbeSceneExtent;
+RWTexture2D<float4> KnownOutput;
+Texture2D<float4> KnownInput;
+Texture2D SceneInput;
+RWStructuredBuffer<float4> ProbeOutput;
+
+[numthreads(2, 1, 1)]
+void WriteKnownCS(uint3 Id : SV_DispatchThreadID)
+{
+    KnownOutput[uint2(Id.x, 0)] = Id.x == 0
+        ? float4(0.25 * ProbeScale, 0.5 * ProbeScale, 2.0 * ProbeScale, 1.0)
+        : float4(RunTagA, RunTagB, ProbeFrame, ProbeScale);
+}
+
+[numthreads(32, 1, 1)]
+void SampleProbeCS(uint3 Id : SV_DispatchThreadID)
+{
+    uint I = Id.x;
+    if (I == 0) ProbeOutput[0] = KnownInput.Load(int3(0, 0, 0));
+    if (I == 1) ProbeOutput[1] = KnownInput.Load(int3(1, 0, 0));
+    if (I >= 9) return;
+    const float2 Locations[9] = {
+        float2(.35, .45), float2(.40, .50), float2(.45, .55),
+        float2(.60, .45), float2(.65, .50), float2(.70, .55),
+        float2(.20, .10), float2(.50, .10), float2(.80, .10)};
+    int2 Pixel = ProbeViewMin + int2(floor(Locations[I] * ProbeViewSize));
+    float2 UV = (float2(Pixel) + .5) / float2(ProbeSceneExtent);
+    float Z = LookupDeviceZ(UV);
+    ProbeOutput[2 + I * 2] = float4(Z, ConvertFromDeviceZ(Z), View.PreExposure, ProbeFrame);
+    ProbeOutput[3 + I * 2] = SceneInput.Load(int3(Pixel, 0));
+}

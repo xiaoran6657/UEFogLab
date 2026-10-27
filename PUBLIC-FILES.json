@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 1,
+  "pathBase": "repository_root",
+  "status": "mit_local_publication_candidate",
+  "selfHash": "excluded; release receipt binds this file and actual public commit/tree",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 271,
+      "sha256": "6aa78b18047ecd0b9bfb2a6bc881b9e1b14dd3a6a79470b32e405c1d6f75918b"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 719,
+      "sha256": "7cc9265925f89fe6f49deb5e9cc1c2a8c4c39c6aabeeaefbe444c68965267a34"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 1249,
+      "sha256": "05528fd1ca4a55116dded308fc18d4ce1d958e385964ef2a85b6f6cc57689ddd"
+    },
+    {
+      "path": "Config/Android/AndroidEngine.ini",
+      "bytes": 826,
+      "sha256": "aa8949dc9c963c120982916a367d4220fb70c568397a72b04e8a98c24ee93bbe"
+    },
+    {
+      "path": "Config/Android/AndroidGame.ini",
+      "bytes": 446,
+      "sha256": "59921e85bf03c5b1ebca07742455df65b87adaaca7d4afec2216a8ee1f1974cd"
+    },
+    {
+      "path": "Config/DefaultEngine.ini",
+      "bytes": 725,
+      "sha256": "3c53b939d37a9da1c24516f8c21169d4b266676feb5da9119df75f47565f6148"
+    },
+    {
+      "path": "Config/DefaultGame.ini",
+      "bytes": 208,
+      "sha256": "2304aa4aa23c0568b6abdecd7491ca8d5c5e949725236e603e392ce7a0ab3647"
+    },
+    {
+      "path": "Config/DefaultInput.ini",
+      "bytes": 9483,
+      "sha256": "e1b7a60e4da1acca28b8540ed7b2746551df9ae1ddc0056eb45a0932ed82ea78"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1068,
+      "sha256": "d15df90cc3b756f206213e3dbe566dc9c2f354e564a13de7ab6278d8b89c7b91"
+    },
+    {
+      "path": "NOTICE.md",
+      "bytes": 2197,
+      "sha256": "5860b89df497de04cf479bf4576ee64013ab5de7b1c8e06c49d81ebffd2565a3"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFog.usf",
+      "bytes": 8215,
+      "sha256": "6d3977d46fa358f1e4d662c82e4ae68ebe394f33db4088c3f933ab577385a5ff"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileFog.usf",
+      "bytes": 3751,
+      "sha256": "54605b39d7578da98031e453b1c80011dc7118664096c50eafd93037c8057412"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileProbe.usf",
+      "bytes": 1592,
+      "sha256": "a6a2ac7933116bf5b25f53dbac13690c857c0963665d10bc7cc9179b4884e750"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileReconstruction.usf",
+      "bytes": 8170,
+      "sha256": "33d27db0634122c816d1cb6130812691445e89b8ae2d7c5b52148ea4be2030e2"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/FogMath.h",
+      "bytes": 945,
+      "sha256": "b0c1b8ce36ccdee0916215d6854d7d087e7f2eeadd31b92d8ed6817daedf9067"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/FogMathTests.cpp",
+      "bytes": 1614,
+      "sha256": "6a955c7b6cbb52111135aa89c59ac443dcac4041bf089a090f079d0cb43e90b0"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogCompare.cpp",
+      "bytes": 13053,
+      "sha256": "b911875acdc974d4a194e772a9f36e4f55c363b117f261e1a44c4e14cf4201fe"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.cpp",
+      "bytes": 5396,
+      "sha256": "8df41e7a2f3f2b498f3946b5708a778928b502c1fc0be00a001c55d75b15a68a"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.h",
+      "bytes": 437,
+      "sha256": "bfb241f10a139456aa6235f7f5027d609a81e606b46462afdaccc9e75ad76b0e"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileFog.cpp",
+      "bytes": 23970,
+      "sha256": "0834cd999b8970161c0abc44cf9903371bb28914bfd19a34063bd3c72e04bd5f"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp",
+      "bytes": 23563,
+      "sha256": "c93c6657860bb563d83346be112fd4b8ceb12f0723f26dac99ecc52d27506862"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileProbe.cpp",
+      "bytes": 17691,
+      "sha256": "57acc39e474bf1490625268a525e88ae3d9c9251cfd8d257a723e3b62c7e0c72"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp",
+      "bytes": 33507,
+      "sha256": "a366b17115d55bc36e56bbac52f0075e03130c03bfd2b138bbe9731f92b76515"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileStartup.cpp",
+      "bytes": 11274,
+      "sha256": "b8e5b109f199eafe1e5a6c30d01bf5ec879c2b385f2534cb65675deb7e3fa827"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogModule.cpp",
+      "bytes": 4644,
+      "sha256": "91fa6df33c9da613201b008741c50f3b883a4165b9d6fa7329f760d934e9b3a5"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.cpp",
+      "bytes": 4475,
+      "sha256": "11ca4daafd6a5e537595c47207522c91fb06d58584adada0b250414200d07671"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.h",
+      "bytes": 805,
+      "sha256": "73592c15faf9a203303e9e837228c742504dcd1d1d13458d985798eb26f31155"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.cpp",
+      "bytes": 20669,
+      "sha256": "70549d721f78dc122a6dfd7a6e51db48d5023876d376d5c55aca6cc56cea198c"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.h",
+      "bytes": 650,
+      "sha256": "9068ae4196949480ad95395a8590b2d17f8c1b7be1fe95d8b7a73b1759d6ae3b"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogCompare.h",
+      "bytes": 771,
+      "sha256": "050ed66f53d18c8a8e371839cec14454d2c81c35e0922fad2e571e96bf3c0763"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileFog.h",
+      "bytes": 422,
+      "sha256": "bf10eafe8fdc1cc0a91b6e533fa597178df25f8ce2b61e5b3e20cde34565e062"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobilePerformance.h",
+      "bytes": 726,
+      "sha256": "27e849aff5bd968d816fa815d92179f7fd0fa305a234d524884edff0e41bef19"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileProbe.h",
+      "bytes": 484,
+      "sha256": "a0c357c72ca61c54adedfb45dc51055fe74de7b693c9707d009d3d19c053ae2a"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileReconstruction.h",
+      "bytes": 429,
+      "sha256": "5ad5f1f3dab9c4114041224419d2a4e72a9607b5921866baf4d8d6198d914d53"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileStartup.h",
+      "bytes": 542,
+      "sha256": "b2c1fbcc98f156eb23e604f41a0f6277eae64b58e2d8e4383433cc0e406507de"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/UEFog.Build.cs",
+      "bytes": 721,
+      "sha256": "c7a9a9938c950ed955e8a78bd1bf7b8671700e40dbafd258d16e9578a866b98b"
+    },
+    {
+      "path": "Plugins/UEFog/UEFog.uplugin",
+      "bytes": 344,
+      "sha256": "345af99bc46bb1788fc2f39fa434748ce625983c10e3390ce75cc0382afa5037"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3079,
+      "sha256": "d0d84e03be48553d8f6573e11601aae1711b67ee4edf1033c19bfee5b7ff8d54"
+    },
+    {
+      "path": "SOURCE-PROVENANCE.json",
+      "bytes": 45540,
+      "sha256": "fbd6bde0d0e08e9433afdaef94a6ba8b0991e947f145b9f0bef259f622f5fe46"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.cpp",
+      "bytes": 12249,
+      "sha256": "cbb3c9397e6460999a391da1c55f6d706c9928b7f847b5c18cc18dd65e39af34"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.h",
+      "bytes": 921,
+      "sha256": "dd3b7c3796787bf08a8b5ff1465a81335143ba31493fc56f81e96d61ca3747f9"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDemo.Build.cs",
+      "bytes": 319,
+      "sha256": "6cce10ab184a4a46e4481b9e9cbbe8222eb581216b7aeeb65d9b0d906bcec9cf"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDemo.cpp",
+      "bytes": 115,
+      "sha256": "8c28bb8ebeb244ca5d8fb8be1baf01a02c32150ff8cb48fe359f23e01f4369bb"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabGameMode.cpp",
+      "bytes": 7294,
+      "sha256": "7ca6f96c08c04df28b35a2f7b56bccd680a14e437d635443d84dbbd435254ad1"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabGameMode.h",
+      "bytes": 740,
+      "sha256": "7c96da1e91926789c94d89817ed35717eb6a620c733ea7202106ac87506102eb"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFixture.cpp",
+      "bytes": 3659,
+      "sha256": "664e32e761c9308e413348175553f66ffd52babe14ecafc55771230a29cb99d8"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFixture.h",
+      "bytes": 73,
+      "sha256": "c3ba9f63ba58b7ea3857e2716437011420e7fab7fefc0d2b7894e8be843556df"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFogFixture.cpp",
+      "bytes": 3222,
+      "sha256": "284eb357e949bc280fe28c457f4f4415e6db0dec906d2bc367b687817c9cb27f"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFogFixture.h",
+      "bytes": 76,
+      "sha256": "aba2b0286a3d23f2a30d6bb19d0b5238c39c128e87bd8f88c352c914e9065595"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileReconstructionFixture.cpp",
+      "bytes": 4220,
+      "sha256": "b6c0ea30e2581a227ad22d8c57594a8bb98e0f6632b09fd2964628ebea799613"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileReconstructionFixture.h",
+      "bytes": 87,
+      "sha256": "26a025e89cefd6b3a7031200498c0f838d741f26c563b08ca54a7fe506748203"
+    },
+    {
+      "path": "Source/UEFogLab.Target.cs",
+      "bytes": 341,
+      "sha256": "19f86887dca9179b7fab22c05177024772c17d3a1ccb40e7e986bf99a1ee05eb"
+    },
+    {
+      "path": "Source/UEFogLabEditor.Target.cs",
+      "bytes": 355,
+      "sha256": "15b295c850ba9a829b2c2673db2018b420872cf1f29859417f030033a14374c1"
+    },
+    {
+      "path": "UEFogLab.uproject",
+      "bytes": 439,
+      "sha256": "f5fadf4787f25d00b5203dc32fcdab6e555a4ff569d12ccc64e35fda9ddcb0ef"
+    },
+    {
+      "path": "docs/QUICKSTART.md",
+      "bytes": 6628,
+      "sha256": "18d258534708ca6e9fe255d5b9b02de4efd886db5a38ed917a5d9c020a8af912"
+    },
+    {
+      "path": "docs/showcase/CASE.en.md",
+      "bytes": 8760,
+      "sha256": "446c35f8b57dda83e07acda19df3d595868bb6a7b180496369d18fa201b1ad98"
+    },
+    {
+      "path": "docs/showcase/CASE.zh.md",
+      "bytes": 8214,
+      "sha256": "d9ba7b6ebdcbabf63b7ecebdd4049efe059a1e52b12b5e4be7ef87fb91294062"
+    },
+    {
+      "path": "docs/showcase/QUICKSTART.md",
+      "bytes": 6598,
+      "sha256": "abe833a255d2a47f9435710c47ec9bcf4203fa8a2149fcf88b4af022cb1af5cd"
+    },
+    {
+      "path": "docs/showcase/README.md",
+      "bytes": 1936,
+      "sha256": "04d415c636b2a6c64d4678342716a7c21f98e00bff32f7448ca42754a33581a1"
+    },
+    {
+      "path": "docs/showcase/build_showcase.py",
+      "bytes": 14292,
+      "sha256": "e692cf0ff3daada4e81d59103c082e22c252fe0d1b70ed8f4365d9601c06d53c"
+    },
+    {
+      "path": "docs/showcase/data/provenance.json",
+      "bytes": 28121,
+      "sha256": "efd3a53d8567d4fc3702fea0337e66866f1e7be2c43b1579e7e31e083f98d8ad"
+    },
+    {
+      "path": "docs/showcase/data/results.json",
+      "bytes": 16207,
+      "sha256": "28914137ccc7b4a97f6faaeecb2ef99aacee70ee8f8958c80629c58fc631e833"
+    },
+    {
+      "path": "docs/showcase/data/source-map.json",
+      "bytes": 4064,
+      "sha256": "dc45e3ecd877ffcd1c3a27c90ff5467c63f378cf1034c3e90822a1e3465255e0"
+    },
+    {
+      "path": "docs/showcase/evidence/summary.md",
+      "bytes": 5448,
+      "sha256": "d6273f39569fae560437850bf416d998e9e4c3650368ac7f31149081d18f8cc7"
+    },
+    {
+      "path": "docs/showcase/media-manifest.json",
+      "bytes": 9110,
+      "sha256": "597d9a97b3574394964f0a549ed5aef9a6a8019484d69da80c6d76f6a670afa6"
+    },
+    {
+      "path": "docs/showcase/media/cover.png",
+      "bytes": 302609,
+      "sha256": "d695d9b42db1e2d23dabadafb4dbedc52135d15d89b42e10265a189a8b7c08df"
+    },
+    {
+      "path": "docs/showcase/media/desktop-counterexample.png",
+      "bytes": 31766,
+      "sha256": "5be435d6b848dd6359076b2c45c583af0fe0aaf7f001a681ec8cb5043b4c353c"
+    },
+    {
+      "path": "docs/showcase/media/desktop-st.png",
+      "bytes": 366237,
+      "sha256": "3e5acaf2f3c7965219cdb9ede3b28d5db911e8ebfda4e435620ab7d39a1788dd"
+    },
+    {
+      "path": "docs/showcase/media/mobile-cost-quality.png",
+      "bytes": 75672,
+      "sha256": "4bbc8dcd7adafb49e9cb4155ae2f5ae41f64309606179d20fb3a2f01284dcb49"
+    },
+    {
+      "path": "docs/showcase/media/mobile-planes-roi.png",
+      "bytes": 111073,
+      "sha256": "ac46927885db3e1d59c2e6f505bcde71f788a8da0928f5f981ba0a523b889181"
+    },
+    {
+      "path": "docs/showcase/media/mobile-thin-roi.png",
+      "bytes": 103198,
+      "sha256": "a4f754fbae492c9f25088ff7ac78cc6c0b65878b101e69022c05302de5a07ee2"
+    },
+    {
+      "path": "docs/showcase/media/native-comparison.png",
+      "bytes": 538696,
+      "sha256": "a6e736bf85b881fb63162d15d6e8ab69ffc5df92acb647b6e71c34dd8bd7f7f7"
+    },
+    {
+      "path": "docs/showcase/media/native-edge.png",
+      "bytes": 262988,
+      "sha256": "a7bd29aa6783cbbd5a09f5ba59f8da0f06cb69bef4e5d89ae52a836aca4be0d2"
+    },
+    {
+      "path": "docs/showcase/media/reconstruction-triptych.png",
+      "bytes": 75769,
+      "sha256": "dbb75e97fd6e3ee46a1e59655988347119642ed81e759ab126a24661cf2c3e14"
+    },
+    {
+      "path": "docs/showcase/media/showcase.mp4",
+      "bytes": 452798,
+      "sha256": "34b5bfe241e6f17212ee2f2a9019d94ec9f46072e21a99769ed38afddf47f61b"
+    },
+    {
+      "path": "docs/showcase/preview.html",
+      "bytes": 3910,
+      "sha256": "c247328e3a7cd1da0fc5623addcac44cbbf90e80092c273c2e3271ac340c4620"
+    },
+    {
+      "path": "docs/showcase/references.md",
+      "bytes": 6491,
+      "sha256": "49b571c32135f54ad0b013784317c4c4070503cfd81a7046656644e7be3ce0e2"
+    },
+    {
+      "path": "docs/showcase/requirements.txt",
+      "bytes": 47,
+      "sha256": "7f578e204ded51088340049684345cb3c1c0be816bafe027ab051379b5a2028f"
+    },
+    {
+      "path": "docs/showcase/sources/manual-high.png",
+      "bytes": 497421,
+      "sha256": "0ff5b13f06e08f0e0147b7b4ab49e18121789049b0a57c16b087d829a2c13067"
+    },
+    {
+      "path": "docs/theory/README.md",
+      "bytes": 6491,
+      "sha256": "49b571c32135f54ad0b013784317c4c4070503cfd81a7046656644e7be3ce0e2"
+    },
+    {
+      "path": "tools/.gitattributes",
+      "bytes": 66,
+      "sha256": "6b4faf73fe00afc5a547403c7f126df543f9d99982222129d35b2425620f5c51"
+    },
+    {
+      "path": "tools/AndroidBaseline.ps1",
+      "bytes": 1187,
+      "sha256": "4ff0ab47d919974f6ce52d91f022ff23663b738c10c60bbe5cceeda5fa14dfea"
+    },
+    {
+      "path": "tools/AndroidFog.ps1",
+      "bytes": 1129,
+      "sha256": "bb876cde8052c04affdf775fadde0c6bc48e127994ed68dafa40904f8265537a"
+    },
+    {
+      "path": "tools/AndroidProbe.ps1",
+      "bytes": 1041,
+      "sha256": "2250a3a701e99237d2e213ab93ff880c1f198ef3b4171ab4a14f1e45c5b92e8b"
+    },
+    {
+      "path": "tools/AndroidRecon.ps1",
+      "bytes": 1508,
+      "sha256": "76f1656b330b8d075a5ad374646044d0f538ee4c11eaae65855864d3571259e8"
+    },
+    {
+      "path": "tools/AndroidRun.ps1",
+      "bytes": 775,
+      "sha256": "3c361538e21910efccbc3eeb563d51a60e396f0472c75fad5b48cc543e3363d5"
+    },
+    {
+      "path": "tools/Build.ps1",
+      "bytes": 858,
+      "sha256": "7c69957fd6acc8cef27761c12c15722e949967d7daecb216cd0342e86a07a06d"
+    },
+    {
+      "path": "tools/Compare.ps1",
+      "bytes": 899,
+      "sha256": "3310109f045637e37d7bd3c454bea0e15829fbbd171188b7ff88086d9e24fff0"
+    },
+    {
+      "path": "tools/Lighting.ps1",
+      "bytes": 3880,
+      "sha256": "c99c05d6e2c25bfdfbc4997f27653934f19d5938609eef47b688a73774da3df4"
+    },
+    {
+      "path": "tools/M1Suite.ps1",
+      "bytes": 2778,
+      "sha256": "4ad7cc7fa8956758e9bbdbff297a218ef4da37ed4971b0499fa23438258ac019"
+    },
+    {
+      "path": "tools/M2Showcase.ps1",
+      "bytes": 1759,
+      "sha256": "74755867061965b5faa24d3e0315216b77021b14fffe026d00cb4ec6d4ea794e"
+    },
+    {
+      "path": "tools/M2Suite.ps1",
+      "bytes": 2578,
+      "sha256": "f7b5a654f126305e2a1689795842b9cdb08786c96de770890cdece992d066cf4"
+    },
+    {
+      "path": "tools/MobileFogReference.ps1",
+      "bytes": 279,
+      "sha256": "5e8978092a516f299c9133b3fc609457ce7e7f956b009c2a23acbbd49d1e524c"
+    },
+    {
+      "path": "tools/MobileReconstructionReference.ps1",
+      "bytes": 301,
+      "sha256": "a7117f3ffb07eea146e2b039a79f31522d7db3e498a20ee350f45ff714d87694"
+    },
+    {
+      "path": "tools/Readback.ps1",
+      "bytes": 7169,
+      "sha256": "c2ff4c1c184749a1b4422bb743f4283e5684db5258ff19131edb4b366d668775"
+    },
+    {
+      "path": "tools/Run.ps1",
+      "bytes": 3772,
+      "sha256": "4f5576f0cc001cbbcfa98aa4d90b3fcfceabc3f1b41ea91c34383b8a278ddd53"
+    },
+    {
+      "path": "tools/Test.ps1",
+      "bytes": 1083,
+      "sha256": "fce0e977dca2281c79a77c42fd653f9913ccc27eef1b3b9e6020410694b2198c"
+    },
+    {
+      "path": "tools/Use-AndroidToolchain.ps1",
+      "bytes": 2215,
+      "sha256": "0267ca9a13d9ee55e8ca74f828d3e35ac58588b259c4a5c8f8b890312c1520f9"
+    },
+    {
+      "path": "tools/android_baseline.py",
+      "bytes": 36909,
+      "sha256": "eba2c39e7cc0b09115de74fee6f6a3ee8c8ed47a15ec51719c266ad61ddf6adb"
+    },
+    {
+      "path": "tools/android_baseline_config.json",
+      "bytes": 1118,
+      "sha256": "bca4f89d6ce0e20ef7c8de038826bb5b0a9ca17968abb6a5b52fb019f1efeacf"
+    },
+    {
+      "path": "tools/android_fog.py",
+      "bytes": 24445,
+      "sha256": "984d38ae11b98ee4419262c7afef4f2008a4bc170a1998b6fca3bfcc090a7a18"
+    },
+    {
+      "path": "tools/android_probe.py",
+      "bytes": 25157,
+      "sha256": "53e2f124f74abd156133d9c27ef8550c7d52260e0a54a0aea19c89f3367fd1fa"
+    },
+    {
+      "path": "tools/android_recon.py",
+      "bytes": 36181,
+      "sha256": "9aa4cc5065656cd271c51110331a1e718929d59b2a65d0689e7358ea358c4f62"
+    },
+    {
+      "path": "tools/android_run.py",
+      "bytes": 26266,
+      "sha256": "0f5b59407cca8679d3d41e8114bdcde03887dc6ebe8e840a8dd15014e61394ed"
+    },
+    {
+      "path": "tools/check_depth_mapping.py",
+      "bytes": 4571,
+      "sha256": "1fac43a8a7a86316d4900a0373bfc0168f404c827718266271f096060cdc951a"
+    },
+    {
+      "path": "tools/check_half_rounding.py",
+      "bytes": 2226,
+      "sha256": "0f96f5adf638da90f861fd6b602fb36fcfe22bc837ce42ca5e06176b221298d0"
+    },
+    {
+      "path": "tools/check_lighting_reference.py",
+      "bytes": 7738,
+      "sha256": "eaa07a4dd02336aff985b2163801cd9df504af093c3e52fb7c1d60bcce110fab"
+    },
+    {
+      "path": "tools/check_m2_contract.py",
+      "bytes": 5742,
+      "sha256": "b6274568a706888c42dfe10ebaf2d42244c34ed2ced80257d6d379362dd7c3ff"
+    },
+    {
+      "path": "tools/check_m2_study.py",
+      "bytes": 5566,
+      "sha256": "ff2d0b2be5906fa219436f3a30b426520533efd6a0e6eedfb21917f9f44441d1"
+    },
+    {
+      "path": "tools/check_m3_capture.py",
+      "bytes": 2085,
+      "sha256": "2f193a282b043f5a59c6e248bccd96b7a1ea36c455e95c8674e652c0ed8bee40"
+    },
+    {
+      "path": "tools/check_m3_launch.py",
+      "bytes": 3075,
+      "sha256": "1f4eb039880236021f590b3db35bd64e56ca6d1b6fe4c51f216ab6d958582a3b"
+    },
+    {
+      "path": "tools/check_numeric_contract.py",
+      "bytes": 1461,
+      "sha256": "d506b754025c786fb0b246616cfd03dd8d49a385a83c9e221e99bcc399e90d4f"
+    },
+    {
+      "path": "tools/check_prescribed_reconstruction.py",
+      "bytes": 5653,
+      "sha256": "8d66fd55e018dcea822e9375bca5a650a8dfddd6646093f403fd1190ada212f1"
+    },
+    {
+      "path": "tools/check_reconstruction_reference.py",
+      "bytes": 7141,
+      "sha256": "45f036e14453b97a532db46e2c18a702eaccbbf90b96999086aff58eb5861e91"
+    },
+    {
+      "path": "tools/fog_analysis.py",
+      "bytes": 14965,
+      "sha256": "9d0e75942659a1bbda3193ac5201ff73390e2af0dec5e605d20b90ffde9685fb"
+    },
+    {
+      "path": "tools/fog_convergence.py",
+      "bytes": 3265,
+      "sha256": "d5754ead23f29e1c858cff2bd6997d1ded5f830c19f8624e4bc371e20eb9d03c"
+    },
+    {
+      "path": "tools/fog_lighting.py",
+      "bytes": 5936,
+      "sha256": "4e252b9f72698699c9f95109efeb539e75aeb101828ef3deb4784fe86c1582c4"
+    },
+    {
+      "path": "tools/fog_m2_analysis.py",
+      "bytes": 8249,
+      "sha256": "010d31657ba575f488f828f2220d94b71bbc7cc5dd10409eeb50e665caea4f8a"
+    },
+    {
+      "path": "tools/fog_m2_showcase.py",
+      "bytes": 4429,
+      "sha256": "955eb82e88f9b4dd2597725723b73b05a9b37d2ff4c9b26ac172c8ac81ed7b2f"
+    },
+    {
+      "path": "tools/fog_m2_study.py",
+      "bytes": 14717,
+      "sha256": "48849af4ad4a22b1df0ca5ac2c78d9d6d851ca045849b1eeb9c8a1700d4ae6b3"
+    },
+    {
+      "path": "tools/fog_reconstruction.py",
+      "bytes": 12468,
+      "sha256": "50cf28788c1fd670b93eb00ba64697870ccd5bdd01c0bc3b04c861bff876ad80"
+    },
+    {
+      "path": "tools/fog_sampling.py",
+      "bytes": 929,
+      "sha256": "a675b3a466f9c82271d59eeebd2c6e5165a445f1b87a639714ab7417a112313b"
+    },
+    {
+      "path": "tools/m2_cases.json",
+      "bytes": 2027,
+      "sha256": "386aa705dd56f7a0c545b5fbfa278a697277202a240747e3b5a90508f476da83"
+    },
+    {
+      "path": "tools/m3_compare.py",
+      "bytes": 24891,
+      "sha256": "91f2b4ebf4cfcacb91bbc584fb7a68c2e0a8dc351a14e9fa8386c0b5b2c7efcb"
+    },
+    {
+      "path": "tools/m3_config.json",
+      "bytes": 647,
+      "sha256": "a64c53b6f4983356a35a03821e5008212e6402b9df6f9618f60adbfbdc862a1e"
+    },
+    {
+      "path": "tools/mobile_fog_profile.json",
+      "bytes": 6912,
+      "sha256": "ee32d1f71c562049aa280a514db14eb6db3f3c065ada4e272aa95a03eb5bd0be"
+    },
+    {
+      "path": "tools/mobile_fog_reference.py",
+      "bytes": 20945,
+      "sha256": "1eb883d23297b90e56b29c878872e6151777f1cba51e4b0866affa9b26e10966"
+    },
+    {
+      "path": "tools/mobile_reconstruction_profile.json",
+      "bytes": 11473,
+      "sha256": "48ab7c34c0907881162457fe844a304cbaa924e76a02188cf8e301f34b867a80"
+    },
+    {
+      "path": "tools/mobile_reconstruction_reference.py",
+      "bytes": 27262,
+      "sha256": "e97ff955536c401f9c0ef6cc60d0035ed5ef31e6ef49a9b5ffb1fedb6ac2b896"
+    },
+    {
+      "path": "tools/requirements-desktop.txt",
+      "bytes": 101,
+      "sha256": "25ad0e6eec1259ca95c2ca047057d50b6ce08408de4f05933e8927c9f59d6247"
+    }
+  ]
+}

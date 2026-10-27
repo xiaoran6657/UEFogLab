@@ -1,0 +1,23 @@
+{
+  "kind": "UEFogLabComparisonConfig",
+  "schemaVersion": 1,
+  "configId": "NativeCompareRadial-v2-height-gate",
+  "nativeHeightExtinction": 8,
+  "nativeHeightFalloff": 1,
+  "nativeHeightOffset": 0,
+  "nativeDensity": 0.37333333333333335,
+  "scale": [0.72, 0.72, 0.72],
+  "sphereCenterCm": [300, 0, 180],
+  "sphereRadiusCm": 360,
+  "oursExtinctionPerMetre": 0.35,
+  "albedo": 0.8,
+  "g": 0.5,
+  "manualIncidentWeight": [4, 3, 2],
+  "photonDirection": [-1, -1, 0.15],
+  "sunIntensity": 3,
+  "sunLinearColor": [1, 0.75, 0.5],
+  "edgeRoi1280": [650, 240, 500, 330],
+  "vfBackgroundMaxCode": 1,
+  "vfStabilityP99Code": 1,
+  "vfStabilityMaxCode": 4
+}

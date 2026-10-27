@@ -1,0 +1,672 @@
+{
+  "schemaVersion": 1,
+  "kind": "UEFogLab.DerivedPublicProvenance",
+  "preparedDate": "2026-10-27",
+  "historyPolicy": "one initial independent public snapshot; full development history and raw reports preserved locally",
+  "historicalIdentifiersAreNotPublicGitObjects": true,
+  "acceptedRuntimeRevision": "29ff89a278fc2798047553efda89925d2f0d24fa",
+  "internalPreparationRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+  "acceptedM5Delivery": "d576f2c342df27e2c50bd2d6679818c58e3c09ec",
+  "sourceReports": [
+    {
+      "repoPath": "docs/evidence/M1-FIX-01-20261022.json",
+      "bytes": 320241,
+      "sha256": "c41c81f8e1b597517dcf3c9d642b1a0cab0facd6a092f1a44eedfe0de1625a8e",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 320241,
+        "sha256": "c41c81f8e1b597517dcf3c9d642b1a0cab0facd6a092f1a44eedfe0de1625a8e",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M3-03-20261023.json",
+      "bytes": 27947,
+      "sha256": "8ca63ed1534b7242dff013eec8483b72b3b217ab949f9395dbdcc5b310dabb98",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 28710,
+        "sha256": "8e7b46da7eeb487916b228208488a79d0f3419a5c0ca2be0c84cb6000bbf183d",
+        "sameBytesAsGitBlob": false,
+        "difference": "CRLF working snapshot versus LF versioned blob; parsed JSON equal"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M4-RECON-03-20261026.json",
+      "bytes": 105947,
+      "sha256": "0a4760970931507a384c893b7e7b530fe0ca9af4f5d5fa473ca97bb34f97b2f5",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 105947,
+        "sha256": "0a4760970931507a384c893b7e7b530fe0ca9af4f5d5fa473ca97bb34f97b2f5",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M4-PERF-03-20261026.json",
+      "bytes": 22751,
+      "sha256": "aab4471f8c0a4f82f94ba483b89e80e23470eb87f7455219001907d64ad9ed48",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 22751,
+        "sha256": "aab4471f8c0a4f82f94ba483b89e80e23470eb87f7455219001907d64ad9ed48",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M4-PERF-coordinator-acceptance-20261026.json",
+      "bytes": 31368,
+      "sha256": "7029b5dc72af9c593846abb47f895e3664fbce61b1a52502d834b1aebb5af932",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 31368,
+        "sha256": "7029b5dc72af9c593846abb47f895e3664fbce61b1a52502d834b1aebb5af932",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    },
+    {
+      "repoPath": "docs/evidence/M5-01-independent-review-20261026.json",
+      "bytes": 68166,
+      "sha256": "f4571a4bf4bdc9f94febe80471bbf04397556f17d3c6c1057f2a10bce58389f3",
+      "gitRevision": "4261f99126f109e96d54ebf360fecdc4d770b285",
+      "hashScope": "exact Git blob bytes at gitRevision",
+      "originalFrozenWorking": {
+        "bytes": 68166,
+        "sha256": "f4571a4bf4bdc9f94febe80471bbf04397556f17d3c6c1057f2a10bce58389f3",
+        "sameBytesAsGitBlob": true,
+        "difference": "none"
+      },
+      "availability": "historical identifier only; original retained locally"
+    }
+  ],
+  "currentRuntimeFiles": [
+    {
+      "path": "Config/Android/AndroidEngine.ini",
+      "gitBlob": "c18f2b05f777f0dc863911d0d97361ee2b92559d",
+      "bytes": 826,
+      "sha256": "aa8949dc9c963c120982916a367d4220fb70c568397a72b04e8a98c24ee93bbe"
+    },
+    {
+      "path": "Config/Android/AndroidGame.ini",
+      "gitBlob": "6789fd09942c4fc766a8cd603177be4755fabdf4",
+      "bytes": 446,
+      "sha256": "59921e85bf03c5b1ebca07742455df65b87adaaca7d4afec2216a8ee1f1974cd"
+    },
+    {
+      "path": "Config/DefaultEngine.ini",
+      "gitBlob": "84fe089f90cf0edf0e9fe3c04d8db94548639342",
+      "bytes": 725,
+      "sha256": "3c53b939d37a9da1c24516f8c21169d4b266676feb5da9119df75f47565f6148"
+    },
+    {
+      "path": "Config/DefaultGame.ini",
+      "gitBlob": "786622d629f88c7904d5a067c4e3ab4d08932878",
+      "bytes": 208,
+      "sha256": "2304aa4aa23c0568b6abdecd7491ca8d5c5e949725236e603e392ce7a0ab3647"
+    },
+    {
+      "path": "Config/DefaultInput.ini",
+      "gitBlob": "2c1d7add86ecbe5f859d66410f7d09d215e2e677",
+      "bytes": 9483,
+      "sha256": "e1b7a60e4da1acca28b8540ed7b2746551df9ae1ddc0056eb45a0932ed82ea78"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFog.usf",
+      "gitBlob": "1b58ad197f531c0a1fbdedfd37cc985b492f1238",
+      "bytes": 8215,
+      "sha256": "6d3977d46fa358f1e4d662c82e4ae68ebe394f33db4088c3f933ab577385a5ff"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileFog.usf",
+      "gitBlob": "3cf57651b43ea00923ebfff5cfae9671375ce0ba",
+      "bytes": 3751,
+      "sha256": "54605b39d7578da98031e453b1c80011dc7118664096c50eafd93037c8057412"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileProbe.usf",
+      "gitBlob": "44603387db066ae9d974293a26e45f0dc0e85b31",
+      "bytes": 1592,
+      "sha256": "a6a2ac7933116bf5b25f53dbac13690c857c0963665d10bc7cc9179b4884e750"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileReconstruction.usf",
+      "gitBlob": "92d3b054d7ae8db3df0da33253caa0d66f618d99",
+      "bytes": 8170,
+      "sha256": "33d27db0634122c816d1cb6130812691445e89b8ae2d7c5b52148ea4be2030e2"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/FogMath.h",
+      "gitBlob": "87141a694b953977aeab6fce145c1987828f10a7",
+      "bytes": 945,
+      "sha256": "b0c1b8ce36ccdee0916215d6854d7d087e7f2eeadd31b92d8ed6817daedf9067"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/FogMathTests.cpp",
+      "gitBlob": "ffdbe46eda28fec0bea984fa60086e5082bfc6e3",
+      "bytes": 1614,
+      "sha256": "6a955c7b6cbb52111135aa89c59ac443dcac4041bf089a090f079d0cb43e90b0"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogCompare.cpp",
+      "gitBlob": "aa27b064faedfabeaf67b7b30fbb5c1fdb852fee",
+      "bytes": 13053,
+      "sha256": "b911875acdc974d4a194e772a9f36e4f55c363b117f261e1a44c4e14cf4201fe"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.cpp",
+      "gitBlob": "f33dcb991c92300d706cda80957d8140e0697cbe",
+      "bytes": 5396,
+      "sha256": "8df41e7a2f3f2b498f3946b5708a778928b502c1fc0be00a001c55d75b15a68a"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.h",
+      "gitBlob": "6e1f0b8eea14c8ba4ea28fddc4a17aecacf97339",
+      "bytes": 437,
+      "sha256": "bfb241f10a139456aa6235f7f5027d609a81e606b46462afdaccc9e75ad76b0e"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileFog.cpp",
+      "gitBlob": "809043290bda938e7e5eb4bed9f83b3619727468",
+      "bytes": 23970,
+      "sha256": "0834cd999b8970161c0abc44cf9903371bb28914bfd19a34063bd3c72e04bd5f"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp",
+      "gitBlob": "c739b4a0ab7724b114c27057cf1e06a24d6f2637",
+      "bytes": 23563,
+      "sha256": "c93c6657860bb563d83346be112fd4b8ceb12f0723f26dac99ecc52d27506862"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileProbe.cpp",
+      "gitBlob": "66845be0fb059557c310da978563fdd5904812c9",
+      "bytes": 17691,
+      "sha256": "57acc39e474bf1490625268a525e88ae3d9c9251cfd8d257a723e3b62c7e0c72"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp",
+      "gitBlob": "b4df37b5ef68fdf28c5615b2f9f2933523798b14",
+      "bytes": 33507,
+      "sha256": "a366b17115d55bc36e56bbac52f0075e03130c03bfd2b138bbe9731f92b76515"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileStartup.cpp",
+      "gitBlob": "2833d260e32cf86c3446a0de402d86942d2c15e1",
+      "bytes": 11274,
+      "sha256": "b8e5b109f199eafe1e5a6c30d01bf5ec879c2b385f2534cb65675deb7e3fa827"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogModule.cpp",
+      "gitBlob": "f2d062606ce35b63d205302cea425898c40234ff",
+      "bytes": 4644,
+      "sha256": "91fa6df33c9da613201b008741c50f3b883a4165b9d6fa7329f760d934e9b3a5"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.cpp",
+      "gitBlob": "a69ab6945998f59c1b7d456a24abbb722599d995",
+      "bytes": 4475,
+      "sha256": "11ca4daafd6a5e537595c47207522c91fb06d58584adada0b250414200d07671"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.h",
+      "gitBlob": "afeb3437596117d3dff4f20fe0793a0016ac163a",
+      "bytes": 805,
+      "sha256": "73592c15faf9a203303e9e837228c742504dcd1d1d13458d985798eb26f31155"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.cpp",
+      "gitBlob": "a6523c0f1737b43fdf159aeb663163f8e9026e9c",
+      "bytes": 20669,
+      "sha256": "70549d721f78dc122a6dfd7a6e51db48d5023876d376d5c55aca6cc56cea198c"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.h",
+      "gitBlob": "dcd6d2dafdc3115665a54e5756f2a457f0668f88",
+      "bytes": 650,
+      "sha256": "9068ae4196949480ad95395a8590b2d17f8c1b7be1fe95d8b7a73b1759d6ae3b"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogCompare.h",
+      "gitBlob": "951693b482c7e797e0b267949d22b3de357ef139",
+      "bytes": 771,
+      "sha256": "050ed66f53d18c8a8e371839cec14454d2c81c35e0922fad2e571e96bf3c0763"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileFog.h",
+      "gitBlob": "4ffa9f52c5a4582d051343533f378095ae7263bc",
+      "bytes": 422,
+      "sha256": "bf10eafe8fdc1cc0a91b6e533fa597178df25f8ce2b61e5b3e20cde34565e062"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobilePerformance.h",
+      "gitBlob": "11ea22252a905709b24a6f5720ba67774e817815",
+      "bytes": 726,
+      "sha256": "27e849aff5bd968d816fa815d92179f7fd0fa305a234d524884edff0e41bef19"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileProbe.h",
+      "gitBlob": "37dab0edb0a69175958b0658a12c41fc80aeabf9",
+      "bytes": 484,
+      "sha256": "a0c357c72ca61c54adedfb45dc51055fe74de7b693c9707d009d3d19c053ae2a"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileReconstruction.h",
+      "gitBlob": "7c9c78040e2dd3de079a936312f58a7458bc1cfb",
+      "bytes": 429,
+      "sha256": "5ad5f1f3dab9c4114041224419d2a4e72a9607b5921866baf4d8d6198d914d53"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileStartup.h",
+      "gitBlob": "473b1521cb393dcae32a5eb809221c2bbbe4b445",
+      "bytes": 542,
+      "sha256": "b2c1fbcc98f156eb23e604f41a0f6277eae64b58e2d8e4383433cc0e406507de"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/UEFog.Build.cs",
+      "gitBlob": "4b19defc913b249cbd72cf0fb41749254e2be265",
+      "bytes": 721,
+      "sha256": "c7a9a9938c950ed955e8a78bd1bf7b8671700e40dbafd258d16e9578a866b98b"
+    },
+    {
+      "path": "Plugins/UEFog/UEFog.uplugin",
+      "gitBlob": "a77b46025db9ca6549b6c03ef1922677c7e10436",
+      "bytes": 344,
+      "sha256": "345af99bc46bb1788fc2f39fa434748ce625983c10e3390ce75cc0382afa5037"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.cpp",
+      "gitBlob": "a0c4adf29b4d4027bfc7b5964688c5b25853028d",
+      "bytes": 12249,
+      "sha256": "cbb3c9397e6460999a391da1c55f6d706c9928b7f847b5c18cc18dd65e39af34"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.h",
+      "gitBlob": "374f7b633f88cfb926f3a6f34fbb8442c9314648",
+      "bytes": 921,
+      "sha256": "dd3b7c3796787bf08a8b5ff1465a81335143ba31493fc56f81e96d61ca3747f9"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDemo.Build.cs",
+      "gitBlob": "a8529c8a085d14ca8b77f43658854645a16d3a7f",
+      "bytes": 319,
+      "sha256": "6cce10ab184a4a46e4481b9e9cbbe8222eb581216b7aeeb65d9b0d906bcec9cf"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDemo.cpp",
+      "gitBlob": "e579c86550bc70b2b8f1df8043cc9368c313aa9b",
+      "bytes": 115,
+      "sha256": "8c28bb8ebeb244ca5d8fb8be1baf01a02c32150ff8cb48fe359f23e01f4369bb"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabGameMode.cpp",
+      "gitBlob": "ee98d2d1dfb317d94238cfc1aa0869dd42115e6d",
+      "bytes": 7294,
+      "sha256": "7ca6f96c08c04df28b35a2f7b56bccd680a14e437d635443d84dbbd435254ad1"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabGameMode.h",
+      "gitBlob": "8c460b88221ab262f4dedff882f0799cfbfcf92a",
+      "bytes": 740,
+      "sha256": "7c96da1e91926789c94d89817ed35717eb6a620c733ea7202106ac87506102eb"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFixture.cpp",
+      "gitBlob": "ad6fba8080c179acf9fd5e3fa40abbe1cc9d886f",
+      "bytes": 3659,
+      "sha256": "664e32e761c9308e413348175553f66ffd52babe14ecafc55771230a29cb99d8"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFixture.h",
+      "gitBlob": "d29cfcddd86cfed2863ed375a4f2ff0f6a298bdf",
+      "bytes": 73,
+      "sha256": "c3ba9f63ba58b7ea3857e2716437011420e7fab7fefc0d2b7894e8be843556df"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFogFixture.cpp",
+      "gitBlob": "f7fff7434019682ab2e147e99c4a0e00f3931694",
+      "bytes": 3222,
+      "sha256": "284eb357e949bc280fe28c457f4f4415e6db0dec906d2bc367b687817c9cb27f"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFogFixture.h",
+      "gitBlob": "9ab6d681a2a1a7bdb57c0096a2ee05ee6ba3563d",
+      "bytes": 76,
+      "sha256": "aba2b0286a3d23f2a30d6bb19d0b5238c39c128e87bd8f88c352c914e9065595"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileReconstructionFixture.cpp",
+      "gitBlob": "9d0899b4b774f237b7a543f4efc33bf591eb1aa9",
+      "bytes": 4220,
+      "sha256": "b6c0ea30e2581a227ad22d8c57594a8bb98e0f6632b09fd2964628ebea799613"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileReconstructionFixture.h",
+      "gitBlob": "13c4e773e0b7cf5bdbc69351b486b8b5b71b59e4",
+      "bytes": 87,
+      "sha256": "26a025e89cefd6b3a7031200498c0f838d741f26c563b08ca54a7fe506748203"
+    },
+    {
+      "path": "Source/UEFogLab.Target.cs",
+      "gitBlob": "46c88e6162e0d7b127d28a5a776f002a36fd41ac",
+      "bytes": 341,
+      "sha256": "19f86887dca9179b7fab22c05177024772c17d3a1ccb40e7e986bf99a1ee05eb"
+    },
+    {
+      "path": "Source/UEFogLabEditor.Target.cs",
+      "gitBlob": "7d086a11e433375459b0d4402cfd246d14e99fca",
+      "bytes": 355,
+      "sha256": "15b295c850ba9a829b2c2673db2018b420872cf1f29859417f030033a14374c1"
+    },
+    {
+      "path": "UEFogLab.uproject",
+      "gitBlob": "f9f1bcf6247e52c52af951ff13c93a9e40d67a27",
+      "bytes": 439,
+      "sha256": "f5fadf4787f25d00b5203dc32fcdab6e555a4ff569d12ccc64e35fda9ddcb0ef"
+    }
+  ],
+  "publicOnlyPackagingChanges": [
+    {
+      "target": "tools/AndroidBaseline.ps1",
+      "source": "tools/AndroidBaseline.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 1233,
+      "sourceSHA256": "af4871800c4800cb5a7e5c7461d4745502f64ee056b62dd0c5f430c1ea749355",
+      "publicBytes": 1187,
+      "publicSHA256": "4ff0ab47d919974f6ce52d91f022ff23663b738c10c60bbe5cceeda5fa14dfea",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing",
+        "Python default resolves PATH; explicit -Python retained",
+        "SDK default uses ANDROID_SDK_ROOT",
+        "JDK default uses JAVA_HOME",
+        "normalize trailing blank lines in public wrapper only"
+      ]
+    },
+    {
+      "target": "tools/AndroidFog.ps1",
+      "source": "tools/AndroidFog.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 1213,
+      "sourceSHA256": "05900d97bc33f53263d260f49a46a382843aa6f1dce6b0d367dbace053261759",
+      "publicBytes": 1129,
+      "publicSHA256": "bb876cde8052c04affdf775fadde0c6bc48e127994ed68dafa40904f8265537a",
+      "reasons": [
+        "Python default resolves PATH; explicit -Python retained"
+      ]
+    },
+    {
+      "target": "tools/AndroidProbe.ps1",
+      "source": "tools/AndroidProbe.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 1125,
+      "sourceSHA256": "a1e3b4679c2d9810765ab93745267a557a92ce7e80d0c9e05c3c8a333dce0216",
+      "publicBytes": 1041,
+      "publicSHA256": "2250a3a701e99237d2e213ab93ff880c1f198ef3b4171ab4a14f1e45c5b92e8b",
+      "reasons": [
+        "Python default resolves PATH; explicit -Python retained"
+      ]
+    },
+    {
+      "target": "tools/AndroidRecon.ps1",
+      "source": "tools/AndroidRecon.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 1592,
+      "sourceSHA256": "1d126ebb65be24dd251288c32b9ba3ae3e3a8ee16989246909449fd0053712f3",
+      "publicBytes": 1508,
+      "publicSHA256": "76f1656b330b8d075a5ad374646044d0f538ee4c11eaae65855864d3571259e8",
+      "reasons": [
+        "Python default resolves PATH; explicit -Python retained"
+      ]
+    },
+    {
+      "target": "tools/AndroidRun.ps1",
+      "source": "tools/AndroidRun.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 859,
+      "sourceSHA256": "750fcbbc4586a397c6deb7f3d1e5e81ab702d5805c6d574e7d38ac4d65e01a1c",
+      "publicBytes": 775,
+      "publicSHA256": "3c361538e21910efccbc3eeb563d51a60e396f0472c75fad5b48cc543e3363d5",
+      "reasons": [
+        "Python default resolves PATH; explicit -Python retained"
+      ]
+    },
+    {
+      "target": "tools/Build.ps1",
+      "source": "tools/Build.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 778,
+      "sourceSHA256": "9333ae7cb13450aad08e3550a257a8168dc2aa7878b54b46129d9b2317becabc",
+      "publicBytes": 858,
+      "publicSHA256": "7c69957fd6acc8cef27761c12c15722e949967d7daecb216cd0342e86a07a06d",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/Compare.ps1",
+      "source": "tools/Compare.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 903,
+      "sourceSHA256": "d985c054a169bbbb4dee4d589713be453af1bc5b1118da02499a62eb95c5fca8",
+      "publicBytes": 899,
+      "publicSHA256": "3310109f045637e37d7bd3c454bea0e15829fbbd171188b7ff88086d9e24fff0",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing",
+        "Python default resolves PATH; explicit -Python retained"
+      ]
+    },
+    {
+      "target": "tools/M1Suite.ps1",
+      "source": "tools/M1Suite.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 2698,
+      "sourceSHA256": "df07f86d17ce1f950eb878bb4752709f06693f0c3caed47ceb7985fa1a055586",
+      "publicBytes": 2778,
+      "publicSHA256": "4ad7cc7fa8956758e9bbdbff297a218ef4da37ed4971b0499fa23438258ac019",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/M2Showcase.ps1",
+      "source": "tools/M2Showcase.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 1679,
+      "sourceSHA256": "7796e74bbdfda060c0d050f6db95327150aed0cdcdb1798c83cc72cea71ed6a5",
+      "publicBytes": 1759,
+      "publicSHA256": "74755867061965b5faa24d3e0315216b77021b14fffe026d00cb4ec6d4ea794e",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/M2Suite.ps1",
+      "source": "tools/M2Suite.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 2498,
+      "sourceSHA256": "23f84cc5846349b4c4374b390973decee3072943926e4f1d5d95821bb9a35b2a",
+      "publicBytes": 2578,
+      "publicSHA256": "f7b5a654f126305e2a1689795842b9cdb08786c96de770890cdece992d066cf4",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/MobileFogReference.ps1",
+      "source": "tools/MobileFogReference.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 363,
+      "sourceSHA256": "91d6ef00f0532113da07a92678a02788632c519345eaad6f65c51803f27f993c",
+      "publicBytes": 279,
+      "publicSHA256": "5e8978092a516f299c9133b3fc609457ce7e7f956b009c2a23acbbd49d1e524c",
+      "reasons": [
+        "Python default resolves PATH; explicit -Python retained"
+      ]
+    },
+    {
+      "target": "tools/MobileReconstructionReference.ps1",
+      "source": "tools/MobileReconstructionReference.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 385,
+      "sourceSHA256": "553ccd1bc70a24b823d410ec8d9b60536502a456744c645af075126b2b3e49e9",
+      "publicBytes": 301,
+      "publicSHA256": "a7117f3ffb07eea146e2b039a79f31522d7db3e498a20ee350f45ff714d87694",
+      "reasons": [
+        "Python default resolves PATH; explicit -Python retained"
+      ]
+    },
+    {
+      "target": "tools/Readback.ps1",
+      "source": "tools/Readback.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 7089,
+      "sourceSHA256": "401a897be0384ddedc86f273b3360314fb4aa285251b8f53feb2047c57a9b19c",
+      "publicBytes": 7169,
+      "publicSHA256": "c2ff4c1c184749a1b4422bb743f4283e5684db5258ff19131edb4b366d668775",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/Run.ps1",
+      "source": "tools/Run.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 3692,
+      "sourceSHA256": "3a0b87537fe0b0ff565bd5eb6314eda7814fc14249feecceca24535f68ea558a",
+      "publicBytes": 3772,
+      "publicSHA256": "4f5576f0cc001cbbcfa98aa4d90b3fcfceabc3f1b41ea91c34383b8a278ddd53",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/Test.ps1",
+      "source": "tools/Test.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 1003,
+      "sourceSHA256": "1ba445eb20e2db7da93ef22da472e507e328931a7ac45b111a29a55f5674fc1e",
+      "publicBytes": 1083,
+      "publicSHA256": "fce0e977dca2281c79a77c42fd653f9913ccc27eef1b3b9e6020410694b2198c",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/Use-AndroidToolchain.ps1",
+      "source": "tools/Use-AndroidToolchain.ps1",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 2135,
+      "sourceSHA256": "a6265317e8fbd3e4c523466ed0b7048627a5123deedd42bf79e816283149ea5a",
+      "publicBytes": 2215,
+      "publicSHA256": "0267ca9a13d9ee55e8ca74f828d3e35ac58588b259c4a5c8f8b890312c1520f9",
+      "reasons": [
+        "engine default becomes explicit parameter/environment; fail clearly if missing"
+      ]
+    },
+    {
+      "target": "tools/android_baseline.py",
+      "source": "tools/android_baseline.py",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 36796,
+      "sourceSHA256": "6bc7f3e2f28acf085328de02484f60e64620877947e287d476604cf63ddb0d88",
+      "publicBytes": 36909,
+      "publicSHA256": "eba2c39e7cc0b09115de74fee6f6a3ee8c8ed47a15ec51719c266ad61ddf6adb",
+      "reasons": [
+        "environment selection: UE_5.8'",
+        "environment selection: Sdk'",
+        "environment selection: jbr'"
+      ]
+    },
+    {
+      "target": "tools/android_run.py",
+      "source": "tools/android_run.py",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 26229,
+      "sourceSHA256": "55eaf7fd450f0ee96f069908b6415e81d165083758c7dc3f24807ab5a5eea3ca",
+      "publicBytes": 26266,
+      "publicSHA256": "0f5b59407cca8679d3d41e8114bdcde03887dc6ebe8e840a8dd15014e61394ed",
+      "reasons": [
+        "environment selection: Sdk'",
+        "JDK executable follows JAVA_HOME"
+      ]
+    },
+    {
+      "target": "tools/check_m3_launch.py",
+      "source": "tools/check_m3_launch.py",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 3044,
+      "sourceSHA256": "a8e23e779552bbedff21a924e030fc4898b311f6c44d47fdb3f3eaca58940196",
+      "publicBytes": 3075,
+      "publicSHA256": "1f4eb039880236021f590b3db35bd64e56ca6d1b6fe4c51f216ab6d958582a3b",
+      "reasons": [
+        "environment selection: UE_5.8'"
+      ]
+    },
+    {
+      "target": "tools/m3_compare.py",
+      "source": "tools/m3_compare.py",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 24860,
+      "sourceSHA256": "5ca614e0742e8eafdc29b41a7bf620ef2c7f92b36a40f257ee869eb37536c679",
+      "publicBytes": 24891,
+      "publicSHA256": "91f2b4ebf4cfcacb91bbc584fb7a68c2e0a8dc351a14e9fa8386c0b5b2c7efcb",
+      "reasons": [
+        "environment selection: UE_5.8'"
+      ]
+    },
+    {
+      "target": "tools/mobile_fog_profile.json",
+      "source": "tools/mobile_fog_profile.json",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 6964,
+      "sourceSHA256": "3639ec252190c0f57bb0730640d3f36b6da3caadfca1184c96e6e1ee38f6376a",
+      "publicBytes": 6912,
+      "publicSHA256": "ee32d1f71c562049aa280a514db14eb6db3f3c065ada4e272aa95a03eb5bd0be",
+      "reasons": [
+        "historical absolute locator replaced by descriptive identifier; numerical fields/hash provenance unchanged"
+      ]
+    },
+    {
+      "target": "tools/mobile_reconstruction_profile.json",
+      "source": "tools/mobile_reconstruction_profile.json",
+      "sourceRevision": "be34dc975793e07d50d15db5726dcb9881445e1e",
+      "sourceBytes": 11535,
+      "sourceSHA256": "165f83745c68315f75b2beda8e3f90d085743b38838d246289b523a5ba656e31",
+      "publicBytes": 11473,
+      "publicSHA256": "48ab7c34c0907881162457fe844a304cbaa924e76a02188cf8e301f34b867a80",
+      "reasons": [
+        "historical absolute locator replaced by descriptive identifier; numerical fields/hash provenance unchanged"
+      ]
+    }
+  ],
+  "omittedArchiveTools": [
+    "tools/AndroidPerformance.ps1",
+    "tools/android_performance.py",
+    "tools/m3_matrix.py",
+    "tools/m3_regression.py",
+    "tools/m3_showcase.py",
+    "tools/mobile_performance_profile.json",
+    "tools/mobile_performance_report.py"
+  ],
+  "profileLocatorMeaning": "historical-local-record locators name excluded originals; their bytes/SHA remain historical, not bindings to the sanitized profile; numeric fields are unchanged",
+  "historicalValidationScope": "fixed models/devices/fixtures only; original raw binaries,13 overwritten old DLL/Build.version references and private logs are not dependencies of this summary",
+  "freshSnapshotValidation": "separate candidate receipt binds actual public commit/tree and new clean build/CPU/two-model/media/Astro execution; this historical summary does not relabel old runs",
+  "publication": "not performed by preparation",
+  "license": {
+    "spdx": "MIT",
+    "copyright": "2026 xiaoran6657",
+    "scope": "owner-authorizable original code, self-written documentation and figures; UE and third-party rights retained"
+  }
+}

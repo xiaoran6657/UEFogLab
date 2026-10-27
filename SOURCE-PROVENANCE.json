@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": 1,
+  "kind": "UEFogLab.PublicSnapshotSourceMap",
+  "internalSourceRevision": "625c17afb00499a509d9bba556328d5e85c06ce7",
+  "internalSourceTree": "c589245904f8bb0e154f1b7f68a4a5c40fa0c511",
+  "historicalIdentifiersOnly": true,
+  "publicHistory": "one independent initial commit; no old Git objects or remotes",
+  "publicIdentity": {
+    "name": "xiaoran6657",
+    "email": "201913704+xiaoran6657@users.noreply.github.com"
+  },
+  "scope": "fixed-fixture local fog source and derived evidence; independent one-commit MIT snapshot, no external publication",
+  "runtimeBaseline": "29ff89a278fc2798047553efda89925d2f0d24fa",
+  "sources": [
+    {
+      "source": "docs/publication/files/.gitattributes",
+      "target": ".gitattributes",
+      "category": "public-document-or-policy",
+      "bytes": 271,
+      "sha256": "6aa78b18047ecd0b9bfb2a6bc881b9e1b14dd3a6a79470b32e405c1d6f75918b",
+      "sourceGitBlob": "88bfc0cb7fab0b15ee45533280fcabfadb23eae5"
+    },
+    {
+      "source": ".gitignore",
+      "target": ".gitignore",
+      "category": "ignore-generated-output",
+      "bytes": 719,
+      "sha256": "7cc9265925f89fe6f49deb5e9cc1c2a8c4c39c6aabeeaefbe444c68965267a34",
+      "sourceGitBlob": "35504be3a17be2b5fabafa49245f50ca49b3fb04"
+    },
+    {
+      "source": "docs/publication/files/AGENTS.md",
+      "target": "AGENTS.md",
+      "category": "public-document-or-policy",
+      "bytes": 1249,
+      "sha256": "05528fd1ca4a55116dded308fc18d4ce1d958e385964ef2a85b6f6cc57689ddd",
+      "sourceGitBlob": "fa6589219c4806d9d0a545d4ae9198037bf78e82"
+    },
+    {
+      "source": "Config/Android/AndroidEngine.ini",
+      "target": "Config/Android/AndroidEngine.ini",
+      "category": "unchanged-runtime",
+      "bytes": 826,
+      "sha256": "aa8949dc9c963c120982916a367d4220fb70c568397a72b04e8a98c24ee93bbe",
+      "sourceGitBlob": "c18f2b05f777f0dc863911d0d97361ee2b92559d"
+    },
+    {
+      "source": "Config/Android/AndroidGame.ini",
+      "target": "Config/Android/AndroidGame.ini",
+      "category": "unchanged-runtime",
+      "bytes": 446,
+      "sha256": "59921e85bf03c5b1ebca07742455df65b87adaaca7d4afec2216a8ee1f1974cd",
+      "sourceGitBlob": "6789fd09942c4fc766a8cd603177be4755fabdf4"
+    },
+    {
+      "source": "Config/DefaultEngine.ini",
+      "target": "Config/DefaultEngine.ini",
+      "category": "unchanged-runtime",
+      "bytes": 725,
+      "sha256": "3c53b939d37a9da1c24516f8c21169d4b266676feb5da9119df75f47565f6148",
+      "sourceGitBlob": "84fe089f90cf0edf0e9fe3c04d8db94548639342"
+    },
+    {
+      "source": "Config/DefaultGame.ini",
+      "target": "Config/DefaultGame.ini",
+      "category": "unchanged-runtime",
+      "bytes": 208,
+      "sha256": "2304aa4aa23c0568b6abdecd7491ca8d5c5e949725236e603e392ce7a0ab3647",
+      "sourceGitBlob": "786622d629f88c7904d5a067c4e3ab4d08932878"
+    },
+    {
+      "source": "Config/DefaultInput.ini",
+      "target": "Config/DefaultInput.ini",
+      "category": "unchanged-runtime",
+      "bytes": 9483,
+      "sha256": "e1b7a60e4da1acca28b8540ed7b2746551df9ae1ddc0056eb45a0932ed82ea78",
+      "sourceGitBlob": "2c1d7add86ecbe5f859d66410f7d09d215e2e677"
+    },
+    {
+      "source": "LICENSE",
+      "target": "LICENSE",
+      "category": "license-notice",
+      "bytes": 1068,
+      "sha256": "d15df90cc3b756f206213e3dbe566dc9c2f354e564a13de7ab6278d8b89c7b91",
+      "sourceGitBlob": "9b4d060129f97ec6bb707ddbe6ee0953df0ede27"
+    },
+    {
+      "source": "NOTICE.md",
+      "target": "NOTICE.md",
+      "category": "license-notice",
+      "bytes": 2197,
+      "sha256": "5860b89df497de04cf479bf4576ee64013ab5de7b1c8e06c49d81ebffd2565a3",
+      "sourceGitBlob": "47ae6f5a0d5b7cfb23b4c4c9501e2a100a2d1a01"
+    },
+    {
+      "source": "Plugins/UEFog/Shaders/Private/UEFog.usf",
+      "target": "Plugins/UEFog/Shaders/Private/UEFog.usf",
+      "category": "unchanged-runtime",
+      "bytes": 8215,
+      "sha256": "6d3977d46fa358f1e4d662c82e4ae68ebe394f33db4088c3f933ab577385a5ff",
+      "sourceGitBlob": "1b58ad197f531c0a1fbdedfd37cc985b492f1238"
+    },
+    {
+      "source": "Plugins/UEFog/Shaders/Private/UEFogMobileFog.usf",
+      "target": "Plugins/UEFog/Shaders/Private/UEFogMobileFog.usf",
+      "category": "unchanged-runtime",
+      "bytes": 3751,
+      "sha256": "54605b39d7578da98031e453b1c80011dc7118664096c50eafd93037c8057412",
+      "sourceGitBlob": "3cf57651b43ea00923ebfff5cfae9671375ce0ba"
+    },
+    {
+      "source": "Plugins/UEFog/Shaders/Private/UEFogMobileProbe.usf",
+      "target": "Plugins/UEFog/Shaders/Private/UEFogMobileProbe.usf",
+      "category": "unchanged-runtime",
+      "bytes": 1592,
+      "sha256": "a6a2ac7933116bf5b25f53dbac13690c857c0963665d10bc7cc9179b4884e750",
+      "sourceGitBlob": "44603387db066ae9d974293a26e45f0dc0e85b31"
+    },
+    {
+      "source": "Plugins/UEFog/Shaders/Private/UEFogMobileReconstruction.usf",
+      "target": "Plugins/UEFog/Shaders/Private/UEFogMobileReconstruction.usf",
+      "category": "unchanged-runtime",
+      "bytes": 8170,
+      "sha256": "33d27db0634122c816d1cb6130812691445e89b8ae2d7c5b52148ea4be2030e2",
+      "sourceGitBlob": "92d3b054d7ae8db3df0da33253caa0d66f618d99"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/FogMath.h",
+      "target": "Plugins/UEFog/Source/UEFog/Private/FogMath.h",
+      "category": "unchanged-runtime",
+      "bytes": 945,
+      "sha256": "b0c1b8ce36ccdee0916215d6854d7d087e7f2eeadd31b92d8ed6817daedf9067",
+      "sourceGitBlob": "87141a694b953977aeab6fce145c1987828f10a7"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/FogMathTests.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/FogMathTests.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 1614,
+      "sha256": "6a955c7b6cbb52111135aa89c59ac443dcac4041bf089a090f079d0cb43e90b0",
+      "sourceGitBlob": "ffdbe46eda28fec0bea984fa60086e5082bfc6e3"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogCompare.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogCompare.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 13053,
+      "sha256": "b911875acdc974d4a194e772a9f36e4f55c363b117f261e1a44c4e14cf4201fe",
+      "sourceGitBlob": "aa27b064faedfabeaf67b7b30fbb5c1fdb852fee"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 5396,
+      "sha256": "8df41e7a2f3f2b498f3946b5708a778928b502c1fc0be00a001c55d75b15a68a",
+      "sourceGitBlob": "f33dcb991c92300d706cda80957d8140e0697cbe"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.h",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.h",
+      "category": "unchanged-runtime",
+      "bytes": 437,
+      "sha256": "bfb241f10a139456aa6235f7f5027d609a81e606b46462afdaccc9e75ad76b0e",
+      "sourceGitBlob": "6e1f0b8eea14c8ba4ea28fddc4a17aecacf97339"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileFog.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileFog.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 23970,
+      "sha256": "0834cd999b8970161c0abc44cf9903371bb28914bfd19a34063bd3c72e04bd5f",
+      "sourceGitBlob": "809043290bda938e7e5eb4bed9f83b3619727468"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 23563,
+      "sha256": "c93c6657860bb563d83346be112fd4b8ceb12f0723f26dac99ecc52d27506862",
+      "sourceGitBlob": "c739b4a0ab7724b114c27057cf1e06a24d6f2637"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileProbe.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileProbe.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 17691,
+      "sha256": "57acc39e474bf1490625268a525e88ae3d9c9251cfd8d257a723e3b62c7e0c72",
+      "sourceGitBlob": "66845be0fb059557c310da978563fdd5904812c9"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 33507,
+      "sha256": "a366b17115d55bc36e56bbac52f0075e03130c03bfd2b138bbe9731f92b76515",
+      "sourceGitBlob": "b4df37b5ef68fdf28c5615b2f9f2933523798b14"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileStartup.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileStartup.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 11274,
+      "sha256": "b8e5b109f199eafe1e5a6c30d01bf5ec879c2b385f2534cb65675deb7e3fa827",
+      "sourceGitBlob": "2833d260e32cf86c3446a0de402d86942d2c15e1"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogModule.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogModule.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 4644,
+      "sha256": "91fa6df33c9da613201b008741c50f3b883a4165b9d6fa7329f760d934e9b3a5",
+      "sourceGitBlob": "f2d062606ce35b63d205302cea425898c40234ff"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 4475,
+      "sha256": "11ca4daafd6a5e537595c47207522c91fb06d58584adada0b250414200d07671",
+      "sourceGitBlob": "a69ab6945998f59c1b7d456a24abbb722599d995"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.h",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.h",
+      "category": "unchanged-runtime",
+      "bytes": 805,
+      "sha256": "73592c15faf9a203303e9e837228c742504dcd1d1d13458d985798eb26f31155",
+      "sourceGitBlob": "afeb3437596117d3dff4f20fe0793a0016ac163a"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.cpp",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 20669,
+      "sha256": "70549d721f78dc122a6dfd7a6e51db48d5023876d376d5c55aca6cc56cea198c",
+      "sourceGitBlob": "a6523c0f1737b43fdf159aeb663163f8e9026e9c"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.h",
+      "target": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.h",
+      "category": "unchanged-runtime",
+      "bytes": 650,
+      "sha256": "9068ae4196949480ad95395a8590b2d17f8c1b7be1fe95d8b7a73b1759d6ae3b",
+      "sourceGitBlob": "dcd6d2dafdc3115665a54e5756f2a457f0668f88"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Public/UEFogCompare.h",
+      "target": "Plugins/UEFog/Source/UEFog/Public/UEFogCompare.h",
+      "category": "unchanged-runtime",
+      "bytes": 771,
+      "sha256": "050ed66f53d18c8a8e371839cec14454d2c81c35e0922fad2e571e96bf3c0763",
+      "sourceGitBlob": "951693b482c7e797e0b267949d22b3de357ef139"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileFog.h",
+      "target": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileFog.h",
+      "category": "unchanged-runtime",
+      "bytes": 422,
+      "sha256": "bf10eafe8fdc1cc0a91b6e533fa597178df25f8ce2b61e5b3e20cde34565e062",
+      "sourceGitBlob": "4ffa9f52c5a4582d051343533f378095ae7263bc"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Public/UEFogMobilePerformance.h",
+      "target": "Plugins/UEFog/Source/UEFog/Public/UEFogMobilePerformance.h",
+      "category": "unchanged-runtime",
+      "bytes": 726,
+      "sha256": "27e849aff5bd968d816fa815d92179f7fd0fa305a234d524884edff0e41bef19",
+      "sourceGitBlob": "11ea22252a905709b24a6f5720ba67774e817815"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileProbe.h",
+      "target": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileProbe.h",
+      "category": "unchanged-runtime",
+      "bytes": 484,
+      "sha256": "a0c357c72ca61c54adedfb45dc51055fe74de7b693c9707d009d3d19c053ae2a",
+      "sourceGitBlob": "37dab0edb0a69175958b0658a12c41fc80aeabf9"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileReconstruction.h",
+      "target": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileReconstruction.h",
+      "category": "unchanged-runtime",
+      "bytes": 429,
+      "sha256": "5ad5f1f3dab9c4114041224419d2a4e72a9607b5921866baf4d8d6198d914d53",
+      "sourceGitBlob": "7c9c78040e2dd3de079a936312f58a7458bc1cfb"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileStartup.h",
+      "target": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileStartup.h",
+      "category": "unchanged-runtime",
+      "bytes": 542,
+      "sha256": "b2c1fbcc98f156eb23e604f41a0f6277eae64b58e2d8e4383433cc0e406507de",
+      "sourceGitBlob": "473b1521cb393dcae32a5eb809221c2bbbe4b445"
+    },
+    {
+      "source": "Plugins/UEFog/Source/UEFog/UEFog.Build.cs",
+      "target": "Plugins/UEFog/Source/UEFog/UEFog.Build.cs",
+      "category": "unchanged-runtime",
+      "bytes": 721,
+      "sha256": "c7a9a9938c950ed955e8a78bd1bf7b8671700e40dbafd258d16e9578a866b98b",
+      "sourceGitBlob": "4b19defc913b249cbd72cf0fb41749254e2be265"
+    },
+    {
+      "source": "Plugins/UEFog/UEFog.uplugin",
+      "target": "Plugins/UEFog/UEFog.uplugin",
+      "category": "unchanged-runtime",
+      "bytes": 344,
+      "sha256": "345af99bc46bb1788fc2f39fa434748ce625983c10e3390ce75cc0382afa5037",
+      "sourceGitBlob": "a77b46025db9ca6549b6c03ef1922677c7e10436"
+    },
+    {
+      "source": "docs/publication/files/README.md",
+      "target": "README.md",
+      "category": "public-document-or-policy",
+      "bytes": 3079,
+      "sha256": "d0d84e03be48553d8f6573e11601aae1711b67ee4edf1033c19bfee5b7ff8d54",
+      "sourceGitBlob": "100597fe720dab1374de1c928cddec01f614bb00"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabComparison.cpp",
+      "target": "Source/FogLabDemo/FogLabComparison.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 12249,
+      "sha256": "cbb3c9397e6460999a391da1c55f6d706c9928b7f847b5c18cc18dd65e39af34",
+      "sourceGitBlob": "a0c4adf29b4d4027bfc7b5964688c5b25853028d"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabComparison.h",
+      "target": "Source/FogLabDemo/FogLabComparison.h",
+      "category": "unchanged-runtime",
+      "bytes": 921,
+      "sha256": "dd3b7c3796787bf08a8b5ff1465a81335143ba31493fc56f81e96d61ca3747f9",
+      "sourceGitBlob": "374f7b633f88cfb926f3a6f34fbb8442c9314648"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabDemo.Build.cs",
+      "target": "Source/FogLabDemo/FogLabDemo.Build.cs",
+      "category": "unchanged-runtime",
+      "bytes": 319,
+      "sha256": "6cce10ab184a4a46e4481b9e9cbbe8222eb581216b7aeeb65d9b0d906bcec9cf",
+      "sourceGitBlob": "a8529c8a085d14ca8b77f43658854645a16d3a7f"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabDemo.cpp",
+      "target": "Source/FogLabDemo/FogLabDemo.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 115,
+      "sha256": "8c28bb8ebeb244ca5d8fb8be1baf01a02c32150ff8cb48fe359f23e01f4369bb",
+      "sourceGitBlob": "e579c86550bc70b2b8f1df8043cc9368c313aa9b"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabGameMode.cpp",
+      "target": "Source/FogLabDemo/FogLabGameMode.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 7294,
+      "sha256": "7ca6f96c08c04df28b35a2f7b56bccd680a14e437d635443d84dbbd435254ad1",
+      "sourceGitBlob": "ee98d2d1dfb317d94238cfc1aa0869dd42115e6d"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabGameMode.h",
+      "target": "Source/FogLabDemo/FogLabGameMode.h",
+      "category": "unchanged-runtime",
+      "bytes": 740,
+      "sha256": "7c96da1e91926789c94d89817ed35717eb6a620c733ea7202106ac87506102eb",
+      "sourceGitBlob": "8c460b88221ab262f4dedff882f0799cfbfcf92a"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabMobileFixture.cpp",
+      "target": "Source/FogLabDemo/FogLabMobileFixture.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 3659,
+      "sha256": "664e32e761c9308e413348175553f66ffd52babe14ecafc55771230a29cb99d8",
+      "sourceGitBlob": "ad6fba8080c179acf9fd5e3fa40abbe1cc9d886f"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabMobileFixture.h",
+      "target": "Source/FogLabDemo/FogLabMobileFixture.h",
+      "category": "unchanged-runtime",
+      "bytes": 73,
+      "sha256": "c3ba9f63ba58b7ea3857e2716437011420e7fab7fefc0d2b7894e8be843556df",
+      "sourceGitBlob": "d29cfcddd86cfed2863ed375a4f2ff0f6a298bdf"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabMobileFogFixture.cpp",
+      "target": "Source/FogLabDemo/FogLabMobileFogFixture.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 3222,
+      "sha256": "284eb357e949bc280fe28c457f4f4415e6db0dec906d2bc367b687817c9cb27f",
+      "sourceGitBlob": "f7fff7434019682ab2e147e99c4a0e00f3931694"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabMobileFogFixture.h",
+      "target": "Source/FogLabDemo/FogLabMobileFogFixture.h",
+      "category": "unchanged-runtime",
+      "bytes": 76,
+      "sha256": "aba2b0286a3d23f2a30d6bb19d0b5238c39c128e87bd8f88c352c914e9065595",
+      "sourceGitBlob": "9ab6d681a2a1a7bdb57c0096a2ee05ee6ba3563d"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabMobileReconstructionFixture.cpp",
+      "target": "Source/FogLabDemo/FogLabMobileReconstructionFixture.cpp",
+      "category": "unchanged-runtime",
+      "bytes": 4220,
+      "sha256": "b6c0ea30e2581a227ad22d8c57594a8bb98e0f6632b09fd2964628ebea799613",
+      "sourceGitBlob": "9d0899b4b774f237b7a543f4efc33bf591eb1aa9"
+    },
+    {
+      "source": "Source/FogLabDemo/FogLabMobileReconstructionFixture.h",
+      "target": "Source/FogLabDemo/FogLabMobileReconstructionFixture.h",
+      "category": "unchanged-runtime",
+      "bytes": 87,
+      "sha256": "26a025e89cefd6b3a7031200498c0f838d741f26c563b08ca54a7fe506748203",
+      "sourceGitBlob": "13c4e773e0b7cf5bdbc69351b486b8b5b71b59e4"
+    },
+    {
+      "source": "Source/UEFogLab.Target.cs",
+      "target": "Source/UEFogLab.Target.cs",
+      "category": "unchanged-runtime",
+      "bytes": 341,
+      "sha256": "19f86887dca9179b7fab22c05177024772c17d3a1ccb40e7e986bf99a1ee05eb",
+      "sourceGitBlob": "46c88e6162e0d7b127d28a5a776f002a36fd41ac"
+    },
+    {
+      "source": "Source/UEFogLabEditor.Target.cs",
+      "target": "Source/UEFogLabEditor.Target.cs",
+      "category": "unchanged-runtime",
+      "bytes": 355,
+      "sha256": "15b295c850ba9a829b2c2673db2018b420872cf1f29859417f030033a14374c1",
+      "sourceGitBlob": "7d086a11e433375459b0d4402cfd246d14e99fca"
+    },
+    {
+      "source": "UEFogLab.uproject",
+      "target": "UEFogLab.uproject",
+      "category": "unchanged-runtime",
+      "bytes": 439,
+      "sha256": "f5fadf4787f25d00b5203dc32fcdab6e555a4ff569d12ccc64e35fda9ddcb0ef",
+      "sourceGitBlob": "f9f1bcf6247e52c52af951ff13c93a9e40d67a27"
+    },
+    {
+      "source": "docs/publication/files/docs/QUICKSTART.md",
+      "target": "docs/QUICKSTART.md",
+      "category": "public-document-or-policy",
+      "bytes": 6628,
+      "sha256": "18d258534708ca6e9fe255d5b9b02de4efd886db5a38ed917a5d9c020a8af912",
+      "sourceGitBlob": "becafcbf0ef790cd3448a1bf8edb45582f40cc8c"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/CASE.en.md",
+      "target": "docs/showcase/CASE.en.md",
+      "category": "mit-showcase-derivative",
+      "bytes": 8760,
+      "sha256": "446c35f8b57dda83e07acda19df3d595868bb6a7b180496369d18fa201b1ad98",
+      "sourceGitBlob": "3ac0eeb38feaf0c8d48bcfe479c1f43dd0451f2b"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/CASE.zh.md",
+      "target": "docs/showcase/CASE.zh.md",
+      "category": "mit-showcase-derivative",
+      "bytes": 8214,
+      "sha256": "d9ba7b6ebdcbabf63b7ecebdd4049efe059a1e52b12b5e4be7ef87fb91294062",
+      "sourceGitBlob": "972f9918937bd2d81094269e1fcaa7cfa9c864f2"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/QUICKSTART.md",
+      "target": "docs/showcase/QUICKSTART.md",
+      "category": "mit-showcase-derivative",
+      "bytes": 6598,
+      "sha256": "abe833a255d2a47f9435710c47ec9bcf4203fa8a2149fcf88b4af022cb1af5cd",
+      "sourceGitBlob": "fa8b25dd37672f78d3625eded01784a9f4c9646d"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/README.md",
+      "target": "docs/showcase/README.md",
+      "category": "mit-showcase-derivative",
+      "bytes": 1936,
+      "sha256": "04d415c636b2a6c64d4678342716a7c21f98e00bff32f7448ca42754a33581a1",
+      "sourceGitBlob": "3edb1317f0424825d319e9155b84048f568d1ff9"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/build_showcase.py",
+      "target": "docs/showcase/build_showcase.py",
+      "category": "mit-showcase-derivative",
+      "bytes": 14292,
+      "sha256": "e692cf0ff3daada4e81d59103c082e22c252fe0d1b70ed8f4365d9601c06d53c",
+      "sourceGitBlob": "890d34d25e6b4b71909640a694384382fd0dfd95"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/data/provenance.json",
+      "target": "docs/showcase/data/provenance.json",
+      "category": "mit-showcase-derivative",
+      "bytes": 28121,
+      "sha256": "efd3a53d8567d4fc3702fea0337e66866f1e7be2c43b1579e7e31e083f98d8ad",
+      "sourceGitBlob": "a57f3073788ff25960ef39e93120299aacc6cc92"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/data/results.json",
+      "target": "docs/showcase/data/results.json",
+      "category": "mit-showcase-derivative",
+      "bytes": 16207,
+      "sha256": "28914137ccc7b4a97f6faaeecb2ef99aacee70ee8f8958c80629c58fc631e833",
+      "sourceGitBlob": "91dabf74e352c80ceee64e92eb95e96510a1618e"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/data/source-map.json",
+      "target": "docs/showcase/data/source-map.json",
+      "category": "mit-showcase-derivative",
+      "bytes": 4064,
+      "sha256": "dc45e3ecd877ffcd1c3a27c90ff5467c63f378cf1034c3e90822a1e3465255e0",
+      "sourceGitBlob": "48e9a5d9d5c8d88ab0f13b0a18bc33c5b7ebc103"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/evidence/summary.md",
+      "target": "docs/showcase/evidence/summary.md",
+      "category": "mit-showcase-derivative",
+      "bytes": 5448,
+      "sha256": "d6273f39569fae560437850bf416d998e9e4c3650368ac7f31149081d18f8cc7",
+      "sourceGitBlob": "a9f47b837ea606e70f64edbcf1c8b2bc763ea3b6"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media-manifest.json",
+      "target": "docs/showcase/media-manifest.json",
+      "category": "mit-showcase-derivative",
+      "bytes": 9110,
+      "sha256": "597d9a97b3574394964f0a549ed5aef9a6a8019484d69da80c6d76f6a670afa6",
+      "sourceGitBlob": "57a128e1631f508c36b77402f41f0168bc6ae0b1"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/cover.png",
+      "target": "docs/showcase/media/cover.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 302609,
+      "sha256": "d695d9b42db1e2d23dabadafb4dbedc52135d15d89b42e10265a189a8b7c08df",
+      "sourceGitBlob": "1ae6ef5175091bdfdf1712e2d6601bc00339958c"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/desktop-counterexample.png",
+      "target": "docs/showcase/media/desktop-counterexample.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 31766,
+      "sha256": "5be435d6b848dd6359076b2c45c583af0fe0aaf7f001a681ec8cb5043b4c353c",
+      "sourceGitBlob": "8d2dfb6bd44c355c7817c729a406a809a55a661c"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/desktop-st.png",
+      "target": "docs/showcase/media/desktop-st.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 366237,
+      "sha256": "3e5acaf2f3c7965219cdb9ede3b28d5db911e8ebfda4e435620ab7d39a1788dd",
+      "sourceGitBlob": "ffce324b84a6fafb77c87ff2ba72e0e59bf9f6b8"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/mobile-cost-quality.png",
+      "target": "docs/showcase/media/mobile-cost-quality.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 75672,
+      "sha256": "4bbc8dcd7adafb49e9cb4155ae2f5ae41f64309606179d20fb3a2f01284dcb49",
+      "sourceGitBlob": "5466ab57325472d2e54a7570d1a602ea5ab20fd7"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/mobile-planes-roi.png",
+      "target": "docs/showcase/media/mobile-planes-roi.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 111073,
+      "sha256": "ac46927885db3e1d59c2e6f505bcde71f788a8da0928f5f981ba0a523b889181",
+      "sourceGitBlob": "501f4977ff8a78dd9a0f3e921e07f70e4b370aea"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/mobile-thin-roi.png",
+      "target": "docs/showcase/media/mobile-thin-roi.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 103198,
+      "sha256": "a4f754fbae492c9f25088ff7ac78cc6c0b65878b101e69022c05302de5a07ee2",
+      "sourceGitBlob": "1741bf043c66d621d9dac8a2982f270e79857a49"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/native-comparison.png",
+      "target": "docs/showcase/media/native-comparison.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 538696,
+      "sha256": "a6e736bf85b881fb63162d15d6e8ab69ffc5df92acb647b6e71c34dd8bd7f7f7",
+      "sourceGitBlob": "49e5d5bc1bbcb788301ea47a7e4a14560656fdae"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/native-edge.png",
+      "target": "docs/showcase/media/native-edge.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 262988,
+      "sha256": "a7bd29aa6783cbbd5a09f5ba59f8da0f06cb69bef4e5d89ae52a836aca4be0d2",
+      "sourceGitBlob": "92adcea8882b761e88aacac268af224a0727b0c3"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/reconstruction-triptych.png",
+      "target": "docs/showcase/media/reconstruction-triptych.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 75769,
+      "sha256": "dbb75e97fd6e3ee46a1e59655988347119642ed81e759ab126a24661cf2c3e14",
+      "sourceGitBlob": "f4ea1c33a82eec7f9ae80ea41e1a3f9ff838458f"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/media/showcase.mp4",
+      "target": "docs/showcase/media/showcase.mp4",
+      "category": "mit-showcase-derivative",
+      "bytes": 452798,
+      "sha256": "34b5bfe241e6f17212ee2f2a9019d94ec9f46072e21a99769ed38afddf47f61b",
+      "sourceGitBlob": "f62f83a2fa7f7f36891f37e9a2b5b0e29fa95f6b"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/preview.html",
+      "target": "docs/showcase/preview.html",
+      "category": "mit-showcase-derivative",
+      "bytes": 3910,
+      "sha256": "c247328e3a7cd1da0fc5623addcac44cbbf90e80092c273c2e3271ac340c4620",
+      "sourceGitBlob": "03212d24789befb745349d87dc2afa878fb98716"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/references.md",
+      "target": "docs/showcase/references.md",
+      "category": "mit-showcase-derivative",
+      "bytes": 6491,
+      "sha256": "49b571c32135f54ad0b013784317c4c4070503cfd81a7046656644e7be3ce0e2",
+      "sourceGitBlob": "1a33ba5600c83be29280a05ec5702fababff6492"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/requirements.txt",
+      "target": "docs/showcase/requirements.txt",
+      "category": "mit-showcase-derivative",
+      "bytes": 47,
+      "sha256": "7f578e204ded51088340049684345cb3c1c0be816bafe027ab051379b5a2028f",
+      "sourceGitBlob": "69145524de3ad3a4a48f848862d7a8dae666ec7c"
+    },
+    {
+      "source": "docs/showcase/releases/mit-20261027/sources/manual-high.png",
+      "target": "docs/showcase/sources/manual-high.png",
+      "category": "mit-showcase-derivative",
+      "bytes": 497421,
+      "sha256": "0ff5b13f06e08f0e0147b7b4ab49e18121789049b0a57c16b087d829a2c13067",
+      "sourceGitBlob": "b9dbf286d2528db0b7a521ddc4e91eda368cf18e"
+    },
+    {
+      "source": "docs/publication/files/docs/theory/README.md",
+      "target": "docs/theory/README.md",
+      "category": "public-document-or-policy",
+      "bytes": 6491,
+      "sha256": "49b571c32135f54ad0b013784317c4c4070503cfd81a7046656644e7be3ce0e2",
+      "sourceGitBlob": "1a33ba5600c83be29280a05ec5702fababff6492"
+    },
+    {
+      "source": "tools/.gitattributes",
+      "target": "tools/.gitattributes",
+      "category": "unchanged-tool",
+      "bytes": 66,
+      "sha256": "6b4faf73fe00afc5a547403c7f126df543f9d99982222129d35b2425620f5c51",
+      "sourceGitBlob": "11c690436f5e7abde7fad0142cdf6a2f85a50acb"
+    },
+    {
+      "source": "docs/publication/files/tools/AndroidBaseline.ps1",
+      "target": "tools/AndroidBaseline.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 1187,
+      "sha256": "4ff0ab47d919974f6ce52d91f022ff23663b738c10c60bbe5cceeda5fa14dfea",
+      "sourceGitBlob": "f7dcd1c6de154c93de8a46e55dea21299f1272d6"
+    },
+    {
+      "source": "docs/publication/files/tools/AndroidFog.ps1",
+      "target": "tools/AndroidFog.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 1129,
+      "sha256": "bb876cde8052c04affdf775fadde0c6bc48e127994ed68dafa40904f8265537a",
+      "sourceGitBlob": "589b8708c2a2387a7daeed843d432ba85d11c07c"
+    },
+    {
+      "source": "docs/publication/files/tools/AndroidProbe.ps1",
+      "target": "tools/AndroidProbe.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 1041,
+      "sha256": "2250a3a701e99237d2e213ab93ff880c1f198ef3b4171ab4a14f1e45c5b92e8b",
+      "sourceGitBlob": "15c382dcae7f288f06f35dc43dc5469b2f71f223"
+    },
+    {
+      "source": "docs/publication/files/tools/AndroidRecon.ps1",
+      "target": "tools/AndroidRecon.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 1508,
+      "sha256": "76f1656b330b8d075a5ad374646044d0f538ee4c11eaae65855864d3571259e8",
+      "sourceGitBlob": "6814a6ce439eeda59a31c4442401e3e39970de54"
+    },
+    {
+      "source": "docs/publication/files/tools/AndroidRun.ps1",
+      "target": "tools/AndroidRun.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 775,
+      "sha256": "3c361538e21910efccbc3eeb563d51a60e396f0472c75fad5b48cc543e3363d5",
+      "sourceGitBlob": "0e3b389f7cc3412cf907876bdacfbd3ae6d771ec"
+    },
+    {
+      "source": "docs/publication/files/tools/Build.ps1",
+      "target": "tools/Build.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 858,
+      "sha256": "7c69957fd6acc8cef27761c12c15722e949967d7daecb216cd0342e86a07a06d",
+      "sourceGitBlob": "3c4cc4b35b32de2e69b9fd3b579410db38efaea0"
+    },
+    {
+      "source": "docs/publication/files/tools/Compare.ps1",
+      "target": "tools/Compare.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 899,
+      "sha256": "3310109f045637e37d7bd3c454bea0e15829fbbd171188b7ff88086d9e24fff0",
+      "sourceGitBlob": "7b214a44a571e8890780802836c8144d48a05593"
+    },
+    {
+      "source": "tools/Lighting.ps1",
+      "target": "tools/Lighting.ps1",
+      "category": "unchanged-tool",
+      "bytes": 3880,
+      "sha256": "c99c05d6e2c25bfdfbc4997f27653934f19d5938609eef47b688a73774da3df4",
+      "sourceGitBlob": "a702b85a8709da74442acbfa3365757e4fba3823"
+    },
+    {
+      "source": "docs/publication/files/tools/M1Suite.ps1",
+      "target": "tools/M1Suite.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 2778,
+      "sha256": "4ad7cc7fa8956758e9bbdbff297a218ef4da37ed4971b0499fa23438258ac019",
+      "sourceGitBlob": "3d4d1e3e4efa4158c33ff369a39e4b135f6b86a2"
+    },
+    {
+      "source": "docs/publication/files/tools/M2Showcase.ps1",
+      "target": "tools/M2Showcase.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 1759,
+      "sha256": "74755867061965b5faa24d3e0315216b77021b14fffe026d00cb4ec6d4ea794e",
+      "sourceGitBlob": "1794589472c401997d67f3a312f5ad8db21f54cb"
+    },
+    {
+      "source": "docs/publication/files/tools/M2Suite.ps1",
+      "target": "tools/M2Suite.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 2578,
+      "sha256": "f7b5a654f126305e2a1689795842b9cdb08786c96de770890cdece992d066cf4",
+      "sourceGitBlob": "358a8d06fd096e8fe027a7d88b4f1065f0091ecc"
+    },
+    {
+      "source": "docs/publication/files/tools/MobileFogReference.ps1",
+      "target": "tools/MobileFogReference.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 279,
+      "sha256": "5e8978092a516f299c9133b3fc609457ce7e7f956b009c2a23acbbd49d1e524c",
+      "sourceGitBlob": "8de2c78cfe15c49ead8b9f7ea15f19bde8fd9195"
+    },
+    {
+      "source": "docs/publication/files/tools/MobileReconstructionReference.ps1",
+      "target": "tools/MobileReconstructionReference.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 301,
+      "sha256": "a7117f3ffb07eea146e2b039a79f31522d7db3e498a20ee350f45ff714d87694",
+      "sourceGitBlob": "f25840800339a4befe2ca54ccd9359431a4881b7"
+    },
+    {
+      "source": "docs/publication/files/tools/Readback.ps1",
+      "target": "tools/Readback.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 7169,
+      "sha256": "c2ff4c1c184749a1b4422bb743f4283e5684db5258ff19131edb4b366d668775",
+      "sourceGitBlob": "b7cb2b62daaeda06ccbd070ac99a5c50a38f3b9e"
+    },
+    {
+      "source": "docs/publication/files/tools/Run.ps1",
+      "target": "tools/Run.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 3772,
+      "sha256": "4f5576f0cc001cbbcfa98aa4d90b3fcfceabc3f1b41ea91c34383b8a278ddd53",
+      "sourceGitBlob": "3c7e8f02b37dab62a68e764ad617c3ab8b94bc6c"
+    },
+    {
+      "source": "docs/publication/files/tools/Test.ps1",
+      "target": "tools/Test.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 1083,
+      "sha256": "fce0e977dca2281c79a77c42fd653f9913ccc27eef1b3b9e6020410694b2198c",
+      "sourceGitBlob": "4e1b2b9de4d8183523d675b7582c9c993774b125"
+    },
+    {
+      "source": "docs/publication/files/tools/Use-AndroidToolchain.ps1",
+      "target": "tools/Use-AndroidToolchain.ps1",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 2215,
+      "sha256": "0267ca9a13d9ee55e8ca74f828d3e35ac58588b259c4a5c8f8b890312c1520f9",
+      "sourceGitBlob": "64e0fcfe0dcdb23b05733ee35b4741b1e1ed2255"
+    },
+    {
+      "source": "docs/publication/files/tools/android_baseline.py",
+      "target": "tools/android_baseline.py",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 36909,
+      "sha256": "eba2c39e7cc0b09115de74fee6f6a3ee8c8ed47a15ec51719c266ad61ddf6adb",
+      "sourceGitBlob": "a8a007baa6484e205e01f2d2d98bd1cecebea683"
+    },
+    {
+      "source": "tools/android_baseline_config.json",
+      "target": "tools/android_baseline_config.json",
+      "category": "unchanged-tool",
+      "bytes": 1118,
+      "sha256": "bca4f89d6ce0e20ef7c8de038826bb5b0a9ca17968abb6a5b52fb019f1efeacf",
+      "sourceGitBlob": "776ae9cfec244dcb29258390f90e559479556fbd"
+    },
+    {
+      "source": "tools/android_fog.py",
+      "target": "tools/android_fog.py",
+      "category": "unchanged-tool",
+      "bytes": 24445,
+      "sha256": "984d38ae11b98ee4419262c7afef4f2008a4bc170a1998b6fca3bfcc090a7a18",
+      "sourceGitBlob": "45982f7d06cab70a4e3fd98c8fa43d55519eb1ba"
+    },
+    {
+      "source": "tools/android_probe.py",
+      "target": "tools/android_probe.py",
+      "category": "unchanged-tool",
+      "bytes": 25157,
+      "sha256": "53e2f124f74abd156133d9c27ef8550c7d52260e0a54a0aea19c89f3367fd1fa",
+      "sourceGitBlob": "b8d5b04365b1f0d3bd75ee95111455ccee166a12"
+    },
+    {
+      "source": "tools/android_recon.py",
+      "target": "tools/android_recon.py",
+      "category": "unchanged-tool",
+      "bytes": 36181,
+      "sha256": "9aa4cc5065656cd271c51110331a1e718929d59b2a65d0689e7358ea358c4f62",
+      "sourceGitBlob": "45099ec3004e18003839d1e865c1dc450701d8b1"
+    },
+    {
+      "source": "docs/publication/files/tools/android_run.py",
+      "target": "tools/android_run.py",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 26266,
+      "sha256": "0f5b59407cca8679d3d41e8114bdcde03887dc6ebe8e840a8dd15014e61394ed",
+      "sourceGitBlob": "b7ca7f6b7d2e7372a6d572c6cdd234c708254a2a"
+    },
+    {
+      "source": "tools/check_depth_mapping.py",
+      "target": "tools/check_depth_mapping.py",
+      "category": "unchanged-tool",
+      "bytes": 4571,
+      "sha256": "1fac43a8a7a86316d4900a0373bfc0168f404c827718266271f096060cdc951a",
+      "sourceGitBlob": "243db7e3bbf41b44bfe2db81795e4c8b4a733d36"
+    },
+    {
+      "source": "tools/check_half_rounding.py",
+      "target": "tools/check_half_rounding.py",
+      "category": "unchanged-tool",
+      "bytes": 2226,
+      "sha256": "0f96f5adf638da90f861fd6b602fb36fcfe22bc837ce42ca5e06176b221298d0",
+      "sourceGitBlob": "1ab5bd422af688dc8a84781e656f06c33f6a30c9"
+    },
+    {
+      "source": "tools/check_lighting_reference.py",
+      "target": "tools/check_lighting_reference.py",
+      "category": "unchanged-tool",
+      "bytes": 7738,
+      "sha256": "eaa07a4dd02336aff985b2163801cd9df504af093c3e52fb7c1d60bcce110fab",
+      "sourceGitBlob": "ce671beda10c6b1044445e700d7476527dc0ca4e"
+    },
+    {
+      "source": "tools/check_m2_contract.py",
+      "target": "tools/check_m2_contract.py",
+      "category": "unchanged-tool",
+      "bytes": 5742,
+      "sha256": "b6274568a706888c42dfe10ebaf2d42244c34ed2ced80257d6d379362dd7c3ff",
+      "sourceGitBlob": "c9e58714c1d368ec583077a31379ed59d8fa0b21"
+    },
+    {
+      "source": "tools/check_m2_study.py",
+      "target": "tools/check_m2_study.py",
+      "category": "unchanged-tool",
+      "bytes": 5566,
+      "sha256": "ff2d0b2be5906fa219436f3a30b426520533efd6a0e6eedfb21917f9f44441d1",
+      "sourceGitBlob": "2051dad159d7083553462c760bb3360563d40ffe"
+    },
+    {
+      "source": "tools/check_m3_capture.py",
+      "target": "tools/check_m3_capture.py",
+      "category": "unchanged-tool",
+      "bytes": 2085,
+      "sha256": "2f193a282b043f5a59c6e248bccd96b7a1ea36c455e95c8674e652c0ed8bee40",
+      "sourceGitBlob": "652d994222bac96b04a00fa969eef05c93483d2e"
+    },
+    {
+      "source": "docs/publication/files/tools/check_m3_launch.py",
+      "target": "tools/check_m3_launch.py",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 3075,
+      "sha256": "1f4eb039880236021f590b3db35bd64e56ca6d1b6fe4c51f216ab6d958582a3b",
+      "sourceGitBlob": "ac6630e6c05d5cc659ac9183cb43b2bdabe5de12"
+    },
+    {
+      "source": "tools/check_numeric_contract.py",
+      "target": "tools/check_numeric_contract.py",
+      "category": "unchanged-tool",
+      "bytes": 1461,
+      "sha256": "d506b754025c786fb0b246616cfd03dd8d49a385a83c9e221e99bcc399e90d4f",
+      "sourceGitBlob": "4587d98d495a139ccaa167ce44e18e447152c4b4"
+    },
+    {
+      "source": "tools/check_prescribed_reconstruction.py",
+      "target": "tools/check_prescribed_reconstruction.py",
+      "category": "unchanged-tool",
+      "bytes": 5653,
+      "sha256": "8d66fd55e018dcea822e9375bca5a650a8dfddd6646093f403fd1190ada212f1",
+      "sourceGitBlob": "39011a1bb7ec6651a9fd5552a4cd77251785bab1"
+    },
+    {
+      "source": "tools/check_reconstruction_reference.py",
+      "target": "tools/check_reconstruction_reference.py",
+      "category": "unchanged-tool",
+      "bytes": 7141,
+      "sha256": "45f036e14453b97a532db46e2c18a702eaccbbf90b96999086aff58eb5861e91",
+      "sourceGitBlob": "ad0e842322a44b679e622f7a7245cb6c76c2dfbe"
+    },
+    {
+      "source": "tools/fog_analysis.py",
+      "target": "tools/fog_analysis.py",
+      "category": "unchanged-tool",
+      "bytes": 14965,
+      "sha256": "9d0e75942659a1bbda3193ac5201ff73390e2af0dec5e605d20b90ffde9685fb",
+      "sourceGitBlob": "a06679b218294712c5c52de702b2c5c79fbc5151"
+    },
+    {
+      "source": "tools/fog_convergence.py",
+      "target": "tools/fog_convergence.py",
+      "category": "unchanged-tool",
+      "bytes": 3265,
+      "sha256": "d5754ead23f29e1c858cff2bd6997d1ded5f830c19f8624e4bc371e20eb9d03c",
+      "sourceGitBlob": "02d648fea7c0bf9cd5e90d5ae6f1f1d971af325a"
+    },
+    {
+      "source": "tools/fog_lighting.py",
+      "target": "tools/fog_lighting.py",
+      "category": "unchanged-tool",
+      "bytes": 5936,
+      "sha256": "4e252b9f72698699c9f95109efeb539e75aeb101828ef3deb4784fe86c1582c4",
+      "sourceGitBlob": "6fce4a02e92acafcf19296a8c241e2bda9cc94bf"
+    },
+    {
+      "source": "tools/fog_m2_analysis.py",
+      "target": "tools/fog_m2_analysis.py",
+      "category": "unchanged-tool",
+      "bytes": 8249,
+      "sha256": "010d31657ba575f488f828f2220d94b71bbc7cc5dd10409eeb50e665caea4f8a",
+      "sourceGitBlob": "5b264a8864af2f48b93e342776404ab7a7541f13"
+    },
+    {
+      "source": "tools/fog_m2_showcase.py",
+      "target": "tools/fog_m2_showcase.py",
+      "category": "unchanged-tool",
+      "bytes": 4429,
+      "sha256": "955eb82e88f9b4dd2597725723b73b05a9b37d2ff4c9b26ac172c8ac81ed7b2f",
+      "sourceGitBlob": "5753feb44bcf07d13bde0ab1b55e2d0bde5c9d35"
+    },
+    {
+      "source": "tools/fog_m2_study.py",
+      "target": "tools/fog_m2_study.py",
+      "category": "unchanged-tool",
+      "bytes": 14717,
+      "sha256": "48849af4ad4a22b1df0ca5ac2c78d9d6d851ca045849b1eeb9c8a1700d4ae6b3",
+      "sourceGitBlob": "ff03d321ca70cd52357b7a48c123dbe518c97eac"
+    },
+    {
+      "source": "tools/fog_reconstruction.py",
+      "target": "tools/fog_reconstruction.py",
+      "category": "unchanged-tool",
+      "bytes": 12468,
+      "sha256": "50cf28788c1fd670b93eb00ba64697870ccd5bdd01c0bc3b04c861bff876ad80",
+      "sourceGitBlob": "94c2ac8d3ef1e50e790559b90d0737e9bb77a6de"
+    },
+    {
+      "source": "tools/fog_sampling.py",
+      "target": "tools/fog_sampling.py",
+      "category": "unchanged-tool",
+      "bytes": 929,
+      "sha256": "a675b3a466f9c82271d59eeebd2c6e5165a445f1b87a639714ab7417a112313b",
+      "sourceGitBlob": "291282d79a19269f14815893cfd6df70615520ec"
+    },
+    {
+      "source": "tools/m2_cases.json",
+      "target": "tools/m2_cases.json",
+      "category": "unchanged-tool",
+      "bytes": 2027,
+      "sha256": "386aa705dd56f7a0c545b5fbfa278a697277202a240747e3b5a90508f476da83",
+      "sourceGitBlob": "ee052b8c5e5b27ede9391480f57355245eb71ff3"
+    },
+    {
+      "source": "docs/publication/files/tools/m3_compare.py",
+      "target": "tools/m3_compare.py",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 24891,
+      "sha256": "91f2b4ebf4cfcacb91bbc584fb7a68c2e0a8dc351a14e9fa8386c0b5b2c7efcb",
+      "sourceGitBlob": "69165b15a3d348f7ad788deb03712b56012f12d6"
+    },
+    {
+      "source": "tools/m3_config.json",
+      "target": "tools/m3_config.json",
+      "category": "unchanged-tool",
+      "bytes": 647,
+      "sha256": "a64c53b6f4983356a35a03821e5008212e6402b9df6f9618f60adbfbdc862a1e",
+      "sourceGitBlob": "6976dc00795473134064dced384b5151b96b0284"
+    },
+    {
+      "source": "docs/publication/files/tools/mobile_fog_profile.json",
+      "target": "tools/mobile_fog_profile.json",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 6912,
+      "sha256": "ee32d1f71c562049aa280a514db14eb6db3f3c065ada4e272aa95a03eb5bd0be",
+      "sourceGitBlob": "712910a96d1535a5ab65e13d515024da528c4391"
+    },
+    {
+      "source": "tools/mobile_fog_reference.py",
+      "target": "tools/mobile_fog_reference.py",
+      "category": "unchanged-tool",
+      "bytes": 20945,
+      "sha256": "1eb883d23297b90e56b29c878872e6151777f1cba51e4b0866affa9b26e10966",
+      "sourceGitBlob": "14595f05348ca40044c47e136511d6f03810ffab"
+    },
+    {
+      "source": "docs/publication/files/tools/mobile_reconstruction_profile.json",
+      "target": "tools/mobile_reconstruction_profile.json",
+      "category": "portable-environment-or-historical-locator",
+      "bytes": 11473,
+      "sha256": "48ab7c34c0907881162457fe844a304cbaa924e76a02188cf8e301f34b867a80",
+      "sourceGitBlob": "7b542975a8c4d780aa41fb9c2bef6615ba6b4c63"
+    },
+    {
+      "source": "tools/mobile_reconstruction_reference.py",
+      "target": "tools/mobile_reconstruction_reference.py",
+      "category": "unchanged-tool",
+      "bytes": 27262,
+      "sha256": "e97ff955536c401f9c0ef6cc60d0035ed5ef31e6ef49a9b5ffb1fedb6ac2b896",
+      "sourceGitBlob": "daa8456f3088aa2e0655fb521519326b61a81f46"
+    },
+    {
+      "source": "tools/requirements-desktop.txt",
+      "target": "tools/requirements-desktop.txt",
+      "category": "unchanged-tool",
+      "bytes": 101,
+      "sha256": "25ad0e6eec1259ca95c2ca047057d50b6ce08408de4f05933e8927c9f59d6247",
+      "sourceGitBlob": "ca698028c2a357ecb520316794000e2ed5153c28"
+    }
+  ],
+  "excludedCategories": [
+    "complete old .git/development history",
+    "management ledgers and private review/run logs",
+    "original docs/evidence records and raw captures",
+    "Saved/work/out/build products and large buffers",
+    "Engine/assets/tool/SDK/font binaries, credentials and third-party originals"
+  ],
+  "omittedArchiveTools": [
+    "tools/AndroidPerformance.ps1",
+    "tools/android_performance.py",
+    "tools/m3_matrix.py",
+    "tools/m3_regression.py",
+    "tools/m3_showcase.py",
+    "tools/mobile_performance_profile.json",
+    "tools/mobile_performance_report.py"
+  ],
+  "selfReference": "This generated map and PUBLIC-FILES are excluded from their own source map; receipt separately binds final commit/tree/all files/ZIP"
+}

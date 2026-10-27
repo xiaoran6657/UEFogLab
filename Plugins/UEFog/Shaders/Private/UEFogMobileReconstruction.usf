@@ -1,0 +1,198 @@
+#include "/Engine/Private/Common.ush"
+#define FORCE_DEPTH_TEXTURE_READS 1
+#include "/Engine/Private/SceneTexturesCommon.ush"
+
+float4x4 ReconClipToTranslatedWorld;
+float3 ReconCameraTranslated;
+float3 ReconSphereTranslated;
+float ReconSigma;
+float ReconNearCm;
+float ReconProjectionSignY;
+uint ReconTagA;
+uint ReconTagB;
+uint ReconFrame;
+uint ReconProfile;
+uint ReconDiagnostic;
+int2 ReconViewMin;
+int2 ReconViewSize;
+int2 ReconFogSize;
+int2 ReconSceneExtent;
+RWTexture2D<float> ReconProbeOutput;
+Texture2D<float> ReconProbeInput;
+RWTexture2D<float4> ReconLowOutput;
+RWTexture2D<float> ReconGuideOutput;
+Texture2D<float4> ReconLowInput;
+Texture2D<float> ReconGuideInput;
+RWTexture2D<float4> ReconOutput;
+Texture2D<float4> ReconInput;
+Texture2D ReconCin;
+Texture2D ReconConsumed;
+RWStructuredBuffer<int2> ReconAuxOutput;
+StructuredBuffer<int2> ReconAuxInput;
+RWStructuredBuffer<float4> ReconSamples;
+
+float NativeAt(int2 Pixel)
+{
+    return LookupDeviceZ((float2(Pixel) + .5) / float2(ReconSceneExtent));
+}
+float AxisDepth(float Z) { return Z > 0 ? ConvertFromDeviceZ(Z) : 0; }
+
+[numthreads(4,1,1)]
+void WriteKnownGuideCS(uint3 Id : SV_DispatchThreadID)
+{
+    if (Id.x < 3) ReconProbeOutput[int2(Id.x,0)] = Id.x == 0 ? 0 : Id.x == 1 ? 400.125 : 1200.75;
+}
+
+void WriteHeader()
+{
+    ReconSamples[0] = float4(ReconTagA,ReconTagB,ReconFrame,2);
+    ReconSamples[1] = float4(View.PreExposure,ReconNearCm,ReconSigma,64);
+    ReconSamples[2] = float4(ReconViewSize,ReconFogSize);
+    // These values are loaded from the actual R32 texture, not copied constants.
+    ReconSamples[3] = float4(ReconProbeInput.Load(int3(0,0,0)),ReconProbeInput.Load(int3(1,0,0)),
+                              ReconProbeInput.Load(int3(2,0,0)),ReconProfile);
+}
+[numthreads(1,1,1)]
+void ObserveKnownGuideCS(uint3 Id : SV_DispatchThreadID) { WriteHeader(); }
+
+[numthreads(8,8,1)]
+void IntegrateReconCS(uint3 Id : SV_DispatchThreadID)
+{
+    if (any(Id.xy >= (uint2)ReconFogSize)) return;
+    uint2 Canonical = min(uint2(ReconViewSize)-1,((2u*Id.xy+1u)*uint2(ReconViewSize))/(2u*uint2(ReconFogSize)));
+    int2 Pixel = ReconViewMin + int2(Canonical);
+    float Z = NativeAt(Pixel);
+    float Axis = AxisDepth(Z);
+    ReconGuideOutput[Id.xy] = Axis;
+    float2 UV = (float2(Id.xy)+.5)/float2(ReconFogSize); // nominal ray, not canonical pixel ray
+    float4 H = mul(float4(UV.x*2-1,(1-2*UV.y)/ReconProjectionSignY,1,1),ReconClipToTranslatedWorld);
+    float3 D = normalize(H.xyz/H.w-ReconCameraTranslated);
+    float3 O = ReconCameraTranslated-ReconSphereTranslated;
+    float B = dot(O,D);
+    float Discriminant = B*B-(dot(O,O)-400.0*400.0);
+    float LengthCm = 0;
+    if (Discriminant > 0)
+    {
+        float Root = sqrt(Discriminant);
+        float Entry = max(0.0,-B-Root);
+        float Exit = -B+Root;
+        if (Z > 0) Exit = min(Exit,Axis/max(D.x,1e-6));
+        LengthCm = max(0.0,Exit-Entry);
+    }
+    // Same prescribed Uniform Full64 recurrence as the protected old path.
+    float SegmentTau = ReconSigma*LengthCm*.01/64.0;
+    float SegmentT = exp(-SegmentTau);
+    float Alpha = SegmentTau < .001 ? SegmentTau*(1.0-.5*SegmentTau+SegmentTau*SegmentTau/6.0) : 1.0-SegmentT;
+    float3 S = 0;
+    float T = 1;
+    [loop] for (uint Step=0;Step<64;++Step) { S += T*float3(.35,.60,.90)*Alpha; T *= SegmentT; }
+    ReconLowOutput[Id.xy] = float4(S,T);
+    if (ReconDiagnostic != 0 && ReconProfile == 1)
+        ReconAuxOutput[Id.x+Id.y*ReconViewSize.x] = int2(4,-1); // Full identity, no reconstruction pass
+}
+
+int FloorDivide(int N,int D) { return N/D-((N<0 && N%D!=0)?1:0); }
+float RangeWeight(float Low,float Query)
+{
+    if (Low == 0 || Query == 0) return Low == 0 && Query == 0 ? 1 : 0;
+    float Delta = abs(Low-Query);
+    return Delta <= 25 ? exp(-Delta/10.0) : 0;
+}
+// Round in integer bits before the UAV conversion. Odd-grid FP32 weights can
+// put Result just below a half boundary; implicit image-store rounding then
+// spends the entire one-ULP error budget. This produces an exactly representable
+// binary16 value without assuming a GPU hardware float-to-half rounding mode.
+float RoundForHalfStorage(float Value)
+{
+    uint Bits = asuint(Value);
+    uint Sign = Bits & 0x80000000u;
+    uint Magnitude = Bits & 0x7fffffffu;
+    uint Exponent = Magnitude >> 23;
+    if (Exponent == 255u) return Value; // Preserve nonfinite faults for validation.
+    if (Exponent < 102u) return asfloat(Sign);
+    if (Exponent < 113u)
+    {
+        uint Shift = 126u-Exponent;
+        uint Significand = (Magnitude & 0x7fffffu) | 0x800000u;
+        uint Half = Significand >> Shift;
+        uint Remainder = Significand & ((1u << Shift)-1u);
+        uint Midpoint = 1u << (Shift-1u);
+        Half += (Remainder > Midpoint || (Remainder == Midpoint && (Half & 1u) != 0u)) ? 1u : 0u;
+        return asfloat(Sign | asuint(float(Half)*5.9604644775390625e-8));
+    }
+    uint Rounded = (Magnitude+0xfffu+((Magnitude >> 13)&1u)) & 0xffffe000u;
+    return asfloat(Sign | (Rounded >= 0x47800000u ? 0x7f800000u : Rounded));
+}
+[numthreads(8,8,1)]
+void ReconstructSTCS(uint3 Id : SV_DispatchThreadID)
+{
+    if (any(Id.xy >= (uint2)ReconViewSize)) return;
+    int2 N = (2*int2(Id.xy)+1)*ReconFogSize-ReconViewSize;
+    int2 Den = 2*ReconViewSize;
+    int2 Base = int2(FloorDivide(N.x,Den.x),FloorDivide(N.y,Den.y));
+    float2 F = float2(N-Base*Den)/float2(Den);
+    float4 Spatial = float4((1-F.x)*(1-F.y),F.x*(1-F.y),(1-F.x)*F.y,F.x*F.y);
+    int2 Neighbors[4] = {Base,Base+int2(1,0),Base+int2(0,1),Base+int2(1,1)};
+    float4 Values[4];
+    float4 Weights = Spatial;
+    int Compatible = 0;
+    float Query = AxisDepth(NativeAt(ReconViewMin+int2(Id.xy)));
+    [unroll] for (uint I=0;I<4;++I)
+    {
+        int2 P = clamp(Neighbors[I],int2(0,0),ReconFogSize-1);
+        Values[I] = ReconLowInput.Load(int3(P,0));
+        if (ReconProfile == 3)
+        {
+            float W = RangeWeight(ReconGuideInput.Load(int3(P,0)),Query);
+            Compatible += W > 0 ? 1 : 0;
+            Weights[I] *= W;
+        }
+    }
+    if (ReconProfile != 3) Compatible = 4;
+    precise float Sum = Weights.x+Weights.y+Weights.z+Weights.w;
+    int Fallback = -1;
+    precise float4 Result = 0;
+    if (ReconProfile == 3 && Sum <= 1e-6)
+    {
+        Fallback = 0;
+        [unroll] for (uint I=1;I<4;++I) if (Spatial[I] > Spatial[Fallback]) Fallback = I;
+        Result = Values[Fallback];
+    }
+    else
+    {
+        [unroll] for (uint I=0;I<4;++I) Result += Values[I]*(ReconProfile == 3 ? Weights[I]/Sum : Spatial[I]);
+    }
+    ReconOutput[Id.xy] = float4(RoundForHalfStorage(Result.x),RoundForHalfStorage(Result.y),
+        RoundForHalfStorage(Result.z),RoundForHalfStorage(Result.w));
+    if (ReconDiagnostic != 0) ReconAuxOutput[Id.x+Id.y*ReconViewSize.x] = int2(Compatible,Fallback);
+}
+
+void CompositeReconPS(float4 Position : SV_POSITION,noperspective float2 UV : TEXCOORD0,out float4 Out : SV_Target0)
+{
+    int2 Pixel = int2(UV*float2(ReconSceneExtent));
+    float4 ST = ReconInput.Load(int3(Pixel-ReconViewMin,0));
+    Out = float4(ST.rgb*View.PreExposure+ST.a*ReconCin.Load(int3(Pixel,0)).rgb,1);
+}
+
+[numthreads(8,8,1)]
+void ObserveDenseReconCS(uint3 Id : SV_DispatchThreadID)
+{
+    if (all(Id.xy == 0)) WriteHeader();
+    if (all(Id.xy < (uint2)ReconFogSize))
+    {
+        uint2 P = min(uint2(ReconViewSize)-1,((2u*Id.xy+1u)*uint2(ReconViewSize))/(2u*uint2(ReconFogSize)));
+        uint Row = 4+2*(Id.x+Id.y*ReconFogSize.x);
+        ReconSamples[Row] = ReconLowInput.Load(int3(Id.xy,0));
+        ReconSamples[Row+1] = float4(NativeAt(ReconViewMin+int2(P)),ReconGuideInput.Load(int3(Id.xy,0)),P+uint2(ReconViewMin));
+    }
+    if (any(Id.xy >= (uint2)ReconViewSize)) return;
+    uint Index = Id.x+Id.y*ReconViewSize.x;
+    uint Row = 4+2*ReconFogSize.x*ReconFogSize.y+4*Index;
+    int2 Pixel = ReconViewMin+int2(Id.xy);
+    float Z = NativeAt(Pixel);
+    int2 Aux = ReconAuxInput[Index]; // actual output of integrate(Full)/reconstruct(Half)
+    ReconSamples[Row] = float4(Z,AxisDepth(Z),Aux);
+    ReconSamples[Row+1] = ReconInput.Load(int3(Id.xy,0));
+    ReconSamples[Row+2] = ReconCin.Load(int3(Pixel,0));
+    ReconSamples[Row+3] = ReconConsumed.Load(int3(Pixel,0)); // actual ENGINE input to observer
+}

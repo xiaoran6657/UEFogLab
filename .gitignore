@@ -1,0 +1,30 @@
+.vs/
+.idea/
+.vscode/
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+*.sln
+*.suo
+*.VC.db
+*.VC.opendb
+*.opensdf
+*.user
+tools/LocalEnvironment.ps1
+work/
+out/
+# UBT generates these Android downloader stubs during target deployment.
+/Build/Android/src/**/OBBDownloaderService.java
+/Build/Android/src/**/OBBData.java
+/Build/Android/src/**/DownloaderActivity.java
+/Build/Android/src/**/AlarmReceiver.java
+/Build/Android/src/**/DownloadShim.java
+# The cooker writes target-specific generated file-order logs here.
+/Build/Android_ASTC/FileOpenOrder/*.log
+# Third-party originals are local study material, not source-repository payload.
+docs/theory/library/
+__pycache__/
+*.py[cod]

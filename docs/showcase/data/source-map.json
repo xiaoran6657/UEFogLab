@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "pathBase": "docs/showcase",
+  "sourcePathBase": "historical_internal_repository_identifiers_only",
+  "files": [
+    {
+      "path": "media/desktop-st.png",
+      "source": {
+        "repoPath": "docs/evidence/M1-FIX-01-figures-20261022/640x360-ST.png",
+        "bytes": 366237,
+        "sha256": "3e5acaf2f3c7965219cdb9ede3b28d5db911e8ebfda4e435620ab7d39a1788dd"
+      },
+      "sourceRevision": "0881f5bcac34b8381b6f67789a324bcffd22613d",
+      "sourceBlobRevision": "f9b6a41ca35ab94cb544b4deb4d3e4f1f39ae572",
+      "transformation": "byte-for-byte copy",
+      "scope": "M1-FIX-01 Prescribed/schema1 repaired S/T visualization"
+    },
+    {
+      "path": "media/desktop-counterexample.png",
+      "source": {
+        "repoPath": "docs/evidence/M1-FIX-01-figures-20261022/640x360-counterexample.png",
+        "bytes": 31766,
+        "sha256": "5be435d6b848dd6359076b2c45c583af0fe0aaf7f001a681ec8cb5043b4c353c"
+      },
+      "sourceRevision": "0881f5bcac34b8381b6f67789a324bcffd22613d",
+      "sourceBlobRevision": "f9b6a41ca35ab94cb544b4deb4d3e4f1f39ae572",
+      "transformation": "byte-for-byte copy",
+      "scope": "Preserved same-model local reconstruction regression"
+    },
+    {
+      "path": "media/native-comparison.png",
+      "source": {
+        "repoPath": "docs/evidence/M3-20261023/M3-main.png",
+        "bytes": 538696,
+        "sha256": "a6e736bf85b881fb63162d15d6e8ab69ffc5df92acb647b6e71c34dd8bd7f7f7"
+      },
+      "sourceRevision": "7730ebaec808ff124c0998e12197261ee3c64718",
+      "sourceBlobRevision": "2252e870047f074263f6d0e6a713f9945576eae4",
+      "transformation": "byte-for-byte copy",
+      "scope": "Native feature/display comparison; no common-model accuracy ranking"
+    },
+    {
+      "path": "media/native-edge.png",
+      "source": {
+        "repoPath": "docs/evidence/M3-20261023/M3-edge.png",
+        "bytes": 262988,
+        "sha256": "a7bd29aa6783cbbd5a09f5ba59f8da0f06cb69bef4e5d89ae52a836aca4be0d2"
+      },
+      "sourceRevision": "7730ebaec808ff124c0998e12197261ee3c64718",
+      "sourceBlobRevision": "2252e870047f074263f6d0e6a713f9945576eae4",
+      "transformation": "byte-for-byte copy",
+      "scope": "Post-capture illustrative Manual display edge regression"
+    },
+    {
+      "path": "media/mobile-planes-roi.png",
+      "source": {
+        "repoPath": "docs/evidence/images/m4-recon-20261026/planes-roi.png",
+        "bytes": 111073,
+        "sha256": "ac46927885db3e1d59c2e6f505bcde71f788a8da0928f5f981ba0a523b889181"
+      },
+      "sourceRevision": "36724b755c7ad73269294ea64c2adbe3f26891aa",
+      "sourceBlobRevision": "d504cecfe063547e426c4e59f4c7495058f76be6",
+      "transformation": "byte-for-byte copy",
+      "scope": "Actual GPU ST/guide diagnostic visualization; fixed Planes ROIs"
+    },
+    {
+      "path": "media/mobile-thin-roi.png",
+      "source": {
+        "repoPath": "docs/evidence/images/m4-recon-20261026/thin-roi-fallback.png",
+        "bytes": 103198,
+        "sha256": "a4f754fbae492c9f25088ff7ac78cc6c0b65878b101e69022c05302de5a07ee2"
+      },
+      "sourceRevision": "36724b755c7ad73269294ea64c2adbe3f26891aa",
+      "sourceBlobRevision": "d504cecfe063547e426c4e59f4c7495058f76be6",
+      "transformation": "byte-for-byte copy",
+      "scope": "Actual ThinStripe miss/fallback diagnostic visualization"
+    },
+    {
+      "path": "sources/manual-high.png",
+      "source": {
+        "repoPath": "Saved/M3/M3-02-20261023/matrix-v2/A-ours-high/frame.png",
+        "bytes": 497421,
+        "sha256": "0ff5b13f06e08f0e0147b7b4ab49e18121789049b0a57c16b087d829a2c13067"
+      },
+      "sourceRevision": "7730ebaec808ff124c0998e12197261ee3c64718",
+      "sourceReport": "docs/evidence/M3-03-20261023.json",
+      "sourceReportSelector": "inputs[case=A-ours-high].image",
+      "transformation": "byte-for-byte copy",
+      "scope": "actual 1280x720 Manual HG High64 screenshot, UE5.8.2; not realtime footage"
+    }
+  ],
+  "availability": "source report paths and revisions are historical provenance, not local dependencies or reachable public blob links"
+}
