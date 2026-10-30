@@ -1,0 +1,392 @@
+{
+  "kind": "UEFogLab.M6ExplicitPublicIncrement",
+  "schemaVersion": 1,
+  "status": "author_candidate_pending_review_and_publication",
+  "basePublicCommit": "e805a290fa8bc2ed94c64d85bfa02db31e256abc",
+  "privateInputRevision": "cd95e94f958e6aebcba6b39dd2038f0e47ca18c5",
+  "testedRendererRevision": "4dcf1c8b425e508bfc1c49894cf46c95a999ee3b",
+  "parentPolicy": "only existing public history; never private development history",
+  "changes": [
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogCompare.cpp",
+      "bytes": 17851,
+      "sha256": "98be37b730431aa2bc424ec84008017136351e3163e8e061b2062583ee62c500",
+      "baseSha256": "b911875acdc974d4a194e772a9f36e4f55c363b117f261e1a44c4e14cf4201fe"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogDynamic.cpp",
+      "bytes": 1286,
+      "sha256": "2cf1f8d5bca8c54edf8fafcd93c7e0a832f12c8f1cfc56255088e529414e18db",
+      "baseSha256": null
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.cpp",
+      "bytes": 21950,
+      "sha256": "2691ecb0abb7d6ee38c9d793b09e95d08104ae097009f3df1216019580381e22",
+      "baseSha256": "70549d721f78dc122a6dfd7a6e51db48d5023876d376d5c55aca6cc56cea198c"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.h",
+      "bytes": 731,
+      "sha256": "12480e23615469b0389b9dd9aa9f345a8c0edca2c285b485a3c29d87c04c50d0",
+      "baseSha256": "9068ae4196949480ad95395a8590b2d17f8c1b7be1fe95d8b7a73b1759d6ae3b"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogCompare.h",
+      "bytes": 961,
+      "sha256": "d0c4b7d2bd1c9969f86fc72af0c9c8ad842c71c9980bace31a143a4116567a25",
+      "baseSha256": "050ed66f53d18c8a8e371839cec14454d2c81c35e0922fad2e571e96bf3c0763"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogDynamic.h",
+      "bytes": 874,
+      "sha256": "519912fa73f9d969edf3ba46b7ea9351fbe3e7ac9af008447a7b953d41873d41",
+      "baseSha256": null
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/UEFog.Build.cs",
+      "bytes": 821,
+      "sha256": "1ef58361c361ff629146a0a6f522a8f3ca32a9d22144986823034c8d3f3d4da6",
+      "baseSha256": "c7a9a9938c950ed955e8a78bd1bf7b8671700e40dbafd258d16e9578a866b98b"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.cpp",
+      "bytes": 12626,
+      "sha256": "7f7fd89bedd094a9262dea2547483bab598d36a29762f4dadcbbf1c53bd81538",
+      "baseSha256": "cbb3c9397e6460999a391da1c55f6d706c9928b7f847b5c18cc18dd65e39af34"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.h",
+      "bytes": 1378,
+      "sha256": "c9ffe27a00c1a21037036b5413ddfe5e57e9f627db4138fa3b56e3efa03d290d",
+      "baseSha256": "dd3b7c3796787bf08a8b5ff1465a81335143ba31493fc56f81e96d61ca3747f9"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDynamic.cpp",
+      "bytes": 7880,
+      "sha256": "acfc35b7c268086d3a7e1ded138a65aa26bc1860a1fbb99d26c10e67a9ca87c8",
+      "baseSha256": null
+    },
+    {
+      "path": "tools/m6_dynamic.py",
+      "bytes": 17607,
+      "sha256": "a40b13f67c8b14a4a9ed1a044fe07cac6f89ff78602e790dfad290f2b9b30094",
+      "baseSha256": null
+    },
+    {
+      "path": "tools/check_m6_dynamic.py",
+      "bytes": 3788,
+      "sha256": "e5d7bece6f66a949b9d9c1d901f881fdf9b5e3a7f542f5df135db6a9f006c40a",
+      "baseSha256": null
+    },
+    {
+      "path": "tools/m6_media.py",
+      "bytes": 10524,
+      "sha256": "81f46a5233e25b8c58d0416dc53bd437fce9728aab648e85adda9479a2c09118",
+      "baseSha256": null
+    },
+    {
+      "path": "docs/design/M6-DYNAMIC-CAPTURE.md",
+      "bytes": 5293,
+      "sha256": "37d18e5801c9883a79af1ccc67f18b861b89028a15e8ea554f2030f777952e97",
+      "baseSha256": null
+    },
+    {
+      "path": "docs/showcase/releases/m6-dynamic-20261031/README.md",
+      "bytes": 3839,
+      "sha256": "b11d3b8603b9f8ccc9304a2a357b7090543c6dd4a9afe02bda313506a5629a0a",
+      "baseSha256": null
+    },
+    {
+      "path": "docs/showcase/releases/m6-dynamic-20261031/manifest.json",
+      "bytes": 5224,
+      "sha256": "3806f29368f0ff877a0b4556551e83ac2ad476357e788f5b9d06f4ff7ed76804",
+      "baseSha256": null
+    },
+    {
+      "path": "docs/showcase/releases/m6-dynamic-20261031/media/dynamic-poster.png",
+      "bytes": 488811,
+      "sha256": "ff05e8dfff0207dd82955bff33558d3f8bf5d75f9935c606122b0a6a3ac5664b",
+      "baseSha256": null
+    },
+    {
+      "path": "docs/showcase/releases/m6-dynamic-20261031/media/dynamic-showcase.mp4",
+      "bytes": 6197561,
+      "sha256": "22fb217eafaea096887206a52b80c7008a8e342e3753d9fc1590821e531f1a36",
+      "baseSha256": null
+    },
+    {
+      "path": "docs/showcase/releases/m6-dynamic-20261031/sources.json",
+      "bytes": 3084348,
+      "sha256": "4c2f118623037a3b0156685d4fac8ebeda85fef6c23c27459cefd3e21c7aa8b3",
+      "baseSha256": null
+    },
+    {
+      "path": "README.md",
+      "bytes": 3443,
+      "sha256": "b332bc908810c7798b16244bb26fbc3efed76272e693125cbfceab334c8f1d75",
+      "baseSha256": "d0d84e03be48553d8f6573e11601aae1711b67ee4edf1033c19bfee5b7ff8d54"
+    },
+    {
+      "path": "docs/DYNAMIC-SHOWCASE.md",
+      "bytes": 3514,
+      "sha256": "f7c479436f991fd9bb79e69ca3525141647d70f7af817d7698ea4550d67974e8",
+      "baseSha256": null
+    }
+  ],
+  "protectedRuntimeFiles": [
+    {
+      "path": "Config/Android/AndroidEngine.ini",
+      "gitBlob": "c18f2b05f777f0dc863911d0d97361ee2b92559d",
+      "sha256": "aa8949dc9c963c120982916a367d4220fb70c568397a72b04e8a98c24ee93bbe"
+    },
+    {
+      "path": "Config/Android/AndroidGame.ini",
+      "gitBlob": "6789fd09942c4fc766a8cd603177be4755fabdf4",
+      "sha256": "59921e85bf03c5b1ebca07742455df65b87adaaca7d4afec2216a8ee1f1974cd"
+    },
+    {
+      "path": "Config/DefaultEngine.ini",
+      "gitBlob": "84fe089f90cf0edf0e9fe3c04d8db94548639342",
+      "sha256": "3c53b939d37a9da1c24516f8c21169d4b266676feb5da9119df75f47565f6148"
+    },
+    {
+      "path": "Config/DefaultGame.ini",
+      "gitBlob": "786622d629f88c7904d5a067c4e3ab4d08932878",
+      "sha256": "2304aa4aa23c0568b6abdecd7491ca8d5c5e949725236e603e392ce7a0ab3647"
+    },
+    {
+      "path": "Config/DefaultInput.ini",
+      "gitBlob": "2c1d7add86ecbe5f859d66410f7d09d215e2e677",
+      "sha256": "e1b7a60e4da1acca28b8540ed7b2746551df9ae1ddc0056eb45a0932ed82ea78"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFog.usf",
+      "gitBlob": "1b58ad197f531c0a1fbdedfd37cc985b492f1238",
+      "sha256": "6d3977d46fa358f1e4d662c82e4ae68ebe394f33db4088c3f933ab577385a5ff"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileFog.usf",
+      "gitBlob": "3cf57651b43ea00923ebfff5cfae9671375ce0ba",
+      "sha256": "54605b39d7578da98031e453b1c80011dc7118664096c50eafd93037c8057412"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileProbe.usf",
+      "gitBlob": "44603387db066ae9d974293a26e45f0dc0e85b31",
+      "sha256": "a6a2ac7933116bf5b25f53dbac13690c857c0963665d10bc7cc9179b4884e750"
+    },
+    {
+      "path": "Plugins/UEFog/Shaders/Private/UEFogMobileReconstruction.usf",
+      "gitBlob": "92d3b054d7ae8db3df0da33253caa0d66f618d99",
+      "sha256": "33d27db0634122c816d1cb6130812691445e89b8ae2d7c5b52148ea4be2030e2"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/FogMath.h",
+      "gitBlob": "87141a694b953977aeab6fce145c1987828f10a7",
+      "sha256": "b0c1b8ce36ccdee0916215d6854d7d087e7f2eeadd31b92d8ed6817daedf9067"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/FogMathTests.cpp",
+      "gitBlob": "ffdbe46eda28fec0bea984fa60086e5082bfc6e3",
+      "sha256": "6a955c7b6cbb52111135aa89c59ac443dcac4041bf089a090f079d0cb43e90b0"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogCompare.cpp",
+      "gitBlob": "048648b5653160faeff0cc3d51b157ae92992e2b",
+      "sha256": "98be37b730431aa2bc424ec84008017136351e3163e8e061b2062583ee62c500"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogDynamic.cpp",
+      "gitBlob": "94d78a7c12456765b2d9da97750517369b55db76",
+      "sha256": "2cf1f8d5bca8c54edf8fafcd93c7e0a832f12c8f1cfc56255088e529414e18db"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.cpp",
+      "gitBlob": "f33dcb991c92300d706cda80957d8140e0697cbe",
+      "sha256": "8df41e7a2f3f2b498f3946b5708a778928b502c1fc0be00a001c55d75b15a68a"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogLighting.h",
+      "gitBlob": "6e1f0b8eea14c8ba4ea28fddc4a17aecacf97339",
+      "sha256": "bfb241f10a139456aa6235f7f5027d609a81e606b46462afdaccc9e75ad76b0e"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileFog.cpp",
+      "gitBlob": "809043290bda938e7e5eb4bed9f83b3619727468",
+      "sha256": "0834cd999b8970161c0abc44cf9903371bb28914bfd19a34063bd3c72e04bd5f"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp",
+      "gitBlob": "c739b4a0ab7724b114c27057cf1e06a24d6f2637",
+      "sha256": "c93c6657860bb563d83346be112fd4b8ceb12f0723f26dac99ecc52d27506862"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileProbe.cpp",
+      "gitBlob": "66845be0fb059557c310da978563fdd5904812c9",
+      "sha256": "57acc39e474bf1490625268a525e88ae3d9c9251cfd8d257a723e3b62c7e0c72"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp",
+      "gitBlob": "b4df37b5ef68fdf28c5615b2f9f2933523798b14",
+      "sha256": "a366b17115d55bc36e56bbac52f0075e03130c03bfd2b138bbe9731f92b76515"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogMobileStartup.cpp",
+      "gitBlob": "2833d260e32cf86c3446a0de402d86942d2c15e1",
+      "sha256": "b8e5b109f199eafe1e5a6c30d01bf5ec879c2b385f2534cb65675deb7e3fa827"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogModule.cpp",
+      "gitBlob": "f2d062606ce35b63d205302cea425898c40234ff",
+      "sha256": "91fa6df33c9da613201b008741c50f3b883a4165b9d6fa7329f760d934e9b3a5"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.cpp",
+      "gitBlob": "a69ab6945998f59c1b7d456a24abbb722599d995",
+      "sha256": "11ca4daafd6a5e537595c47207522c91fb06d58584adada0b250414200d07671"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogReadback.h",
+      "gitBlob": "afeb3437596117d3dff4f20fe0793a0016ac163a",
+      "sha256": "73592c15faf9a203303e9e837228c742504dcd1d1d13458d985798eb26f31155"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.cpp",
+      "gitBlob": "d1a9dbe73ec1b50278794ed90bd517e530aca430",
+      "sha256": "2691ecb0abb7d6ee38c9d793b09e95d08104ae097009f3df1216019580381e22"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Private/UEFogViewExtension.h",
+      "gitBlob": "a4667fdff0c596b8af2b9c8bb30daa7f24c6bfcc",
+      "sha256": "12480e23615469b0389b9dd9aa9f345a8c0edca2c285b485a3c29d87c04c50d0"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogCompare.h",
+      "gitBlob": "72ab3476c868ef52a3d8849f7eac03db9dad53da",
+      "sha256": "d0c4b7d2bd1c9969f86fc72af0c9c8ad842c71c9980bace31a143a4116567a25"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogDynamic.h",
+      "gitBlob": "3c5bb436b94975959d1923b1593953690702aaf6",
+      "sha256": "519912fa73f9d969edf3ba46b7ea9351fbe3e7ac9af008447a7b953d41873d41"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileFog.h",
+      "gitBlob": "4ffa9f52c5a4582d051343533f378095ae7263bc",
+      "sha256": "bf10eafe8fdc1cc0a91b6e533fa597178df25f8ce2b61e5b3e20cde34565e062"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobilePerformance.h",
+      "gitBlob": "11ea22252a905709b24a6f5720ba67774e817815",
+      "sha256": "27e849aff5bd968d816fa815d92179f7fd0fa305a234d524884edff0e41bef19"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileProbe.h",
+      "gitBlob": "37dab0edb0a69175958b0658a12c41fc80aeabf9",
+      "sha256": "a0c357c72ca61c54adedfb45dc51055fe74de7b693c9707d009d3d19c053ae2a"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileReconstruction.h",
+      "gitBlob": "7c9c78040e2dd3de079a936312f58a7458bc1cfb",
+      "sha256": "5ad5f1f3dab9c4114041224419d2a4e72a9607b5921866baf4d8d6198d914d53"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/Public/UEFogMobileStartup.h",
+      "gitBlob": "473b1521cb393dcae32a5eb809221c2bbbe4b445",
+      "sha256": "b2c1fbcc98f156eb23e604f41a0f6277eae64b58e2d8e4383433cc0e406507de"
+    },
+    {
+      "path": "Plugins/UEFog/Source/UEFog/UEFog.Build.cs",
+      "gitBlob": "91c29984f92de315878830efd9f490f098bd1093",
+      "sha256": "1ef58361c361ff629146a0a6f522a8f3ca32a9d22144986823034c8d3f3d4da6"
+    },
+    {
+      "path": "Plugins/UEFog/UEFog.uplugin",
+      "gitBlob": "a77b46025db9ca6549b6c03ef1922677c7e10436",
+      "sha256": "345af99bc46bb1788fc2f39fa434748ce625983c10e3390ce75cc0382afa5037"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.cpp",
+      "gitBlob": "410868640621fb176e85f0a386215de46f204723",
+      "sha256": "7f7fd89bedd094a9262dea2547483bab598d36a29762f4dadcbbf1c53bd81538"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabComparison.h",
+      "gitBlob": "b538564322dd7040ce2bb4f256aaaccd13324a9f",
+      "sha256": "c9ffe27a00c1a21037036b5413ddfe5e57e9f627db4138fa3b56e3efa03d290d"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDemo.Build.cs",
+      "gitBlob": "a8529c8a085d14ca8b77f43658854645a16d3a7f",
+      "sha256": "6cce10ab184a4a46e4481b9e9cbbe8222eb581216b7aeeb65d9b0d906bcec9cf"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDemo.cpp",
+      "gitBlob": "e579c86550bc70b2b8f1df8043cc9368c313aa9b",
+      "sha256": "8c28bb8ebeb244ca5d8fb8be1baf01a02c32150ff8cb48fe359f23e01f4369bb"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabDynamic.cpp",
+      "gitBlob": "a76a88bc2ffdd5adf97aa618d365b337d930ba73",
+      "sha256": "acfc35b7c268086d3a7e1ded138a65aa26bc1860a1fbb99d26c10e67a9ca87c8"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabGameMode.cpp",
+      "gitBlob": "ee98d2d1dfb317d94238cfc1aa0869dd42115e6d",
+      "sha256": "7ca6f96c08c04df28b35a2f7b56bccd680a14e437d635443d84dbbd435254ad1"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabGameMode.h",
+      "gitBlob": "8c460b88221ab262f4dedff882f0799cfbfcf92a",
+      "sha256": "7c96da1e91926789c94d89817ed35717eb6a620c733ea7202106ac87506102eb"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFixture.cpp",
+      "gitBlob": "ad6fba8080c179acf9fd5e3fa40abbe1cc9d886f",
+      "sha256": "664e32e761c9308e413348175553f66ffd52babe14ecafc55771230a29cb99d8"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFixture.h",
+      "gitBlob": "d29cfcddd86cfed2863ed375a4f2ff0f6a298bdf",
+      "sha256": "c3ba9f63ba58b7ea3857e2716437011420e7fab7fefc0d2b7894e8be843556df"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFogFixture.cpp",
+      "gitBlob": "f7fff7434019682ab2e147e99c4a0e00f3931694",
+      "sha256": "284eb357e949bc280fe28c457f4f4415e6db0dec906d2bc367b687817c9cb27f"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileFogFixture.h",
+      "gitBlob": "9ab6d681a2a1a7bdb57c0096a2ee05ee6ba3563d",
+      "sha256": "aba2b0286a3d23f2a30d6bb19d0b5238c39c128e87bd8f88c352c914e9065595"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileReconstructionFixture.cpp",
+      "gitBlob": "9d0899b4b774f237b7a543f4efc33bf591eb1aa9",
+      "sha256": "b6c0ea30e2581a227ad22d8c57594a8bb98e0f6632b09fd2964628ebea799613"
+    },
+    {
+      "path": "Source/FogLabDemo/FogLabMobileReconstructionFixture.h",
+      "gitBlob": "13c4e773e0b7cf5bdbc69351b486b8b5b71b59e4",
+      "sha256": "26a025e89cefd6b3a7031200498c0f838d741f26c563b08ca54a7fe506748203"
+    },
+    {
+      "path": "Source/UEFogLab.Target.cs",
+      "gitBlob": "46c88e6162e0d7b127d28a5a776f002a36fd41ac",
+      "sha256": "19f86887dca9179b7fab22c05177024772c17d3a1ccb40e7e986bf99a1ee05eb"
+    },
+    {
+      "path": "Source/UEFogLabEditor.Target.cs",
+      "gitBlob": "7d086a11e433375459b0d4402cfd246d14e99fca",
+      "sha256": "15b295c850ba9a829b2c2673db2018b420872cf1f29859417f030033a14374c1"
+    },
+    {
+      "path": "UEFogLab.uproject",
+      "gitBlob": "f9f1bcf6247e52c52af951ff13c93a9e40d67a27",
+      "sha256": "f5fadf4787f25d00b5203dc32fcdab6e555a4ff569d12ccc64e35fda9ddcb0ef"
+    }
+  ],
+  "historicalPreservation": "old tag and all old media/data/provenance bytes retained",
+  "rights": "MIT original contributions; UE and third-party rights retained",
+  "omitted": "raw captures/logs, management, learning records, private history, engine/assets/tools/SDKs/fonts"
+}

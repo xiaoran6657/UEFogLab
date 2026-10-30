@@ -1,0 +1,218 @@
+{
+  "kind": "UEFogLab.M6DynamicMedia",
+  "schemaVersion": 1,
+  "status": "author_candidate_pending_independent_review",
+  "edition": "m6-dynamic-20261031",
+  "scope": "UE5.8.4 Win64 RX9070 D3D12 SM6 controlled motion display; not performance footage",
+  "license": "MIT / Copyright (c) 2026 xiaoran6657 for original contributions; UE and third-party rights retained",
+  "frames": 1080,
+  "fps": 30,
+  "durationSeconds": 36.0,
+  "width": 1920,
+  "height": 1280,
+  "audio": false,
+  "timeline": [
+    {
+      "shot": "Camera",
+      "firstOutput": 0,
+      "count": 210,
+      "seconds": 7.0,
+      "inputRuns": [
+        "formal-camera-ours",
+        "formal-camera-nativelfv",
+        "formal-camera-nativevf"
+      ]
+    },
+    {
+      "shot": "Object",
+      "firstOutput": 210,
+      "count": 210,
+      "seconds": 7.0,
+      "inputRuns": [
+        "formal-object-ours",
+        "formal-object-nativelfv",
+        "formal-object-nativevf"
+      ]
+    },
+    {
+      "shot": "Fog",
+      "firstOutput": 420,
+      "count": 210,
+      "seconds": 7.0,
+      "inputRuns": [
+        "formal-fog-ours",
+        "formal-fog-nativelfv",
+        "formal-fog-nativevf"
+      ]
+    },
+    {
+      "shot": "Light",
+      "firstOutput": 630,
+      "count": 210,
+      "seconds": 7.0,
+      "inputRuns": [
+        "formal-light-ours",
+        "formal-light-nativelfv",
+        "formal-light-nativevf"
+      ]
+    },
+    {
+      "shot": "Reconstruction",
+      "firstOutput": 840,
+      "count": 240,
+      "seconds": 8.0,
+      "inputRuns": [
+        "formal-reconstruction-high",
+        "formal-reconstruction-mediumb",
+        "formal-reconstruction-mediumg"
+      ]
+    }
+  ],
+  "transform": {
+    "fullImage": [
+      1280,
+      720
+    ],
+    "contextDisplay": [
+      640,
+      360
+    ],
+    "commonRoiLTRB": [
+      500,
+      200,
+      820,
+      520
+    ],
+    "zoomDisplay": [
+      640,
+      640
+    ],
+    "zoomResampling": "nearest; 2x source pixels",
+    "contextResampling": "Lanczos; 0.5x",
+    "transitions": "hard cuts; original order; no interpolation or duplicate fill"
+  },
+  "encoding": {
+    "argv": [
+      "ffmpeg.exe",
+      "-hide_banner",
+      "-loglevel",
+      "warning",
+      "-n",
+      "-f",
+      "rawvideo",
+      "-pixel_format",
+      "rgb24",
+      "-video_size",
+      "1920x1280",
+      "-framerate",
+      "30",
+      "-i",
+      "pipe:0",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "18",
+      "-pix_fmt",
+      "yuv420p",
+      "-movflags",
+      "+faststart",
+      "dynamic-showcase.mp4"
+    ],
+    "probeArgv": [
+      "ffprobe.exe",
+      "-v",
+      "error",
+      "-count_frames",
+      "-show_entries",
+      "stream=codec_name,width,height,pix_fmt,avg_frame_rate,nb_read_frames,duration:format=duration",
+      "-of",
+      "json",
+      "dynamic-showcase.mp4"
+    ],
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1280,
+          "pix_fmt": "yuv420p",
+          "avg_frame_rate": "30/1",
+          "duration": "36.000000",
+          "nb_read_frames": "1080"
+        }
+      ],
+      "format": {
+        "duration": "36.000000"
+      }
+    },
+    "fullDecodeArgv": [
+      "ffmpeg.exe",
+      "-v",
+      "error",
+      "-i",
+      "dynamic-showcase.mp4",
+      "-f",
+      "null",
+      "-"
+    ],
+    "fullDecodeExitCode": 0,
+    "fullDecodeStderr": "",
+    "posterArgv": [
+      "ffmpeg.exe",
+      "-v",
+      "error",
+      "-n",
+      "-i",
+      "dynamic-showcase.mp4",
+      "-vf",
+      "select=eq(n\\,105)",
+      "-frames:v",
+      "1",
+      "-fps_mode",
+      "vfr",
+      "dynamic-poster.png"
+    ],
+    "posterOutputIndex": 105,
+    "ffmpegVersion": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "pillowVersion": "13.0.0",
+    "font": "installed Arial TTF; font not redistributed",
+    "fontSha256": "c9b76220a5be42ead4733611e417cd65c5fd8aeaa33eb56576ac378a37d130a1"
+  },
+  "files": [
+    {
+      "path": "media/dynamic-showcase.mp4",
+      "bytes": 6197561,
+      "sha256": "22fb217eafaea096887206a52b80c7008a8e342e3753d9fc1590821e531f1a36"
+    },
+    {
+      "path": "media/dynamic-poster.png",
+      "bytes": 488811,
+      "sha256": "ff05e8dfff0207dd82955bff33558d3f8bf5d75f9935c606122b0a6a3ac5664b"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 3084348,
+      "sha256": "4c2f118623037a3b0156685d4fac8ebeda85fef6c23c27459cefd3e21c7aa8b3"
+    }
+  ],
+  "packaging": "Final 4dcf1c8 continuous captures re-encoded and fully decoded; MP4/poster identical to prior author media. Prior raw runs/media remain archived.",
+  "finalRuntimeRevision": "4dcf1c8b425e508bfc1c49894cf46c95a999ee3b",
+  "authorValidation": {
+    "formalRuns": 15,
+    "actualSourceFrames": 3240,
+    "sourceFilesVerifiedAgainstGit": 110,
+    "legacyArraysByteIdentical": 8,
+    "priorSourceFrameComparison": {
+      "checked": 3240,
+      "byteIdentical": 3240,
+      "different": 0,
+      "firstDifferences": []
+    },
+    "stateTransport": "GT owns actor JSON string; immutable value bound to actual scene frame; RT decodes its own JSON"
+  }
+}

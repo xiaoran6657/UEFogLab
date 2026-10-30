@@ -8,6 +8,7 @@ class FUEFogViewExtension final : public FSceneViewExtensionBase
 public:
     explicit FUEFogViewExtension(const FAutoRegister& AutoRegister);
     virtual void SetupViewFamily(FSceneViewFamily& InViewFamily) override;
+    virtual void BeginRenderViewFamily(FSceneViewFamily& InViewFamily) override;
     virtual void SubscribeToPostProcessingPass(EPostProcessingPass Pass, const FSceneView& View,
         FPostProcessingPassDelegateArray& Callbacks, bool bIsPassEnabled) override;
 private:

@@ -37,6 +37,8 @@ TSharedPtr<FJsonObject> Component(const USceneComponent* C)
     J->SetBoolField(TEXT("visible"), C->IsVisible());
     J->SetArrayField(TEXT("positionCm"), V(C->GetComponentLocation()));
     J->SetArrayField(TEXT("scale"), V(C->GetComponentScale()));
+    const auto R = C->GetComponentRotation();
+    J->SetArrayField(TEXT("rotationDegrees"), V(FVector(R.Pitch, R.Yaw, R.Roll)));
     return J;
 }
 TSharedPtr<FJsonObject> Light(const ULightComponent* C)
@@ -126,12 +128,14 @@ void FFogLabComparison::Start(UWorld* World)
     Camera->GetCameraComponent()->SetFieldOfView(60);
     Camera->GetCameraComponent()->bConstrainAspectRatio = false;
     World->GetFirstPlayerController()->SetViewTarget(Camera.Get());
+    if (R->HasField(TEXT("dynamicShot"))) InitializeDynamic();
     Handle = UGameViewportClient::OnScreenshotCaptured().AddSP(AsShared(), &FFogLabComparison::Capture);
 }
 
 void FFogLabComparison::Tick()
 {
     auto R = GetUEFogCompareRequest();
+    if (R->HasField(TEXT("dynamicShot"))) { TickDynamic(); return; }
     auto Vw = GetUEFogCompareView();
     // RHI end-frame and game-view counters can be offset. Cover the capture
     // boundary, then select the sole GPU profile containing ScreenshotWitness.
@@ -204,6 +208,7 @@ TSharedPtr<FJsonObject> FFogLabComparison::ActorSnapshot() const
 
 void FFogLabComparison::Capture(int32 Width, int32 Height, const TArray<FColor>& Pixels)
 {
+    if (GetUEFogCompareRequest()->HasField(TEXT("dynamicShot"))) { CaptureDynamic(Width, Height, Pixels); return; }
     UGameViewportClient::OnScreenshotCaptured().Remove(Handle);
     auto R = GetUEFogCompareRequest(); auto J = MakeShared<FJsonObject>();
     J->SetStringField(TEXT("kind"), TEXT("UEFogLabComparisonSnapshot")); J->SetNumberField(TEXT("schemaVersion"), 1);

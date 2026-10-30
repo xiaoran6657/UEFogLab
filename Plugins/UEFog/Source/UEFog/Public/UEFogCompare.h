@@ -16,3 +16,5 @@ UEFOG_API void CountUEFogComparePass(uint32 Frame, bool bComposite);
 UEFOG_API TSharedPtr<FJsonObject> GetUEFogCompareView();
 UEFOG_API void ArmUEFogCompareScreenshot();
 UEFOG_API TSharedPtr<FJsonObject> GetUEFogCompareScreenshotView();
+UEFOG_API void ObserveUEFogDynamicShaderInputs(uint32 Frame, const FVector& SphereTranslated,
+    const FVector& PreViewTranslation, const FVector& Photon, FIntPoint FogSize, uint32 Steps);

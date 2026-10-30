@@ -1,4 +1,9 @@
 #include "UEFogCompare.h"
+#include "UEFogDynamic.h"
+#include "ScenePrivate.h"
+#include "LocalFogVolumeSceneProxy.h"
+#include "LightSceneInfo.h"
+#include "LightSceneProxy.h"
 #include "HAL/IConsoleManager.h"
 #include "Misc/CommandLine.h"
 #include "Misc/FileHelper.h"
@@ -109,6 +114,16 @@ bool ApplyUEFogCompareLaunch(FString& Error)
     FParse::Value(FCommandLine::Get(), TEXT("ResX="), ResX);
     FParse::Value(FCommandLine::Get(), TEXT("ResY="), ResY);
     if (ResX != Width || ResY != Height) { Error = TEXT("Comparison viewport arguments do not match request"); return false; }
+    if (R->HasField(TEXT("dynamicShot")))
+    {
+        FString Shot; double Count = 0, FPS = 0;
+        const TSet<FString> Shots = {TEXT("Camera"), TEXT("Object"), TEXT("Fog"), TEXT("Light"), TEXT("Reconstruction")};
+        if (!R->TryGetStringField(TEXT("dynamicShot"), Shot) || !Shots.Contains(Shot) ||
+            !R->TryGetNumberField(TEXT("dynamicFrames"), Count) || Count < 3 || Count > 900 || Count != FMath::FloorToDouble(Count) ||
+            !R->TryGetNumberField(TEXT("dynamicFps"), FPS) || FPS != 30 || Zero ||
+            (Shot == TEXT("Reconstruction") && Mode != TEXT("Ours")))
+        { Error = TEXT("Illegal dynamic shot, frame count, fps, mode or zero control"); return false; }
+    }
     Request = R;
     return ApplyUEFogCompareCVars(Error);
 }
@@ -181,17 +196,83 @@ void ObserveUEFogCompareView(FRDGBuilder& GraphBuilder, const FSceneView& View, 
     for (const TCHAR* Name : ObservedCVars)
         if (auto* V = IConsoleManager::Get().FindConsoleVariable(Name)) C->SetNumberField(Name, V->GetFloat());
     J->SetObjectField(TEXT("cvars"), C);
+    FUEFogDynamicState Motion;
+    const bool bDynamic = IsUEFogDynamicActive();
+    if (bDynamic)
+    {
+        if (!GetUEFogDynamicState(Frame, Motion))
+        {
+            UE_LOG(LogTemp, Error, TEXT("Dynamic observation has no matching view snapshot"));
+            FPlatformMisc::RequestExitWithStatus(false, 5);
+            return;
+        }
+        auto D = MakeShared<FJsonObject>();
+        D->SetNumberField(TEXT("outputIndex"), Motion.OutputIndex);
+        D->SetNumberField(TEXT("timeSeconds"), Motion.TimeSeconds);
+        D->SetNumberField(TEXT("phase"), Motion.Phase);
+        D->SetNumberField(TEXT("gameFrame"), Motion.GameFrame);
+        D->SetArrayField(TEXT("sphereWorldCm"), N({Motion.SphereWorldCm.X, Motion.SphereWorldCm.Y, Motion.SphereWorldCm.Z}));
+        D->SetArrayField(TEXT("photonDirection"), N({Motion.PhotonDirection.X, Motion.PhotonDirection.Y, Motion.PhotonDirection.Z}));
+        TSharedPtr<FJsonObject> Actors;
+        if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Motion.ActorJson), Actors))
+        {
+            UE_LOG(LogTemp, Error, TEXT("Dynamic actor value snapshot could not be decoded"));
+            FPlatformMisc::RequestExitWithStatus(false, 5);
+            return;
+        }
+        D->SetObjectField(TEXT("actors"), Actors);
+        TArray<TSharedPtr<FJsonValue>> FogProxies, SunProxies;
+        if (const FScene* Scene = View.Family->Scene->GetRenderScene())
+        {
+            for (const auto* P : Scene->LocalFogVolumes)
+            {
+                auto X = MakeShared<FJsonObject>(); const FVector Pos = P->FogTransform.GetLocation();
+                X->SetArrayField(TEXT("positionCm"), N({Pos.X, Pos.Y, Pos.Z}));
+                X->SetNumberField(TEXT("radiusCm"), P->FogUniformScale);
+                X->SetNumberField(TEXT("radialExtinction"), P->RadialFogExtinction);
+                X->SetNumberField(TEXT("heightExtinction"), P->HeightFogExtinction);
+                FogProxies.Add(MakeShared<FJsonValueObject>(X));
+            }
+            for (const auto* L : Scene->DirectionalLights)
+            {
+                const FVector SunDirection = L->Proxy->GetDirection();
+                auto X = MakeShared<FJsonObject>(); X->SetArrayField(TEXT("photonDirection"), N({SunDirection.X, SunDirection.Y, SunDirection.Z}));
+                SunProxies.Add(MakeShared<FJsonValueObject>(X));
+            }
+        }
+        D->SetArrayField(TEXT("lfvRenderProxies"), FogProxies);
+        D->SetArrayField(TEXT("sunRenderProxies"), SunProxies);
+        J->SetObjectField(TEXT("dynamic"), D);
+    }
     LastView = J;
     const bool bScreenshot = ScreenshotArmed.Exchange(false);
     if (bScreenshot) ScreenshotView = J;
     // This empty GPU marker binds the screenshot view to independent native GPU events.
     // It is not evidence that a native or custom fog dispatch ran.
     GraphBuilder.AddPass(RDG_EVENT_NAME("UEFogCompare Witness View=%llu EngineFrame=%u", ViewCount, Frame),
-        ERDGPassFlags::NeverCull, [bScreenshot](FRHICommandListImmediate& RHICmdList)
+        ERDGPassFlags::NeverCull, [bScreenshot, bDynamic, Output = Motion.OutputIndex,
+            Count = bDynamic ? Request->GetIntegerField(TEXT("dynamicFrames")) : 0](FRHICommandListImmediate& RHICmdList)
         {
-            if (bScreenshot) { SCOPED_DRAW_EVENT(RHICmdList, UEFogCompareScreenshotWitness); }
+            if (bDynamic && Output == 0) { SCOPED_DRAW_EVENT(RHICmdList, UEFogDynamicFirst); }
+            else if (bDynamic && Output == Count / 2) { SCOPED_DRAW_EVENT(RHICmdList, UEFogDynamicMiddle); }
+            else if (bDynamic && Output == Count - 1) { SCOPED_DRAW_EVENT(RHICmdList, UEFogDynamicLast); }
+            else if (bDynamic && Output >= 0) { SCOPED_DRAW_EVENT(RHICmdList, UEFogDynamicFrame); }
+            else if (bScreenshot) { SCOPED_DRAW_EVENT(RHICmdList, UEFogCompareScreenshotWitness); }
             else { SCOPED_DRAW_EVENT(RHICmdList, UEFogCompareWitness); }
         });
+}
+
+void ObserveUEFogDynamicShaderInputs(uint32 Frame, const FVector& SphereTranslated,
+    const FVector& PreViewTranslation, const FVector& Photon, FIntPoint FogSize, uint32 Steps)
+{
+    FScopeLock Lock(&ViewLock);
+    if (!LastView || LastView->GetNumberField(TEXT("engineFrame")) != Frame) return;
+    auto D = LastView->GetObjectField(TEXT("dynamic"));
+    D->SetArrayField(TEXT("shaderSphereTranslatedCm"), N({SphereTranslated.X, SphereTranslated.Y, SphereTranslated.Z}));
+    D->SetArrayField(TEXT("preViewTranslationCm"), N({PreViewTranslation.X, PreViewTranslation.Y, PreViewTranslation.Z}));
+    D->SetArrayField(TEXT("shaderPhotonDirection"), N({Photon.X, Photon.Y, Photon.Z}));
+    D->SetArrayField(TEXT("shaderFogSize"), N({double(FogSize.X), double(FogSize.Y)}));
+    D->SetNumberField(TEXT("shaderSteps"), Steps);
 }
 
 void CountUEFogComparePass(uint32 Frame, bool bComposite)

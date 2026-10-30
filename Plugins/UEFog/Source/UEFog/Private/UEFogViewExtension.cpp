@@ -1,6 +1,7 @@
 #include "UEFogViewExtension.h"
 #include "UEFogLighting.h"
 #include "UEFogCompare.h"
+#include "UEFogDynamic.h"
 #include "GlobalShader.h"
 #include "HAL/IConsoleManager.h"
 #include "PostProcess/PostProcessMaterialInputs.h"
@@ -12,6 +13,7 @@
 #include "Misc/CommandLine.h"
 #include "Misc/Parse.h"
 #include "DynamicRHI.h"
+#include "ProfilingDebugging/RealtimeGPUProfiler.h"
 
 static TArray<TSharedPtr<FJsonValue>> Numbers(std::initializer_list<double> Values)
 {
@@ -147,6 +149,11 @@ void FUEFogViewExtension::SubscribeToPostProcessingPass(EPostProcessingPass Pass
     }
 }
 
+void FUEFogViewExtension::BeginRenderViewFamily(FSceneViewFamily& Family)
+{
+    BindUEFogDynamicView(Family);
+}
+
 FScreenPassTexture FUEFogViewExtension::RenderFog(FRDGBuilder& GraphBuilder, const FSceneView& View,
     const FPostProcessMaterialInputs& Inputs)
 {
@@ -168,6 +175,15 @@ FScreenPassTexture FUEFogViewExtension::RenderFog(FRDGBuilder& GraphBuilder, con
         FPlatformMisc::RequestExitWithStatus(false, 2);
         return Inputs.ReturnUntouchedSceneColorForPostProcessing(GraphBuilder);
     }
+    FUEFogDynamicState Motion;
+    const bool bMotion = IsUEFogDynamicActive();
+    if (bMotion && !GetUEFogDynamicState(View.Family->FrameNumber, Motion))
+    {
+        UE_LOG(LogTemp, Error, TEXT("Dynamic shader input has no matching view snapshot"));
+        FPlatformMisc::RequestExitWithStatus(false, 5);
+        return Inputs.ReturnUntouchedSceneColorForPostProcessing(GraphBuilder);
+    }
+    if (bMotion) Lighting.PhotonDirection = FVector3f(Motion.PhotonDirection);
     const FScreenPassTexture SceneColor = FScreenPassTexture::CopyFromSlice(GraphBuilder, Inputs.GetInput(EPostProcessMaterialInput::SceneColor));
     const FRDGTextureRef Depth = Inputs.SceneTextures.SceneTextures->GetParameters()->SceneDepthTexture;
     if (!SceneColor.IsValid() || !Depth)
@@ -197,7 +213,8 @@ FScreenPassTexture FUEFogViewExtension::RenderFog(FRDGBuilder& GraphBuilder, con
     Integrate->CameraTranslated = Camera;
     float OriginOffset = 0;
     FParse::Value(FCommandLine::Get(), TEXT("FogLabOriginOffset="), OriginOffset);
-    Integrate->SphereTranslated = FVector3f(FVector(300 + OriginOffset, 0, 180) + Translation);
+    const FVector SphereWorld = bMotion ? Motion.SphereWorldCm : FVector(300 + OriginOffset, 0, 180);
+    Integrate->SphereTranslated = FVector3f(SphereWorld + Translation);
     Integrate->SphereRadiusCm = 360.0f;
     Integrate->ExtinctionPerMetre = FMath::Max(0.0f, CVarFogExtinction.GetValueOnRenderThread());
     Integrate->EarlyOutThreshold = FMath::Clamp(CVarFogEarlyOut.GetValueOnRenderThread(), 0.0f, 0.99f);
@@ -207,6 +224,9 @@ FScreenPassTexture FUEFogViewExtension::RenderFog(FRDGBuilder& GraphBuilder, con
     Integrate->HGg = Lighting.G;
     Integrate->IncidentWeightRGB = Lighting.IncidentWeight;
     Integrate->PhotonDirectionWorld = Lighting.PhotonDirection;
+    if (bMotion)
+        ObserveUEFogDynamicShaderInputs(View.Family->FrameNumber, FVector(Integrate->SphereTranslated),
+            Translation, FVector(Integrate->PhotonDirectionWorld), FogSize, Integrate->StepCount);
     Integrate->SceneDepthTexture = DepthSRV;
     Integrate->OutFog = GraphBuilder.CreateUAV(Fog);
     Integrate->OutRayDepth = GraphBuilder.CreateUAV(RayDepth);
@@ -216,9 +236,10 @@ FScreenPassTexture FUEFogViewExtension::RenderFog(FRDGBuilder& GraphBuilder, con
     if (IsUEFogCompareActive())
     {
         ClearUnusedGraphResources(IntegrateShader, Integrate);
-        GraphBuilder.AddPass(RDG_EVENT_NAME("UEFog Integrate %dx%d Steps=%u", FogSize.X, FogSize.Y, Integrate->StepCount), Integrate, ERDGPassFlags::Compute,
-            [IntegrateShader, Integrate, FogSize, Frame = View.Family->FrameNumber](FRHIComputeCommandList& RHICmdList)
+        GraphBuilder.AddPass(bMotion ? RDG_EVENT_NAME("UEFogDynamicIntegrate") : RDG_EVENT_NAME("UEFog Integrate %dx%d Steps=%u", FogSize.X, FogSize.Y, Integrate->StepCount), Integrate, ERDGPassFlags::Compute,
+            [IntegrateShader, Integrate, FogSize, bMotion, Frame = View.Family->FrameNumber](FRHIComputeCommandList& RHICmdList)
             {
+                SCOPED_CONDITIONAL_DRAW_EVENT(RHICmdList, UEFogDynamicIntegrateExecution, bMotion);
                 FComputeShaderUtils::Dispatch(RHICmdList, IntegrateShader, *Integrate, FComputeShaderUtils::GetGroupCount(FogSize, FIntPoint(8,8)));
                 CountUEFogComparePass(Frame, false);
             });
@@ -330,10 +351,11 @@ FScreenPassTexture FUEFogViewExtension::RenderFog(FRDGBuilder& GraphBuilder, con
         TShaderMapRef<FScreenPassVS> VS(GetGlobalShaderMap(View.GetFeatureLevel()));
         const FScreenPassPipelineState Pipeline(VS, CompositeShader, TStaticBlendState<>::GetRHI(), TStaticDepthStencilState<false, CF_Always>::GetRHI());
         ClearUnusedGraphResources(CompositeShader, Composite);
-        AddDrawScreenPass(GraphBuilder, RDG_EVENT_NAME("UEFog ReconstructAndComposite"), View,
+        AddDrawScreenPass(GraphBuilder, bMotion ? RDG_EVENT_NAME("UEFogDynamicComposite") : RDG_EVENT_NAME("UEFog ReconstructAndComposite"), View,
             FScreenPassTextureViewport(Output), FScreenPassTextureViewport(SceneColor), Pipeline, Composite,
-            [CompositeShader, Composite, Frame = View.Family->FrameNumber](FRHICommandList& RHICmdList)
+            [CompositeShader, Composite, bMotion, Frame = View.Family->FrameNumber](FRHICommandList& RHICmdList)
             {
+                SCOPED_CONDITIONAL_DRAW_EVENT(RHICmdList, UEFogDynamicCompositeBind, bMotion);
                 SetShaderParameters(RHICmdList, CompositeShader, CompositeShader.GetPixelShader(), *Composite);
                 CountUEFogComparePass(Frame, true);
             });
