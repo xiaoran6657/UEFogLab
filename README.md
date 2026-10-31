@@ -2,7 +2,7 @@
 
 UE5.8 / C++ / HLSL local fog integration and depth-guided scattering/transmittance reconstruction. Original contributions use [MIT](LICENSE), Copyright (c)2026 xiaoran6657; [UE and third-party rights](NOTICE.md) remain reserved.
 
-The new [36-second dynamic comparison](docs/showcase/releases/m6-dynamic-20261031/media/dynamic-showcase.mp4) uses real engine frames: camera orbit, moving opaque geometry, rigid local fog translation, rotating sun and Full64/HalfB64/HalfG64 edges. [Reproduce the controlled shots](docs/DYNAMIC-SHOWCASE.md), read the [capture protocol](docs/design/M6-DYNAMIC-CAPTURE.md), or inspect the [media/frame provenance](docs/showcase/releases/m6-dynamic-20261031/README.md). 30fps is offline simulation/playback time, not measured rendering FPS. This increment is a local author candidate pending independent review and publication.
+The new [36-second dynamic comparison](docs/showcase/releases/m6-dynamic-20261031/media/dynamic-showcase.mp4) uses real engine frames: camera orbit, moving opaque geometry, rigid local fog translation, rotating sun and Full64/HalfB64/HalfG64 edges. [Reproduce the controlled shots](docs/DYNAMIC-SHOWCASE.md), read the [capture protocol](docs/design/M6-DYNAMIC-CAPTURE.md), or inspect the [media/frame provenance](docs/showcase/releases/m6-dynamic-20261031/README.md). 30fps is offline simulation/playback time, not measured rendering FPS. [Independent review](docs/DYNAMIC-REVIEW.md) accepts this controlled display and its stated limits; the initial author candidate remains identifiable in Git history.
 
 ![Actual decoded dynamic comparison frame](docs/showcase/releases/m6-dynamic-20261031/media/dynamic-poster.png)
 

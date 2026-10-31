@@ -1,7 +1,7 @@
 {
   "kind": "UEFogLab.M6ExplicitPublicIncrement",
   "schemaVersion": 1,
-  "status": "author_candidate_pending_review_and_publication",
+  "status": "independently_reviewed_controlled_display",
   "basePublicCommit": "e805a290fa8bc2ed94c64d85bfa02db31e256abc",
   "privateInputRevision": "cd95e94f958e6aebcba6b39dd2038f0e47ca18c5",
   "testedRendererRevision": "4dcf1c8b425e508bfc1c49894cf46c95a999ee3b",
@@ -388,5 +388,25 @@
   ],
   "historicalPreservation": "old tag and all old media/data/provenance bytes retained",
   "rights": "MIT original contributions; UE and third-party rights retained",
-  "omitted": "raw captures/logs, management, learning records, private history, engine/assets/tools/SDKs/fonts"
+  "omitted": "raw captures/logs, management, learning records, private history, engine/assets/tools/SDKs/fonts",
+  "changesFrozenAtRevision": "f1b0a55d68dcdc4e55fcdf14a6126af86f3c4bbb",
+  "review": {
+    "date": "2026-10-31",
+    "decision": "approved_for_normal_publication_with_documented_scope",
+    "document": "docs/DYNAMIC-REVIEW.md",
+    "coordinatorEvidenceRevision": "4725bfa7760a03fbc20ce2d4db9870b58429a31b",
+    "runtimeAndMediaChangedByReview": false
+  },
+  "publicationDocumentation": [
+    {
+      "path": "README.md",
+      "bytes": 3522,
+      "sha256": "8f0c2d89a694bd860482d6443352860f6314b4c7abaaa5fafd406f36988032a0"
+    },
+    {
+      "path": "docs/DYNAMIC-REVIEW.md",
+      "bytes": 2507,
+      "sha256": "2c43f099ea4f8b964186bd48d3bf54596833de141d0541c91e3ba77b76c7598b"
+    }
+  ]
 }
