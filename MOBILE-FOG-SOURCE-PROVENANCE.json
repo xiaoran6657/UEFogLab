@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "publicParent": "9cffcfaab575903e5e472d29de3b260b8508d284",
+  "measuredNativeRevision": "1b9d88d26dd082dec2d11381d12fd7a29ca7d61a",
+  "measuredApkSha256": "1f6f26a4715c3af78c0b9661fd98245f00d37f1a269c33e3d71fac67a1f524ae",
+  "runtimeTreeFileCount": 53,
+  "runtimeEquivalence": "All Config, Plugins, Source and UEFogLab.uproject files match the accepted measured native revision at Git blob byte level.",
+  "changedRuntime": {
+    "Plugins/UEFog/Shaders/Private/UEFogMobileLoad.usf": {
+      "bytes": 3512,
+      "sha256": "82ae8f8641571a20cdd3c4377f759f03cef474b65319ae0c831b14fab74e6203"
+    },
+    "Plugins/UEFog/Shaders/Private/UEFogMobileOptimization.usf": {
+      "bytes": 4951,
+      "sha256": "e6421c339fa4b184ace2661fa008536589f4c18a7424ad7b16c35af900377b3a"
+    },
+    "Plugins/UEFog/Shaders/Private/UEFogMobileRepair.usf": {
+      "bytes": 4502,
+      "sha256": "9ed1a714c34e8f3a6408108760a6817a83fe7966e309bfd6c0b5a98fc2f930d7"
+    },
+    "Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp": {
+      "bytes": 26659,
+      "sha256": "293790b7e724bd070bf606371f2575f2a5c540c54405a71129193335330477eb"
+    },
+    "Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp": {
+      "bytes": 53631,
+      "sha256": "674e386b59d831328f5f1d490b2b0f92bd1bd1b7f863b0e666a20e50cb3c14ca"
+    },
+    "Source/FogLabDemo/FogLabMobileReconstructionFixture.cpp": {
+      "bytes": 4939,
+      "sha256": "2a2667a57a85f730b13edcd22a460297257dc18e4ff1d1f784a395e775aa8eb5"
+    }
+  },
+  "publishedFiles": [
+    {
+      "path": "README.md",
+      "bytes": 4669,
+      "sha256": "f24d55b9252aa0ef0263f24c88cd9c051da3beb6c4808381a0a35126f8799d36"
+    },
+    {
+      "path": "docs/QUICKSTART.md",
+      "bytes": 6698,
+      "sha256": "e3f00e26f76e5bfd362ed82a06e8a089b0d43b937a67b9a754df46188922db97"
+    },
+    {
+      "path": "docs/mobile-fog/CASE.en.md",
+      "bytes": 4616,
+      "sha256": "31864cbaa823f947cc4ab1c17e801e7b3dc8ee3d3e61e3f41a312709601f13b9"
+    },
+    {
+      "path": "docs/mobile-fog/CASE.zh.md",
+      "bytes": 4139,
+      "sha256": "75446fe3aba1b0d7649fa71c0e3741c82177cc5480af4b84a708b4f4da7ba0c7"
+    },
+    {
+      "path": "docs/mobile-fog/media/repair-cost-quality.png",
+      "bytes": 174196,
+      "sha256": "aa9bc4d45b11e56fdcd6a685f844673e1d9e06e7aee4d7e35ba6daf827c47ea1"
+    },
+    {
+      "path": "docs/mobile-fog/media/thinstripe-gpu-crop.png",
+      "bytes": 76314,
+      "sha256": "7f5091212e92f17cdc90baf183cef82d724241430d16f011907a357506edafeb"
+    },
+    {
+      "path": "docs/mobile-fog/README.md",
+      "bytes": 5951,
+      "sha256": "983f01aaf8fa8ee095b01b398926ddd83fdc19405fd1e94f649187eb42de41cd"
+    },
+    {
+      "path": "docs/mobile-fog/results.json",
+      "bytes": 4086,
+      "sha256": "890592f4e3fe2bef0cb6c2c317287e71737844da6fdfc19bcdf50607bea9ff1f"
+    }
+  ],
+  "figures": {
+    "diagnosticCrop": "Derived from four matched actual GPU diagnostic buffers; observed canonical depth coordinates; same 11×12 crop and fixed [0,1] T scale.",
+    "costQuality": "Independently reviewed 02R formal trial p50s and separately collected same-APK quality; unmodified curated chart."
+  },
+  "excludes": [
+    "Private Git history and task records",
+    "Original GPU payloads and timing logs",
+    "APK, UE binaries/assets, SDKs and fonts",
+    "Historical device acquisition and orchestration"
+  ],
+  "license": "MIT for owner-authorizable project originals; Unreal Engine and third-party rights retained (NOTICE.md).",
+  "contributors": "Coding agents assisted implementation, experiments and independent review."
+}

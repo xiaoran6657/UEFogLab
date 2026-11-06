@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "experiment": "M8-REPAIR-02R",
+  "device": "MEIZU21",
+  "gpu": "Adreno 750",
+  "engine": "5.8.4",
+  "renderer": "Vulkan ES3_1 Mobile Forward HDR",
+  "build": "Development",
+  "fixture": "ThinStripe",
+  "density": "SmoothNoise",
+  "opticalSource": "Prescribed",
+  "scene": [
+    1552,
+    720
+  ],
+  "halfFogGrid": [
+    776,
+    360
+  ],
+  "steps": 64,
+  "preExposure": 1,
+  "extinctionPerMetre": 0.35,
+  "measuredNativeRevision": "1b9d88d26dd082dec2d11381d12fd7a29ca7d61a",
+  "measuredApkSha256": "1f6f26a4715c3af78c0b9661fd98245f00d37f1a269c33e3d71fac67a1f524ae",
+  "measuredApkBytes": 158203643,
+  "quality": {
+    "reference": "Full1024",
+    "convergenceSteps": [
+      256,
+      512,
+      1024
+    ],
+    "thinHitTMAELimit": 0.05,
+    "wholeImageOriginalHalfTMAE": 0.000103948315667396,
+    "fullDepthHits": 120,
+    "halfDepthHits": 0,
+    "repairPixels": 120,
+    "repairDensityIterations": 7680,
+    "repairCoveragePercent": 0.010738831615120275,
+    "allRepairBudgetsPassed": true,
+    "originalHalfThinBudgetPassed": false,
+    "cropXYXY": [
+      995,
+      354,
+      1006,
+      366
+    ],
+    "transmittanceDisplayRange": [
+      0.0,
+      1.0
+    ]
+  },
+  "timing": {
+    "scope": "FogTotal",
+    "markerIndices": [
+      1,
+      4
+    ],
+    "stage": "VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT",
+    "timestampValidBits": 48,
+    "timestampPeriodNs": 52.08333206176758,
+    "diagnosticsEnabled": false,
+    "authorBlocks": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "authorTrials": 16,
+    "authorFrames": 7457,
+    "independentTrials": 4,
+    "independentFrames": 1925,
+    "formalIntegerTicks": 56292,
+    "repairOverFull": 0.41464735555349247,
+    "repairReductionPercent": 58.53526444465076,
+    "authorPairedRepairMinusFullMs": [
+      -1.9758853684272768,
+      -1.9584374521865844,
+      -1.954270785621643,
+      -1.9748437017860412
+    ],
+    "authorPairedRepairMinusHalfMs": [
+      0.05302083203887942,
+      0.07057291494369511,
+      0.06057291518783581,
+      0.034843749149322534
+    ],
+    "pairedMedianVsFullMs": -1.966640576986313,
+    "pairedMedianVsHalfMs": 0.05679687361335761,
+    "freshRepairMinusFullMs": -1.9682812019462583
+  },
+  "profiles": {
+    "Off": {
+      "authorP50Ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "authorMedianMs": 0.0,
+      "independentP50Ms": 0.0,
+      "thinHitTMAE": null
+    },
+    "FullN": {
+      "authorP50Ms": [
+        3.36765616778183,
+        3.3677603344459532,
+        3.3538540847854614,
+        3.364218667865753
+      ],
+      "authorMedianMs": 3.3659374178237913,
+      "independentP50Ms": 3.3576040846939086,
+      "thinHitTMAE": 1.6276041666666666e-05
+    },
+    "FusedHalfGN": {
+      "authorP50Ms": [
+        1.3387499673156738,
+        1.3387499673156738,
+        1.3390103839759826,
+        1.3545312169303894
+      ],
+      "authorMedianMs": 1.3388801756458282,
+      "independentP50Ms": 1.3601301751270294,
+      "thinHitTMAE": 0.3912109375
+    },
+    "FusedHalfRepairN": {
+      "authorP50Ms": [
+        1.3917707993545532,
+        1.4093228822593689,
+        1.3995832991638184,
+        1.389374966079712
+      ],
+      "authorMedianMs": 1.395677049259186,
+      "independentP50Ms": 1.3893228827476503,
+      "thinHitTMAE": 1.6276041666666666e-05
+    }
+  },
+  "figures": {
+    "diagnosticCrop": {
+      "path": "docs/mobile-fog/media/thinstripe-gpu-crop.png",
+      "bytes": 76314,
+      "sha256": "7f5091212e92f17cdc90baf183cef82d724241430d16f011907a357506edafeb",
+      "width": 1800,
+      "height": 790
+    },
+    "costQuality": {
+      "path": "docs/mobile-fog/media/repair-cost-quality.png",
+      "bytes": 174196,
+      "sha256": "aa9bc4d45b11e56fdcd6a685f844673e1d9e06e7aee4d7e35ba6daf827c47ea1",
+      "width": 2449,
+      "height": 899
+    }
+  },
+  "limits": [
+    "One device, one static scene and one fog timestamp span",
+    "All 60 battery boundary observations were status 5",
+    "No whole-frame time, FPS, energy, wider device support or general repair-coverage claim",
+    "Full/High stays the default"
+  ]
+}

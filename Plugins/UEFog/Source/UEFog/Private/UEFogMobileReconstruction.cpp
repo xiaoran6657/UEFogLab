@@ -117,12 +117,132 @@ public:
     END_SHADER_PARAMETER_STRUCT()
     static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
 };
+class FLoadIntegrateCS final : public FGlobalShader
+{
+public:
+    DECLARE_GLOBAL_SHADER(FLoadIntegrateCS); SHADER_USE_PARAMETER_STRUCT(FLoadIntegrateCS,FGlobalShader);
+    BEGIN_SHADER_PARAMETER_STRUCT(FParameters,)
+        RECON_PARAMETERS
+        SHADER_PARAMETER(uint32, ReconLoadSteps)
+        SHADER_PARAMETER(uint32, ReconLoadDensity)
+        SHADER_PARAMETER_RDG_TEXTURE_UAV(RWTexture2D<float4>,ReconLowOutput)
+        SHADER_PARAMETER_RDG_TEXTURE_UAV(RWTexture2D<float>,ReconGuideOutput)
+        SHADER_PARAMETER_RDG_BUFFER_UAV(RWStructuredBuffer<int2>,ReconAuxOutput)
+    END_SHADER_PARAMETER_STRUCT()
+    static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
+};
+class FLoadDenseObserveCS final : public FGlobalShader
+{
+public:
+    DECLARE_GLOBAL_SHADER(FLoadDenseObserveCS); SHADER_USE_PARAMETER_STRUCT(FLoadDenseObserveCS,FGlobalShader);
+    BEGIN_SHADER_PARAMETER_STRUCT(FParameters,)
+        RECON_PARAMETERS
+        SHADER_PARAMETER(uint32, ReconLoadSteps)
+        SHADER_PARAMETER(uint32, ReconLoadDensity)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconProbeInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconLowInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconGuideInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconOptAuxInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconCin)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconConsumed)
+        SHADER_PARAMETER_RDG_BUFFER_SRV(StructuredBuffer<int2>,ReconAuxInput)
+        SHADER_PARAMETER_RDG_BUFFER_UAV(RWStructuredBuffer<float4>,ReconSamples)
+    END_SHADER_PARAMETER_STRUCT()
+    static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
+};
+IMPLEMENT_GLOBAL_SHADER(FLoadIntegrateCS,"/Plugin/UEFog/Private/UEFogMobileLoad.usf","IntegrateLoadCS",SF_Compute);
+IMPLEMENT_GLOBAL_SHADER(FLoadDenseObserveCS,"/Plugin/UEFog/Private/UEFogMobileLoad.usf","ObserveLoadDenseCS",SF_Compute);
+
+class FOptAnalyticCS final : public FGlobalShader
+{
+public:
+    DECLARE_GLOBAL_SHADER(FOptAnalyticCS); SHADER_USE_PARAMETER_STRUCT(FOptAnalyticCS,FGlobalShader);
+    using FParameters=FReconIntegrateCS::FParameters;
+    static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
+};
+class FOptFusedPS final : public FGlobalShader
+{
+public:
+    DECLARE_GLOBAL_SHADER(FOptFusedPS); SHADER_USE_PARAMETER_STRUCT(FOptFusedPS,FGlobalShader);
+    class FDiagnostic : SHADER_PERMUTATION_BOOL("OPT_DIAGNOSTIC");
+    using FPermutationDomain=TShaderPermutationDomain<FDiagnostic>;
+    BEGIN_SHADER_PARAMETER_STRUCT(FParameters,)
+        RECON_PARAMETERS
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconLowInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconGuideInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconCin)
+        RENDER_TARGET_BINDING_SLOTS()
+    END_SHADER_PARAMETER_STRUCT()
+    static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
+};
+class FOptDenseObserveCS final : public FGlobalShader
+{
+public:
+    DECLARE_GLOBAL_SHADER(FOptDenseObserveCS); SHADER_USE_PARAMETER_STRUCT(FOptDenseObserveCS,FGlobalShader);
+    BEGIN_SHADER_PARAMETER_STRUCT(FParameters,)
+        RECON_PARAMETERS
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconProbeInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconLowInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconGuideInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconOptAuxInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconCin)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconConsumed)
+        SHADER_PARAMETER_RDG_BUFFER_SRV(StructuredBuffer<int2>,ReconAuxInput)
+        SHADER_PARAMETER_RDG_BUFFER_UAV(RWStructuredBuffer<float4>,ReconSamples)
+    END_SHADER_PARAMETER_STRUCT()
+    static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
+};
 IMPLEMENT_GLOBAL_SHADER(FReconKnownWriteCS,"/Plugin/UEFog/Private/UEFogMobileReconstruction.usf","WriteKnownGuideCS",SF_Compute);
 IMPLEMENT_GLOBAL_SHADER(FReconKnownObserveCS,"/Plugin/UEFog/Private/UEFogMobileReconstruction.usf","ObserveKnownGuideCS",SF_Compute);
 IMPLEMENT_GLOBAL_SHADER(FReconIntegrateCS,"/Plugin/UEFog/Private/UEFogMobileReconstruction.usf","IntegrateReconCS",SF_Compute);
 IMPLEMENT_GLOBAL_SHADER(FReconReconstructCS,"/Plugin/UEFog/Private/UEFogMobileReconstruction.usf","ReconstructSTCS",SF_Compute);
 IMPLEMENT_GLOBAL_SHADER(FReconCompositePS,"/Plugin/UEFog/Private/UEFogMobileReconstruction.usf","CompositeReconPS",SF_Pixel);
 IMPLEMENT_GLOBAL_SHADER(FReconDenseObserveCS,"/Plugin/UEFog/Private/UEFogMobileReconstruction.usf","ObserveDenseReconCS",SF_Compute);
+IMPLEMENT_GLOBAL_SHADER(FOptAnalyticCS,"/Plugin/UEFog/Private/UEFogMobileOptimization.usf","IntegrateAnalyticOptCS",SF_Compute);
+IMPLEMENT_GLOBAL_SHADER(FOptFusedPS,"/Plugin/UEFog/Private/UEFogMobileOptimization.usf","FusedOptPS",SF_Pixel);
+IMPLEMENT_GLOBAL_SHADER(FOptDenseObserveCS,"/Plugin/UEFog/Private/UEFogMobileOptimization.usf","ObserveOptDenseCS",SF_Compute);
+class FRepairFusedPS final : public FGlobalShader
+{
+public:
+    DECLARE_GLOBAL_SHADER(FRepairFusedPS); SHADER_USE_PARAMETER_STRUCT(FRepairFusedPS,FGlobalShader);
+    class FDiagnostic : SHADER_PERMUTATION_BOOL("OPT_DIAGNOSTIC");
+    using FPermutationDomain=TShaderPermutationDomain<FDiagnostic>;
+    BEGIN_SHADER_PARAMETER_STRUCT(FParameters,)
+        RECON_PARAMETERS
+        SHADER_PARAMETER(uint32, ReconLoadSteps)
+        SHADER_PARAMETER(uint32, ReconLoadDensity)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconLowInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconGuideInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconCin)
+        RENDER_TARGET_BINDING_SLOTS()
+    END_SHADER_PARAMETER_STRUCT()
+    static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
+};
+class FRepairDenseObserveCS final : public FGlobalShader
+{
+public:
+    DECLARE_GLOBAL_SHADER(FRepairDenseObserveCS); SHADER_USE_PARAMETER_STRUCT(FRepairDenseObserveCS,FGlobalShader);
+    BEGIN_SHADER_PARAMETER_STRUCT(FParameters,)
+        RECON_PARAMETERS
+        SHADER_PARAMETER(uint32, ReconLoadSteps)
+        SHADER_PARAMETER(uint32, ReconLoadDensity)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconProbeInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconLowInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float>,ReconGuideInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconRepairRayInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D<float4>,ReconOptAuxInput)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconCin)
+        SHADER_PARAMETER_RDG_TEXTURE(Texture2D,ReconConsumed)
+        SHADER_PARAMETER_RDG_BUFFER_SRV(StructuredBuffer<int2>,ReconAuxInput)
+        SHADER_PARAMETER_RDG_BUFFER_UAV(RWStructuredBuffer<float4>,ReconSamples)
+    END_SHADER_PARAMETER_STRUCT()
+    static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& P) { return P.Platform==SP_VULKAN_ES3_1_ANDROID; }
+};
+IMPLEMENT_GLOBAL_SHADER(FRepairFusedPS,"/Plugin/UEFog/Private/UEFogMobileRepair.usf","FusedRepairPS",SF_Pixel);
+IMPLEMENT_GLOBAL_SHADER(FRepairDenseObserveCS,"/Plugin/UEFog/Private/UEFogMobileRepair.usf","ObserveRepairDenseCS",SF_Compute);
 #undef RECON_PARAMETERS
 
 #if PLATFORM_ANDROID
@@ -132,7 +252,7 @@ struct FFrame
 {
     uint32 Number=0;
     FScreenPassTexture Cin,Low,Guide,Reconstructed,Returned;
-    FRDGTextureRef Probe=nullptr;
+    FRDGTextureRef Probe=nullptr,OptAux=nullptr,RepairRay=nullptr;
     FRDGBufferRef Aux=nullptr;
     uint32 Integrate=0,Reconstruct=0,Composite=0;
 };
@@ -142,7 +262,8 @@ struct FState
     uint32 Code=0,TagA=0,TagB=0,MobileCallbacks=0,ProducerCallbacks=0,ObserverCallbacks=0,Bytes=0;
     int32 Near=600;
     double Sigma=.35;
-    bool Diagnostics=false,Scheduled=false,Finished=false;
+    bool Diagnostics=false,Scheduled=false,Finished=false,Optimization=false,Load=false,RepairFamily=false;
+    uint32 LoadDensity=2,LoadSteps=64;
     const FSceneInterface* Scene=nullptr;
     std::atomic<bool> Ready{false};
     TSharedPtr<FJsonObject> Fixture,Record;
@@ -150,6 +271,8 @@ struct FState
     TUniquePtr<FRHIGPUBufferReadback> Readback;
 };
 TUniquePtr<FState> State;
+bool Full() { return State->Code==1||State->Code==5||(State->Load&&State->Code!=0&&State->Code!=8&&State->Code!=12); }
+bool Fused() { return State->Code==6||(State->Load&&(State->Code==8||State->Code==12)); }
 TArray<TSharedPtr<FJsonValue>> Numbers(std::initializer_list<double> Values)
 {
     TArray<TSharedPtr<FJsonValue>> Out; for(double X:Values) Out.Add(MakeShared<FJsonValueNumber>(X)); return Out;
@@ -161,7 +284,7 @@ TArray<TSharedPtr<FJsonValue>> Matrix(const FMatrix& M)
 }
 FIntPoint FogSize(FIntPoint View)
 {
-    return State->Code==1 ? View : State->Grid==TEXT("Odd") ? FIntPoint(775,359) : FIntPoint(776,360);
+    return Full() ? View : State->Grid==TEXT("Odd") ? FIntPoint(775,359) : FIntPoint(776,360);
 }
 bool Control() { return State->Code==0 || State->Code==4; }
 TSharedRef<FJsonObject> Desc(FRDGTextureRef Texture)
@@ -196,7 +319,33 @@ TSharedRef<FJsonObject> Snapshot(const FSceneView& V,FScreenPassTexture Color,TR
     auto J=MakeShared<FJsonObject>();const FIntPoint Size=Color.ViewRect.Size(),F=FogSize(Size),A=FIntPoint::ZeroValue;
     J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobileReconstruction"));J->SetNumberField(TEXT("schemaVersion"),1);
     J->SetStringField(TEXT("modelKey"),TEXT("MobileUniformReconstruction64-v1"));J->SetStringField(TEXT("profile"),State->Profile);
-    J->SetStringField(TEXT("grid"),State->Code==1?TEXT("Full"):*State->Grid);
+    if(State->Optimization)
+    {
+        J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobileOptimization"));J->SetStringField(TEXT("modelKey"),TEXT("MobileUniformOptimization-v1"));
+        J->SetStringField(TEXT("numericKey"),TEXT("UniformClosedST-fp32-half-v1"));
+        J->SetStringField(TEXT("stObservationOrigin"),State->Code==6?TEXT("same fused PS invocation MRT"):TEXT("materialized ST SRV"));
+        J->SetBoolField(TEXT("diagnosticSameInvocation"),State->Code==6&&State->Diagnostics);
+        J->SetNumberField(TEXT("fusedPasses"),State->Current.Composite&&State->Code==6?1:0);
+    }
+    if(State->Load)
+    {
+        J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobileLoad"));J->SetStringField(TEXT("modelKey"),TEXT("MobileSmoothNoiseLoad-v1"));
+        J->SetStringField(TEXT("numericKey"),TEXT("TauMidpoint-fp32-half-v1"));
+        J->SetStringField(TEXT("densityKey"),State->LoadDensity==2?TEXT("SmoothNoise"):TEXT("Uniform"));
+        J->SetNumberField(TEXT("densityCode"),State->LoadDensity);J->SetNumberField(TEXT("headerRecords"),5);
+        J->SetStringField(TEXT("stObservationOrigin"),Fused()?TEXT("same fused PS invocation MRT"):TEXT("materialized ST SRV"));
+        J->SetBoolField(TEXT("diagnosticSameInvocation"),Fused()&&State->Diagnostics);
+        J->SetNumberField(TEXT("fusedPasses"),State->Current.Composite&&Fused()?1:0);
+    }
+    if(State->RepairFamily)
+    {
+        J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobileRepair"));J->SetStringField(TEXT("modelKey"),TEXT("MobileSmoothNoiseRepair-v1"));
+        J->SetStringField(TEXT("numericKey"),TEXT("TauMidpoint-fp32-half-fallback64-v1"));
+        J->SetStringField(TEXT("repairAlgorithmKey"),TEXT("GuidedFallbackFullRayN64-v1"));
+        J->SetBoolField(TEXT("repairEnabled"),State->Code==12);J->SetNumberField(TEXT("diagnosticSceneRows"),State->Code==12?6:4);
+        J->SetStringField(TEXT("repairWorkOrigin"),TEXT("same PS actual density loop body; ray/native depth are its actual inputs"));
+    }
+    J->SetStringField(TEXT("grid"),Full()?TEXT("Full"):*State->Grid);
     J->SetStringField(TEXT("fixture"),State->FixtureName);J->SetObjectField(TEXT("fixtureDescription"),State->Fixture.ToSharedRef());
     J->SetStringField(TEXT("runId"),State->RunId);J->SetNumberField(TEXT("pid"),FPlatformProcess::GetCurrentProcessId());
     J->SetStringField(TEXT("buildId"),State->BuildId);J->SetStringField(TEXT("sourceRevision"),State->Source);
@@ -207,6 +356,8 @@ TSharedRef<FJsonObject> Snapshot(const FSceneView& V,FScreenPassTexture Color,TR
     J->SetNumberField(TEXT("frame"),V.Family->FrameNumber);J->SetNumberField(TEXT("nearCm"),State->Near);
     J->SetNumberField(TEXT("extinctionPerMetre"),State->Sigma);J->SetNumberField(TEXT("preExposure"),V.State?V.State->GetPreExposure():-1);
     J->SetNumberField(TEXT("steps"),64);J->SetNumberField(TEXT("earlyOut"),0);J->SetArrayField(TEXT("sourceJ"),Numbers({.35,.6,.9}));
+    if(State->Optimization&&(State->Code==0||State->Code==5))J->SetNumberField(TEXT("steps"),0);
+    if(State->Load)J->SetNumberField(TEXT("steps"),State->LoadSteps);
     J->SetArrayField(TEXT("sphereCentreCm"),Numbers({800,0,0}));J->SetNumberField(TEXT("sphereRadiusCm"),400);
     const FVector Origin=V.ViewMatrices.GetViewOrigin();J->SetArrayField(TEXT("cameraCm"),Numbers({Origin.X,Origin.Y,Origin.Z}));
     J->SetArrayField(TEXT("viewMin"),Numbers({double(Color.ViewRect.Min.X),double(Color.ViewRect.Min.Y)}));
@@ -289,10 +440,23 @@ public:
         auto* I=Graph.AllocParameters<FReconIntegrateCS::FParameters>();Common(I,V,Color,Mobile,Capture);
         I->ReconLowOutput=Graph.CreateUAV(Low);I->ReconGuideOutput=Graph.CreateUAV(Guide);I->ReconAuxOutput=Graph.CreateUAV(Aux);
         TShaderMapRef<FReconIntegrateCS> Integrate(GetGlobalShaderMap(V.GetFeatureLevel()));
-        FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Recon.Integrate64"),Integrate,I,FComputeShaderUtils::GetGroupCount(F,FIntPoint(8,8)));
+        if(State->Load)
+        {
+            auto* L=Graph.AllocParameters<FLoadIntegrateCS::FParameters>();Common(L,V,Color,Mobile,Capture);
+            L->ReconLoadSteps=State->LoadSteps;L->ReconLoadDensity=State->LoadDensity;
+            L->ReconLowOutput=Graph.CreateUAV(Low);L->ReconGuideOutput=Graph.CreateUAV(Guide);L->ReconAuxOutput=Graph.CreateUAV(Aux);
+            TShaderMapRef<FLoadIntegrateCS> Load(GetGlobalShaderMap(V.GetFeatureLevel()));
+            FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Load.TauMidpoint"),Load,L,FComputeShaderUtils::GetGroupCount(F,FIntPoint(8,8)));
+        }
+        else if(State->Code==5)
+        {
+            TShaderMapRef<FOptAnalyticCS> Analytic(GetGlobalShaderMap(V.GetFeatureLevel()));
+            FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Opt.AnalyticUniform"),Analytic,I,FComputeShaderUtils::GetGroupCount(F,FIntPoint(8,8)));
+        }
+        else FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Recon.Integrate64"),Integrate,I,FComputeShaderUtils::GetGroupCount(F,FIntPoint(8,8)));
         State->Current.Integrate=1;UEFogMobilePerformanceBoundary(Graph,2);
         FRDGTextureRef Rec=Low;
-        if(State->Code!=1)
+        if(!Full()&&!Fused())
         {
             Rec=Graph.CreateTexture(FRDGTextureDesc::Create2D(Size,PF_FloatRGBA,FClearValueBinding::None,TexCreate_ShaderResource|TexCreate_UAV),TEXT("UEFog.Recon.ReconstructedST"));
             auto* R=Graph.AllocParameters<FReconReconstructCS::FParameters>();Common(R,V,Color,Mobile,Capture);
@@ -305,21 +469,65 @@ public:
         FScreenPassRenderTarget Output=Inputs.OverrideOutput;
         if(!Output.IsValid())
             Output=FScreenPassRenderTarget(Graph.CreateTexture(FRDGTextureDesc::Create2D(Color.Texture->Desc.Extent,PF_FloatRGBA,FClearValueBinding::None,TexCreate_ShaderResource|TexCreate_RenderTargetable),TEXT("UEFog.Recon.ReturnedHDR")),Color.ViewRect,ERenderTargetLoadAction::ENoAction);
+        if(State->Code==12)
+        {
+            Rec=nullptr;
+            auto* P=Graph.AllocParameters<FRepairFusedPS::FParameters>();Common(P,V,Color,Mobile,Capture);
+            P->ReconLoadSteps=State->LoadSteps;P->ReconLoadDensity=State->LoadDensity;P->ReconLowInput=Low;P->ReconGuideInput=Guide;P->ReconCin=Color.Texture;P->RenderTargets[0]=Output.GetRenderTargetBinding();
+            if(Capture)
+            {
+                Rec=Graph.CreateTexture(FRDGTextureDesc::Create2D(Size,PF_FloatRGBA,FClearValueBinding::None,TexCreate_ShaderResource|TexCreate_RenderTargetable),TEXT("UEFog.Opt.SameInvocationST"));
+                State->Current.OptAux=Graph.CreateTexture(FRDGTextureDesc::Create2D(Size,PF_A32B32G32R32F,FClearValueBinding::None,TexCreate_ShaderResource|TexCreate_RenderTargetable),TEXT("UEFog.Opt.SameInvocationAux"));
+                P->RenderTargets[1]=FRenderTargetBinding(Rec,ERenderTargetLoadAction::ENoAction);
+                P->RenderTargets[2]=FRenderTargetBinding(State->Current.OptAux,ERenderTargetLoadAction::ENoAction);
+                State->Current.RepairRay=Graph.CreateTexture(FRDGTextureDesc::Create2D(Size,PF_A32B32G32R32F,FClearValueBinding::None,TexCreate_ShaderResource|TexCreate_RenderTargetable),TEXT("UEFog.Repair.SameInvocationRay"));
+                P->RenderTargets[3]=FRenderTargetBinding(State->Current.RepairRay,ERenderTargetLoadAction::ENoAction);
+            }
+            FRepairFusedPS::FPermutationDomain Permutation;Permutation.Set<FRepairFusedPS::FDiagnostic>(Capture);
+            TShaderMapRef<FRepairFusedPS> Fused(GetGlobalShaderMap(V.GetFeatureLevel()),Permutation);
+            AddDrawScreenPass(Graph,RDG_EVENT_NAME("UEFog.Repair.ReconstructReintegrateAndComposite"),V,FScreenPassTextureViewport(Output),FScreenPassTextureViewport(Color),Fused,P);
+        }
+        else if(Fused())
+        {
+            Rec=nullptr;
+            auto* P=Graph.AllocParameters<FOptFusedPS::FParameters>();Common(P,V,Color,Mobile,Capture);
+            P->ReconLowInput=Low;P->ReconGuideInput=Guide;P->ReconCin=Color.Texture;P->RenderTargets[0]=Output.GetRenderTargetBinding();
+            if(Capture)
+            {
+                Rec=Graph.CreateTexture(FRDGTextureDesc::Create2D(Size,PF_FloatRGBA,FClearValueBinding::None,TexCreate_ShaderResource|TexCreate_RenderTargetable),TEXT("UEFog.Opt.SameInvocationST"));
+                State->Current.OptAux=Graph.CreateTexture(FRDGTextureDesc::Create2D(Size,PF_A32B32G32R32F,FClearValueBinding::None,TexCreate_ShaderResource|TexCreate_RenderTargetable),TEXT("UEFog.Opt.SameInvocationAux"));
+                P->RenderTargets[1]=FRenderTargetBinding(Rec,ERenderTargetLoadAction::ENoAction);
+                P->RenderTargets[2]=FRenderTargetBinding(State->Current.OptAux,ERenderTargetLoadAction::ENoAction);
+            }
+            FOptFusedPS::FPermutationDomain Permutation;Permutation.Set<FOptFusedPS::FDiagnostic>(Capture);
+            TShaderMapRef<FOptFusedPS> Fused(GetGlobalShaderMap(V.GetFeatureLevel()),Permutation);
+            AddDrawScreenPass(Graph,RDG_EVENT_NAME("UEFog.Opt.ReconstructAndComposite"),V,FScreenPassTextureViewport(Output),FScreenPassTextureViewport(Color),Fused,P);
+        }
+        else
+        {
         auto* P=Graph.AllocParameters<FReconCompositePS::FParameters>();Common(P,V,Color,Mobile,Capture);
         P->ReconInput=Rec;P->ReconCin=Color.Texture;P->RenderTargets[0]=Output.GetRenderTargetBinding();
         TShaderMapRef<FReconCompositePS> Composite(GetGlobalShaderMap(V.GetFeatureLevel()));
         AddDrawScreenPass(Graph,RDG_EVENT_NAME("UEFog.Recon.ComposeActualST"),V,FScreenPassTextureViewport(Output),FScreenPassTextureViewport(Color),Composite,P);
+        }
         State->Current.Composite=1;UEFogMobilePerformanceBoundary(Graph,4);
         State->Current.Low=FScreenPassTexture(Low,FIntRect(FIntPoint::ZeroValue,F));State->Current.Guide=FScreenPassTexture(Guide,FIntRect(FIntPoint::ZeroValue,F));
-        State->Current.Reconstructed=FScreenPassTexture(Rec,FIntRect(FIntPoint::ZeroValue,Size));State->Current.Returned=Output;State->Current.Aux=Aux;
+        if(Rec)State->Current.Reconstructed=FScreenPassTexture(Rec,FIntRect(FIntPoint::ZeroValue,Size));State->Current.Returned=Output;State->Current.Aux=Aux;
         if(Capture)
         {
             State->Record->SetArrayField(TEXT("allocatedFogSize"),Numbers({double(F.X),double(F.Y)}));
-            State->Record->SetArrayField(TEXT("allocatedReconstructionSize"),Numbers({double(Size.X),double(Size.Y)}));
+            State->Record->SetArrayField(TEXT("allocatedReconstructionSize"),Fused()?Numbers({0,0}):Numbers({double(Size.X),double(Size.Y)}));
+            if(Fused())
+            {
+                State->Record->SetArrayField(TEXT("diagnosticSTSize"),Numbers({double(Size.X),double(Size.Y)}));
+                State->Record->SetObjectField(TEXT("diagnosticAux"),Desc(State->Current.OptAux));
+                if(State->Code==12)State->Record->SetObjectField(TEXT("diagnosticRay"),Desc(State->Current.RepairRay));
+                State->Record->SetNumberField(TEXT("fusedPasses"),1);
+            }
             State->Record->SetObjectField(TEXT("lowST"),Desc(Low));State->Record->SetObjectField(TEXT("lowGuide"),Desc(Guide));
             State->Record->SetObjectField(TEXT("reconstructedST"),Desc(Rec));State->Record->SetObjectField(TEXT("returnedOutput"),Desc(Output.Texture));
             State->Record->SetBoolField(TEXT("fullIdentityResource"),Rec==Low);State->Record->SetBoolField(TEXT("overrideOutputActive"),Inputs.OverrideOutput.IsValid());
-            State->Record->SetNumberField(TEXT("integrateDispatches"),1);State->Record->SetNumberField(TEXT("reconstructDispatches"),State->Code==1?0:1);
+            State->Record->SetNumberField(TEXT("integrateDispatches"),1);State->Record->SetNumberField(TEXT("reconstructDispatches"),State->Current.Reconstruct);
             State->Record->SetNumberField(TEXT("compositePasses"),1);Save();
         }
         return Output;
@@ -342,7 +550,7 @@ public:
                 {
                     const auto F=State->Current.Low.ViewRect.Size();
                     J->SetArrayField(TEXT("allocatedFogSize"),Numbers({double(F.X),double(F.Y)}));
-                    J->SetArrayField(TEXT("allocatedReconstructionSize"),Numbers({1552,720}));
+                    J->SetArrayField(TEXT("allocatedReconstructionSize"),Fused()?Numbers({0,0}):Numbers({1552,720}));
                     J->SetObjectField(TEXT("lowST"),Desc(State->Current.Low.Texture));J->SetObjectField(TEXT("lowGuide"),Desc(State->Current.Guide.Texture));
                     J->SetObjectField(TEXT("reconstructedST"),Desc(State->Current.Reconstructed.Texture));J->SetObjectField(TEXT("returnedOutput"),Desc(State->Current.Returned.Texture));
                 }
@@ -376,7 +584,7 @@ public:
             State->Record->SetObjectField(TEXT("observerInput"),Desc(Actual.Texture));
             if(!Same){State->Record->SetStringField(TEXT("status"),TEXT("failed-consumer-resource"));Save();return Inputs.ReturnUntouchedSceneColorForPostProcessing(Graph);}
             const FIntPoint Size=Actual.ViewRect.Size(),F=FogSize(Size);
-            const uint64 Rows=State->Code==4?4ull:4ull+2ull*F.X*F.Y+4ull*Size.X*Size.Y;
+            const uint64 Rows=State->Code==4?4ull:(State->Load?5ull:4ull)+2ull*F.X*F.Y+(State->Code==12?6ull:4ull)*Size.X*Size.Y;
             if(Rows*16>=134217728ull){State->Record->SetStringField(TEXT("status"),TEXT("dense-buffer-budget-failed"));Save();return Inputs.ReturnUntouchedSceneColorForPostProcessing(Graph);}
             auto* Buffer=Graph.CreateBuffer(FRDGBufferDesc::CreateStructuredDesc(sizeof(FVector4f),uint32(Rows)),TEXT("UEFog.Recon.DenseActualSamples"));
             if(State->Code==4)
@@ -385,6 +593,39 @@ public:
                 P->ReconProbeInput=State->Current.Probe;P->ReconSamples=Graph.CreateUAV(Buffer);
                 TShaderMapRef<FReconKnownObserveCS> Shader(GetGlobalShaderMap(V.GetFeatureLevel()));
                 FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Recon.R32ActualRead"),Shader,P,FIntVector(1,1,1));
+            }
+            else if(State->RepairFamily)
+            {
+                auto* P=Graph.AllocParameters<FRepairDenseObserveCS::FParameters>();Common(P,V,Actual,Mobile,true);
+                P->ReconLoadSteps=State->LoadSteps;P->ReconLoadDensity=State->LoadDensity;
+                P->ReconProbeInput=State->Current.Probe;P->ReconLowInput=State->Current.Low.Texture;P->ReconGuideInput=State->Current.Guide.Texture;
+                P->ReconInput=State->Current.Reconstructed.Texture;P->ReconAuxInput=Graph.CreateSRV(State->Current.Aux);
+                P->ReconOptAuxInput=State->Current.OptAux?State->Current.OptAux:State->Current.Reconstructed.Texture;
+                P->ReconRepairRayInput=State->Current.RepairRay?State->Current.RepairRay:State->Current.Reconstructed.Texture;
+                P->ReconCin=State->Current.Cin.Texture;P->ReconConsumed=Actual.Texture;P->ReconSamples=Graph.CreateUAV(Buffer);
+                TShaderMapRef<FRepairDenseObserveCS> Shader(GetGlobalShaderMap(V.GetFeatureLevel()));
+                FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Repair.ObserveActualEngineConsumer"),Shader,P,FComputeShaderUtils::GetGroupCount(Size,FIntPoint(8,8)));
+            }
+            else if(State->Load)
+            {
+                auto* P=Graph.AllocParameters<FLoadDenseObserveCS::FParameters>();Common(P,V,Actual,Mobile,true);
+                P->ReconLoadSteps=State->LoadSteps;P->ReconLoadDensity=State->LoadDensity;
+                P->ReconProbeInput=State->Current.Probe;P->ReconLowInput=State->Current.Low.Texture;P->ReconGuideInput=State->Current.Guide.Texture;
+                P->ReconInput=State->Current.Reconstructed.Texture;P->ReconAuxInput=Graph.CreateSRV(State->Current.Aux);
+                P->ReconOptAuxInput=State->Current.OptAux?State->Current.OptAux:State->Current.Reconstructed.Texture;
+                P->ReconCin=State->Current.Cin.Texture;P->ReconConsumed=Actual.Texture;P->ReconSamples=Graph.CreateUAV(Buffer);
+                TShaderMapRef<FLoadDenseObserveCS> Shader(GetGlobalShaderMap(V.GetFeatureLevel()));
+                FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Load.ObserveActualEngineConsumer"),Shader,P,FComputeShaderUtils::GetGroupCount(Size,FIntPoint(8,8)));
+            }
+            else if(State->Optimization)
+            {
+                auto* P=Graph.AllocParameters<FOptDenseObserveCS::FParameters>();Common(P,V,Actual,Mobile,true);
+                P->ReconProbeInput=State->Current.Probe;P->ReconLowInput=State->Current.Low.Texture;P->ReconGuideInput=State->Current.Guide.Texture;
+                P->ReconInput=State->Current.Reconstructed.Texture;P->ReconAuxInput=Graph.CreateSRV(State->Current.Aux);
+                P->ReconOptAuxInput=State->Current.OptAux?State->Current.OptAux:State->Current.Reconstructed.Texture;
+                P->ReconCin=State->Current.Cin.Texture;P->ReconConsumed=Actual.Texture;P->ReconSamples=Graph.CreateUAV(Buffer);
+                TShaderMapRef<FOptDenseObserveCS> Shader(GetGlobalShaderMap(V.GetFeatureLevel()));
+                FComputeShaderUtils::AddPass(Graph,RDG_EVENT_NAME("UEFog.Opt.ObserveActualEngineConsumer"),Shader,P,FComputeShaderUtils::GetGroupCount(Size,FIntPoint(8,8)));
             }
             else
             {
@@ -408,21 +649,41 @@ public:
 
 bool ApplyUEFogMobileReconstructionLaunch(FString& Error)
 {
-    FString Profile;if(!FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileRecon="),Profile))return true;
+    FString Profile;const bool Repair=FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileRepair="),Profile);
+    const bool Load=Repair||FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileLoad="),Profile);
+    const bool Optimization=!Load&&FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileOpt="),Profile);
+    if(!Load&&!Optimization&&!FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileRecon="),Profile))
+    {if(FString(FCommandLine::Get()).Contains(TEXT("FogLabLoad"))||FString(FCommandLine::Get()).Contains(TEXT("FogLabRepair"))){Error=TEXT("Load arguments require explicit new load entry");return false;}return true;}
 #if PLATFORM_ANDROID
     using namespace MobileRecon;FString Other;
-    const TArray<FString> Profiles={TEXT("Off"),TEXT("Full64"),TEXT("HalfB64"),TEXT("HalfG64"),TEXT("GuideProbe")};
+    const TArray<FString> Profiles=Repair?TArray<FString>{TEXT("Off"),TEXT("FullN"),TEXT("FusedHalfGN"),TEXT("Full256"),TEXT("Full512"),TEXT("Full1024"),TEXT("FusedHalfRepairN")}:Load?TArray<FString>{TEXT("Off"),TEXT("FullN"),TEXT("FusedHalfGN"),TEXT("Full256"),TEXT("Full512"),TEXT("Full1024")}:
+        Optimization?TArray<FString>{TEXT("Off"),TEXT("LegacyFull64"),TEXT("AnalyticFull"),TEXT("LegacyHalfG64"),TEXT("FusedHalfG64")}:TArray<FString>{TEXT("Off"),TEXT("Full64"),TEXT("HalfB64"),TEXT("HalfG64"),TEXT("GuideProbe")};
     const int32 Index=Profiles.IndexOfByKey(Profile);
-    if(Index==INDEX_NONE||FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileFog="),Other)||FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileProbe="),Other)||IsUEFogCompareActive())
+    if(Index==INDEX_NONE||(Repair&&FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileLoad="),Other))||(Load&&(FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileOpt="),Other)||FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileRecon="),Other)))||
+        (!Load&&(FString(FCommandLine::Get()).Contains(TEXT("FogLabLoad"))||FString(FCommandLine::Get()).Contains(TEXT("FogLabRepair"))))||
+        (Optimization&&FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileRecon="),Other))||FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileFog="),Other)||FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileProbe="),Other)||IsUEFogCompareActive())
     {Error=TEXT("Recon requires its isolated profile with no old Fog/PRE/Compare entry");return false;}
     State=MakeUnique<FState>();State->Profile=Profile;State->Code=uint32(Index);State->Grid=TEXT("Half");State->FixtureName=TEXT("Planes");
+    State->RepairFamily=Repair;State->Optimization=Optimization;if(Optimization)State->Code=Index==2?5:Index==4?6:uint32(Index);
+    if(Load)
+    {
+        State->Load=true;State->Code=Index==0?0:uint32(Index+6);
+        State->LoadSteps=Index==0?0:(Index<=2||Index==6)?64:Index==3?256:Index==4?512:1024;
+        FString Density=TEXT("SmoothNoise"),Unsupported;
+        FParse::Value(FCommandLine::Get(),Repair?TEXT("FogLabRepairDensity="):TEXT("FogLabLoadDensity="),Density);
+        if((Density!=TEXT("SmoothNoise")&&Density!=TEXT("Uniform"))||FParse::Value(FCommandLine::Get(),TEXT("FogLabLoadSteps="),Unsupported)||FParse::Value(FCommandLine::Get(),TEXT("FogLabRepairSteps="),Unsupported)||(Repair&&FString(FCommandLine::Get()).Contains(TEXT("FogLabLoad")))||(!Repair&&FString(FCommandLine::Get()).Contains(TEXT("FogLabRepair"))))
+        {Error=TEXT("Load requires frozen density and profile-derived N; no analytic substitution");State.Reset();return false;}
+        State->LoadDensity=Density==TEXT("Uniform")?0:2;
+    }
     FParse::Value(FCommandLine::Get(),TEXT("FogLabReconGrid="),State->Grid);FParse::Value(FCommandLine::Get(),TEXT("FogLabReconFixture="),State->FixtureName);
     FParse::Value(FCommandLine::Get(),TEXT("FogLabReconNear="),State->Near);FParse::Value(FCommandLine::Get(),TEXT("FogLabReconSigma="),State->Sigma);
     int32 Diagnostic=0;FParse::Value(FCommandLine::Get(),TEXT("FogLabReconReadback="),Diagnostic);
-    if((State->Grid!=TEXT("Half")&&State->Grid!=TEXT("Odd"))||(State->FixtureName!=TEXT("Planes")&&State->FixtureName!=TEXT("ThinStripe"))||
+    if((State->Grid!=TEXT("Half")&&State->Grid!=TEXT("Odd"))||(State->FixtureName!=TEXT("Planes")&&State->FixtureName!=TEXT("ThinStripe")&&(!Repair||(State->FixtureName!=TEXT("ThinStripeShifted")&&State->FixtureName!=TEXT("ThinStripeBeforeEntry"))))||
        (State->Near!=400&&State->Near!=600)||(State->Sigma!=0&&State->Sigma!=.35&&State->Sigma!=.70)||(Diagnostic!=0&&Diagnostic!=1))
     {Error=TEXT("Unfrozen reconstruction argument");State.Reset();return false;}
     State->Diagnostics=State->Code!=0&&(Diagnostic==1||State->Code==4);
+    if(State->Load&&IsUEFogMobilePerformanceActive()&&Diagnostic!=0)
+    {Error=TEXT("Load timing cannot enable diagnostics");State.Reset();return false;}
     FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileRun="),State->RunId);FParse::Value(FCommandLine::Get(),TEXT("FogLabMobileOutput="),State->Directory);
     if(IsUEFogMobilePerformanceActive())
     {FParse::Value(FCommandLine::Get(),TEXT("FogLabMobilePerf="),State->RunId);FParse::Value(FCommandLine::Get(),TEXT("FogLabPerfOutput="),State->Directory);}

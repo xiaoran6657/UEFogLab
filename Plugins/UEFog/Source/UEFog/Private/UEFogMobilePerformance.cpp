@@ -55,6 +55,7 @@ enum class EPhase { Warmup, InitializePool, AwaitArm, Settle, Sample, Drain, Don
 struct FState
 {
     FString RunId, Directory, BuildId, Source, Profile, Error;
+    bool Optimization=false,Load=false,Repair=false;
     uint64 StartTicks=0;
     double Start=0, Armed=0, SampleStart=0, SampleEnd=0, DrainStart=0;
     uint32 WarmFrames=0, LastFrame=0, ArmFrame=0, StartFrame=0, EndFrame=0;
@@ -84,6 +85,27 @@ void Bookmark(const TCHAR* Name,uint32 Frame,double Time)
 TSharedRef<FJsonObject> Identity()
 {
     auto J=MakeShared<FJsonObject>();J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobilePerformance"));J->SetNumberField(TEXT("schemaVersion"),2);
+    if(State->Optimization)
+    {
+        J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobileOptimizationPerformance"));J->SetNumberField(TEXT("schemaVersion"),3);
+        J->SetStringField(TEXT("modelKey"),TEXT("MobileUniformOptimization-v1"));
+        J->SetStringField(TEXT("scopeLayout"),TEXT("six common BOP markers; separate reconstruction slot empty unless LegacyHalfG64; final slot CompositeHDR or ReconstructAndComposite"));
+    }
+    if(State->Load)
+    {
+        J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobileLoadPerformance"));J->SetNumberField(TEXT("schemaVersion"),4);
+        J->SetStringField(TEXT("modelKey"),TEXT("MobileSmoothNoiseLoad-v1"));J->SetStringField(TEXT("densityKey"),TEXT("SmoothNoise"));
+        J->SetNumberField(TEXT("steps"),State->Profile==TEXT("Off")?0:64);
+        J->SetStringField(TEXT("scopeLayout"),TEXT("six common BOP markers; empty separate reconstruction; final CompositeHDR or ReconstructAndComposite"));
+    }
+    if(State->Repair)
+    {
+        J->SetStringField(TEXT("kind"),TEXT("UEFogLab.MobileRepairPerformance"));J->SetNumberField(TEXT("schemaVersion"),5);
+        J->SetStringField(TEXT("modelKey"),TEXT("MobileSmoothNoiseRepair-v1"));
+        J->SetStringField(TEXT("repairAlgorithmKey"),TEXT("GuidedFallbackFullRayN64-v1"));
+        J->SetBoolField(TEXT("repairEnabled"),State->Profile==TEXT("FusedHalfRepairN"));
+        J->SetStringField(TEXT("scopeLayout"),TEXT("six common BOP markers; empty separate reconstruction; final CompositeHDR, ReconstructAndComposite, or joint ReconstructReintegrateAndComposite"));
+    }
     J->SetStringField(TEXT("runId"),State->RunId);J->SetStringField(TEXT("buildId"),State->BuildId);J->SetStringField(TEXT("sourceRevision"),State->Source);
     J->SetStringField(TEXT("profile"),State->Profile);J->SetNumberField(TEXT("pid"),FPlatformProcess::GetCurrentProcessId());
     J->SetStringField(TEXT("processStartTicks"),LexToString(State->StartTicks));J->SetStringField(TEXT("engineVersion"),FEngineVersion::Current().ToString());
@@ -232,15 +254,26 @@ bool ApplyUEFogMobilePerformanceLaunch(FString& Error)
     for(const TCHAR* Forbidden:{TEXT("FogLabMobileRun="),TEXT("FogLabMobileFog="),TEXT("FogLabMobileProbe="),TEXT("FogLabCompareMode="),TEXT("FogLabCapture="),TEXT("FogLabReadback="),TEXT("trace="),TEXT("tracefile="),TEXT("renderdoc"),TEXT("vulkandebug"),TEXT("gpuvalidation"),TEXT("d3ddebug")})
         if(Cmd.Contains(Forbidden,ESearchCase::IgnoreCase)){Error=TEXT("Performance cannot mix startup/capture/diagnostic/trace/debug entry");return false;}
     auto S=MakeUnique<FState>();S->RunId=Id;int32 Readback=-1;FString Grid,Fixture,Near,Sigma,Exposure;
-    FParse::Value(*Cmd,TEXT("FogLabMobileRecon="),S->Profile);FParse::Value(*Cmd,TEXT("FogLabReconReadback="),Readback);
+    S->Repair=FParse::Value(*Cmd,TEXT("FogLabMobileRepair="),S->Profile);
+    S->Load=S->Repair||FParse::Value(*Cmd,TEXT("FogLabMobileLoad="),S->Profile);
+    S->Optimization=!S->Load&&FParse::Value(*Cmd,TEXT("FogLabMobileOpt="),S->Profile);
+    if(!S->Load&&!S->Optimization)FParse::Value(*Cmd,TEXT("FogLabMobileRecon="),S->Profile);
+    if((S->Repair&&Cmd.Contains(TEXT("FogLabMobileLoad=")))||(!S->Repair&&Cmd.Contains(TEXT("FogLabRepair")))||
+        (S->Load&&(Cmd.Contains(TEXT("FogLabMobileRecon="))||Cmd.Contains(TEXT("FogLabMobileOpt="))))||
+        (S->Optimization&&Cmd.Contains(TEXT("FogLabMobileRecon=")))){Error=TEXT("Load, Optimization and legacy timing entries cannot mix");return false;}
+    FParse::Value(*Cmd,TEXT("FogLabReconReadback="),Readback);
     FParse::Value(*Cmd,TEXT("FogLabReconGrid="),Grid);FParse::Value(*Cmd,TEXT("FogLabReconFixture="),Fixture);
     FParse::Value(*Cmd,TEXT("FogLabReconNear="),Near);FParse::Value(*Cmd,TEXT("FogLabReconSigma="),Sigma);FParse::Value(*Cmd,TEXT("FogLabPreExposure="),Exposure);
     FParse::Value(*Cmd,TEXT("FogLabPerfOutput="),S->Directory);FParse::Value(*Cmd,TEXT("FogLabBaselineBuild="),S->BuildId);FParse::Value(*Cmd,TEXT("FogLabBaselineSource="),S->Source);
     bool Hex=Id.Len()==32;for(TCHAR C:Id)Hex=Hex&&FChar::IsHexDigit(C);
-    if(!Hex||!(S->Profile==TEXT("Off")||S->Profile==TEXT("Full64")||S->Profile==TEXT("HalfB64")||S->Profile==TEXT("HalfG64"))||
-       Readback!=0||Grid!=TEXT("Half")||Fixture!=TEXT("Planes")||Near!=TEXT("600")||FCString::Atod(*Sigma)!=.35||Exposure!=TEXT("1")||
+    FString Density;FParse::Value(*Cmd,S->Repair?TEXT("FogLabRepairDensity="):TEXT("FogLabLoadDensity="),Density);
+    const bool ProfileValid=S->Load?(S->Profile==TEXT("Off")||S->Profile==TEXT("FullN")||S->Profile==TEXT("FusedHalfGN")||(S->Repair&&S->Profile==TEXT("FusedHalfRepairN"))):
+        S->Optimization?(S->Profile==TEXT("Off")||S->Profile==TEXT("LegacyFull64")||S->Profile==TEXT("AnalyticFull")||S->Profile==TEXT("LegacyHalfG64")||S->Profile==TEXT("FusedHalfG64")):
+        (S->Profile==TEXT("Off")||S->Profile==TEXT("Full64")||S->Profile==TEXT("HalfB64")||S->Profile==TEXT("HalfG64"));
+    if(!Hex||!ProfileValid||
+       Readback!=0||Grid!=TEXT("Half")||Fixture!=(S->Load?TEXT("ThinStripe"):TEXT("Planes"))||(S->Load&&Density!=TEXT("SmoothNoise"))||Near!=TEXT("600")||FCString::Atod(*Sigma)!=.35||Exposure!=TEXT("1")||
        S->BuildId.IsEmpty()||S->Source.Len()!=40||!S->Directory.StartsWith(TEXT("/data/user/"))||S->Directory.Contains(TEXT(".."))||
-       !S->Directory.EndsWith(TEXT("/com.uefoglab.mobilebaseline/files/M4-PERF/")+Id))
+       !S->Directory.EndsWith((S->Repair?FString(TEXT("/com.uefoglab.mobilebaseline/files/M8-REPAIR/PERF/")):S->Load?FString(TEXT("/com.uefoglab.mobilebaseline/files/M8-LOAD/PERF/")):S->Optimization?FString(TEXT("/com.uefoglab.mobilebaseline/files/M7-OPT/PERF/")):FString(TEXT("/com.uefoglab.mobilebaseline/files/M4-PERF/")))+Id))
     {Error=TEXT("Performance requires fixed normal four-mode configuration and private UUID/package identity");return false;}
     if(FILE* F=fopen("/proc/self/stat","r"))
     {char B[2048]={};if(fgets(B,sizeof(B),F)){FString T=UTF8_TO_TCHAR(B);int32 End=0;if(T.FindLastChar(TEXT(')'),End)){TArray<FString>A;T.Mid(End+2).ParseIntoArrayWS(A);if(A.Num()>19)S->StartTicks=FCString::Strtoui64(*A[19],nullptr,10);}}fclose(F);}

@@ -64,7 +64,7 @@ Screenshots pass through tonemapping. Encoding a still-image video does not meas
 - [Public case](showcase/CASE.en.md) and [derived historical summary](showcase/evidence/summary.md) preserve model/device/APK boundaries, known geometry differences and counterexamples.
 - [Technical provenance](showcase/data/provenance.json) records original report hashes and historical source identifiers; excluded local records are not fake public links.
 - [Primary references](theory/README.md) are links only. No historical Saved, local theory originals, SDKs or tool binaries are needed for the desktop route.
-- Android renderer sources are retained. Historical mobile observations use separate fixed quality and timing APKs; this public snapshot has not been newly accepted on a phone. Archive-specific collection/aggregation drivers are omitted and listed in the package provenance.
+- For the Android-only, opt-in mobile repair source and launch options, see [Mobile fog](mobile-fog/README.md). Its accepted ThinStripe quality and cost share the recorded APK, in separate runs. Earlier Uniform quality and timing used separate APKs. This public checkout adds no fresh device result. Archive-only acquisition tools are excluded.
 
 Optional scripts default to a Python executable on PATH, or accept -Python explicitly. Set UEFOGLAB_ENGINE_ROOT or pass -EngineRoot; no personal engine/Python path is baked into the public wrappers. Optional media generation requires the pinned showcase requirements, existing FFmpeg and selected installed fonts. It reads only the included compact data and PNGs.
 

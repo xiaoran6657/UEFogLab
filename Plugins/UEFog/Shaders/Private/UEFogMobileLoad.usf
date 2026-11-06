@@ -1,0 +1,81 @@
+// M8 opt-in integration; protected M4/M7 functions and RNE are included unchanged.
+#include "/Plugin/UEFog/Private/UEFogMobileOptimization.usf"
+uint ReconLoadSteps;
+uint ReconLoadDensity;
+
+[numthreads(8,8,1)]
+void IntegrateLoadCS(uint3 Id : SV_DispatchThreadID)
+{
+    if (any(Id.xy >= (uint2)ReconFogSize)) return;
+    uint2 P=min(uint2(ReconViewSize)-1,((2u*Id.xy+1u)*uint2(ReconViewSize))/(2u*uint2(ReconFogSize)));
+    float Z=NativeAt(ReconViewMin+int2(P));
+    float Axis=AxisDepth(Z);
+    ReconGuideOutput[Id.xy]=Axis;
+    float2 UV=(float2(Id.xy)+.5)/float2(ReconFogSize);
+    float4 H=mul(float4(UV.x*2-1,(1-2*UV.y)/ReconProjectionSignY,1,1),ReconClipToTranslatedWorld);
+    float3 D=normalize(H.xyz/H.w-ReconCameraTranslated);
+    float3 O=ReconCameraTranslated-ReconSphereTranslated;
+    float B=dot(O,D);
+    float Discriminant=B*B-(dot(O,O)-400.0*400.0);
+    float Entry=0,LengthCm=0;
+    if (Discriminant>0)
+    {
+        float Root=sqrt(Discriminant);
+        Entry=max(0.0,-B-Root);
+        float Exit=-B+Root;
+        if (Z>0) Exit=min(Exit,Axis/max(D.x,1e-6));
+        LengthCm=max(0.0,Exit-Entry);
+    }
+    float Tau=0;
+    if (LengthCm>0 && ReconSigma>0)
+    {
+        float DS=LengthCm/float(ReconLoadSteps);
+        [loop] for (uint Step=0;Step<ReconLoadSteps;++Step)
+        {
+            float3 Pn=(O+D*(Entry+(float(Step)+.5)*DS))/400.0;
+            float Rho=1;
+            if (ReconLoadDensity==2)
+            {
+                float Radial=max(0.0,1.0-dot(Pn,Pn));
+                Rho=Radial*Radial*(.65+.35*sin(13*Pn.x)*sin(17*Pn.y)*sin(11*Pn.z));
+            }
+            Tau+=ReconSigma*Rho*DS*.01;
+        }
+    }
+    float T=exp(-Tau);
+    float A=Tau<.001 ? Tau*(1-Tau*.5+Tau*Tau/6-Tau*Tau*Tau/24) : 1-T;
+    float4 ST=float4(float3(.35,.60,.90)*A,T);
+    ReconLowOutput[Id.xy]=float4(RoundForHalfStorage(ST.x),RoundForHalfStorage(ST.y),RoundForHalfStorage(ST.z),RoundForHalfStorage(ST.w));
+    if (ReconDiagnostic!=0 && ReconProfile!=8)
+        ReconAuxOutput[Id.x+Id.y*ReconViewSize.x]=int2(4,-1);
+}
+
+[numthreads(8,8,1)]
+void ObserveLoadDenseCS(uint3 Id:SV_DispatchThreadID)
+{
+    if (all(Id.xy==0))
+    {
+        ReconSamples[0]=float4(ReconTagA,ReconTagB,ReconFrame,8);
+        ReconSamples[1]=float4(View.PreExposure,ReconNearCm,ReconSigma,ReconLoadSteps);
+        ReconSamples[2]=float4(ReconViewSize,ReconFogSize);
+        ReconSamples[3]=float4(ReconProbeInput.Load(int3(0,0,0)),ReconProbeInput.Load(int3(1,0,0)),ReconProbeInput.Load(int3(2,0,0)),ReconProfile);
+        ReconSamples[4]=float4(ReconLoadDensity,ReconLoadSteps,0,5);
+    }
+    if (all(Id.xy<(uint2)ReconFogSize))
+    {
+        uint2 P=min(uint2(ReconViewSize)-1,((2u*Id.xy+1u)*uint2(ReconViewSize))/(2u*uint2(ReconFogSize)));
+        uint Row=5+2*(Id.x+Id.y*ReconFogSize.x);
+        ReconSamples[Row]=ReconLowInput.Load(int3(Id.xy,0));
+        ReconSamples[Row+1]=float4(NativeAt(ReconViewMin+int2(P)),ReconGuideInput.Load(int3(Id.xy,0)),P+uint2(ReconViewMin));
+    }
+    if (any(Id.xy>=(uint2)ReconViewSize)) return;
+    uint Index=Id.x+Id.y*ReconViewSize.x;
+    uint Row=5+2*ReconFogSize.x*ReconFogSize.y+4*Index;
+    int2 Pixel=ReconViewMin+int2(Id.xy);
+    float Z=NativeAt(Pixel);
+    int2 Aux=ReconProfile==8?int2(ReconOptAuxInput.Load(int3(Id.xy,0)).xy):ReconAuxInput[Index];
+    ReconSamples[Row]=float4(Z,AxisDepth(Z),Aux);
+    ReconSamples[Row+1]=ReconInput.Load(int3(Id.xy,0));
+    ReconSamples[Row+2]=ReconCin.Load(int3(Pixel,0));
+    ReconSamples[Row+3]=ReconConsumed.Load(int3(Pixel,0));
+}
