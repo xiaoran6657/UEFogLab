@@ -2,7 +2,7 @@
 
 [中文案例](CASE.zh.md) · [English case](CASE.en.md) · [Compact results and provenance](results.json) · [Shader](../../Plugins/UEFog/Shaders/Private/UEFogMobileRepair.usf) · [Runtime entry](../../Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp)
 
-This source increment adds the opt-in SmoothNoise integration and the fused half-resolution repair. It includes the earlier mobile fusion and Uniform analytic shaders that the new path builds on. The existing desktop and legacy mobile entries keep their semantics; Full/High remains the default.
+The opt-in SmoothNoise path uses fused half-resolution reconstruction and local reintegration. It builds on the earlier mobile fusion and Uniform analytic shaders. Full/High is the default. The sparse and WIDE studies below have separate measured build identities.
 
 ## Quality
 
@@ -30,7 +30,7 @@ The [compact data](results.json) retain all 16 author and four independent trial
 
 ![Formal cost and diagnostic quality compared for the same APK](media/repair-cost-quality.png)
 
-The result covers one device, one fixture and the fog interval. About 0.011% of the scene pixels needed reintegration. Full-frame time, energy and the behavior of heavier repair workloads or other devices remain open.
+This sparse result covers one device, one fixture and the fog interval. About 0.011% of the scene pixels needed reintegration. WIDE tested higher workloads with its own matched comparisons.
 
 ## Run the optional fixture from source
 
@@ -46,4 +46,10 @@ Change only `FogLabMobileRepair` to `FullN`, `FusedHalfGN`, or `Off` for the fix
 
 For a separate diagnostic capture, use `FogLabReconReadback=1` with a fresh 32-digit hex `FogLabMobileRun`, a writable app-private `FogLabMobileOutput`, and your build and revision identities via `FogLabBaselineBuild` and `FogLabBaselineSource`. Full256/Full512/Full1024 select the high-sample quality profiles. The formal performance entry validates its own private output, normal path, run identity and fixed settings; see [the runtime checks](../../Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp). The public source includes these runtime facilities and the summary above. Reproducing the original physical acquisition protocol requires your own separate capture and timing setup.
 
-[Source equivalence and media hashes](../../MOBILE-FOG-SOURCE-PROVENANCE.json) · [License and third-party notices](../../NOTICE.md)
+## Wide coverage reproduction
+
+For the WIDE fixtures, keep the settings above and change `FogLabReconFixture` to `RepairCoverage128`, `RepairCoverageWide432` or `RepairCoverageWide712`. Use FullN, FusedHalfGN and FusedHalfRepairN within each fixture. [Geometry and heights](../../Plugins/UEFog/Source/UEFog/Public/UEFogMobileCoverageFixture.h)
+
+The [compact WIDE data](wide-results.json) contain 27 author and nine independent trial p50s, actual executed repair counts, the per-fixture quality results and the measured build identity. Compute the author ratio from the medians of each profile's three trial p50s. Keep the independent block separate. The [cost and quality figure](media/wide-cost-quality.png) shows the 0.90 margin and 1.00 parity lines. Intermediate heights remain unmeasured. [WIDE source and media provenance](wide-source-provenance.json)
+
+[Sparse source and media provenance](../../MOBILE-FOG-SOURCE-PROVENANCE.json) · [License and third-party notices](../../NOTICE.md)

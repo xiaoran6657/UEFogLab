@@ -1,4 +1,5 @@
 #include "UEFogMobileReconstruction.h"
+#include "UEFogMobileCoverageFixture.h"
 #include "UEFogMobilePerformance.h"
 #include "UEFogCompare.h"
 #include "GlobalShader.h"
@@ -678,7 +679,9 @@ bool ApplyUEFogMobileReconstructionLaunch(FString& Error)
     FParse::Value(FCommandLine::Get(),TEXT("FogLabReconGrid="),State->Grid);FParse::Value(FCommandLine::Get(),TEXT("FogLabReconFixture="),State->FixtureName);
     FParse::Value(FCommandLine::Get(),TEXT("FogLabReconNear="),State->Near);FParse::Value(FCommandLine::Get(),TEXT("FogLabReconSigma="),State->Sigma);
     int32 Diagnostic=0;FParse::Value(FCommandLine::Get(),TEXT("FogLabReconReadback="),Diagnostic);
-    if((State->Grid!=TEXT("Half")&&State->Grid!=TEXT("Odd"))||(State->FixtureName!=TEXT("Planes")&&State->FixtureName!=TEXT("ThinStripe")&&(!Repair||(State->FixtureName!=TEXT("ThinStripeShifted")&&State->FixtureName!=TEXT("ThinStripeBeforeEntry"))))||
+    const bool CoverageFixture = Repair && UEFogMobileCoverageLayout(State->FixtureName).StripeCount > 0;
+    if((State->Grid!=TEXT("Half")&&State->Grid!=TEXT("Odd"))||(State->FixtureName!=TEXT("Planes")&&State->FixtureName!=TEXT("ThinStripe")&&(!Repair||(State->FixtureName!=TEXT("ThinStripeShifted")&&State->FixtureName!=TEXT("ThinStripeBeforeEntry")&&!CoverageFixture)))||
+       (CoverageFixture&&(State->Grid!=TEXT("Half")||State->Near!=600||State->Sigma!=.35||State->LoadDensity!=2))||
        (State->Near!=400&&State->Near!=600)||(State->Sigma!=0&&State->Sigma!=.35&&State->Sigma!=.70)||(Diagnostic!=0&&Diagnostic!=1))
     {Error=TEXT("Unfrozen reconstruction argument");State.Reset();return false;}
     State->Diagnostics=State->Code!=0&&(Diagnostic==1||State->Code==4);

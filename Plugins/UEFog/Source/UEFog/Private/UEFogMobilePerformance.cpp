@@ -1,4 +1,5 @@
 #include "UEFogMobilePerformance.h"
+#include "UEFogMobileCoverageFixture.h"
 #include "Misc/CommandLine.h"
 #include "Misc/Parse.h"
 
@@ -270,8 +271,10 @@ bool ApplyUEFogMobilePerformanceLaunch(FString& Error)
     const bool ProfileValid=S->Load?(S->Profile==TEXT("Off")||S->Profile==TEXT("FullN")||S->Profile==TEXT("FusedHalfGN")||(S->Repair&&S->Profile==TEXT("FusedHalfRepairN"))):
         S->Optimization?(S->Profile==TEXT("Off")||S->Profile==TEXT("LegacyFull64")||S->Profile==TEXT("AnalyticFull")||S->Profile==TEXT("LegacyHalfG64")||S->Profile==TEXT("FusedHalfG64")):
         (S->Profile==TEXT("Off")||S->Profile==TEXT("Full64")||S->Profile==TEXT("HalfB64")||S->Profile==TEXT("HalfG64"));
+    const bool CoverageFixture = S->Repair && UEFogMobileCoverageLayout(Fixture).StripeCount > 0 && Fixture != TEXT("RepairCoverageAligned");
+    const bool FixtureValid = CoverageFixture || Fixture == (S->Load ? TEXT("ThinStripe") : TEXT("Planes"));
     if(!Hex||!ProfileValid||
-       Readback!=0||Grid!=TEXT("Half")||Fixture!=(S->Load?TEXT("ThinStripe"):TEXT("Planes"))||(S->Load&&Density!=TEXT("SmoothNoise"))||Near!=TEXT("600")||FCString::Atod(*Sigma)!=.35||Exposure!=TEXT("1")||
+       Readback!=0||Grid!=TEXT("Half")||!FixtureValid||(S->Load&&Density!=TEXT("SmoothNoise"))||Near!=TEXT("600")||FCString::Atod(*Sigma)!=.35||Exposure!=TEXT("1")||
        S->BuildId.IsEmpty()||S->Source.Len()!=40||!S->Directory.StartsWith(TEXT("/data/user/"))||S->Directory.Contains(TEXT(".."))||
        !S->Directory.EndsWith((S->Repair?FString(TEXT("/com.uefoglab.mobilebaseline/files/M8-REPAIR/PERF/")):S->Load?FString(TEXT("/com.uefoglab.mobilebaseline/files/M8-LOAD/PERF/")):S->Optimization?FString(TEXT("/com.uefoglab.mobilebaseline/files/M7-OPT/PERF/")):FString(TEXT("/com.uefoglab.mobilebaseline/files/M4-PERF/")))+Id))
     {Error=TEXT("Performance requires fixed normal four-mode configuration and private UUID/package identity");return false;}

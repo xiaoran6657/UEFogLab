@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "publicParent": "866e1352bbeb30aa0f116540739a33d91ba540cd",
+  "measuredNativeRevision": "12ddcd7475c4eccc63498665eaa18575c8bc3c84",
+  "measuredApkSha256": "8ee7dfb4c262f3d39a2fb008cd2dc3800983cc56d398680371108228bdf80fe5",
+  "runtimeTreeFileCount": 54,
+  "runtimeEquivalence": "All Config, Plugins, Source and UEFogLab.uproject Git blobs are compared against the measured native revision.",
+  "changedRuntime": {
+    "Plugins/UEFog/Source/UEFog/Private/UEFogMobilePerformance.cpp": {
+      "bytes": 26911,
+      "sha256": "ba9bc4547b022c72bfe0048fd65ed031ab7c253a96ac45206b0537450eec363e"
+    },
+    "Plugins/UEFog/Source/UEFog/Private/UEFogMobileReconstruction.cpp": {
+      "bytes": 53911,
+      "sha256": "fb88d8c764dd27ebd10dafb8a4c51f6da0547bb504eff1b6fa9c4766c7a7eb30"
+    },
+    "Plugins/UEFog/Source/UEFog/Public/UEFogMobileCoverageFixture.h": {
+      "bytes": 682,
+      "sha256": "436a692374ba3080e731d5128190e6a3a979c8c52e9a1190c5c9bd366caa0f1c"
+    },
+    "Source/FogLabDemo/FogLabMobileReconstructionFixture.cpp": {
+      "bytes": 7842,
+      "sha256": "152c67ac250a99925b326bbde15a114d818c79ad0ab48becb8c49677f7cd4c1a"
+    }
+  },
+  "derivedEvidence": [
+    {
+      "path": "docs/mobile-fog/wide-results.json",
+      "bytes": 10343,
+      "sha256": "9bac0df1a5cf28c032a8c0f3b76052ee3d62ad8f93d831437ad88de73ed580a7"
+    },
+    {
+      "path": "docs/mobile-fog/media/wide-cost-quality.png",
+      "bytes": 140349,
+      "sha256": "b699bc2635cb8c12f9deeb5f8377959b185b7fa47392c0b47b7628d20672483d"
+    }
+  ],
+  "scope": "Compact historical quality and FogTotal for three fixed MEIZU21 fixtures. The earlier sparse ThinStripe result retains its separate build identity."
+}

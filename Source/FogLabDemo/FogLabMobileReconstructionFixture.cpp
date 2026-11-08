@@ -1,8 +1,10 @@
 #include "FogLabMobileReconstructionFixture.h"
+#include "UEFogMobileCoverageFixture.h"
 #include "UEFogMobileReconstruction.h"
 #include "UEFogMobileStartup.h"
 #include "Camera/CameraActor.h"
 #include "Camera/CameraComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/PostProcessVolume.h"
 #include "Engine/StaticMesh.h"
@@ -23,7 +25,8 @@ bool StartFogLabMobileReconstructionFixture(UWorld* World)
     int32 Near=600;FString Variant=TEXT("Planes");
     FParse::Value(FCommandLine::Get(),TEXT("FogLabReconNear="),Near);
     FParse::Value(FCommandLine::Get(),TEXT("FogLabReconFixture="),Variant);
-    check((Near==400||Near==600)&&(Variant==TEXT("Planes")||Variant==TEXT("ThinStripe")||(Repair&&(Variant==TEXT("ThinStripeShifted")||Variant==TEXT("ThinStripeBeforeEntry")))));
+    const FUEFogMobileCoverageLayout Coverage = UEFogMobileCoverageLayout(Variant);
+    check((Near==400||Near==600)&&(Variant==TEXT("Planes")||Variant==TEXT("ThinStripe")||(Repair&&(Variant==TEXT("ThinStripeShifted")||Variant==TEXT("ThinStripeBeforeEntry")||(Near==600&&Coverage.StripeCount>0)))));
     auto* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));
     auto* Material=LoadObject<UMaterial>(nullptr,TEXT("/Engine/EngineDebugMaterials/LevelColorationUnlitMaterial.LevelColorationUnlitMaterial"));
     check(Cube&&Material&&Material->GetBlendMode()==BLEND_Opaque&&Material->GetShadingModels().HasShadingModel(MSM_Unlit));
@@ -47,6 +50,34 @@ bool StartFogLabMobileReconstructionFixture(UWorld* World)
         const double HalfY=Depth*AX*2*.3/1552,HalfZ=Depth*AY*2*60/720;
         Stripe=Box(FVector(Depth+.01,Y,0),FVector(.0002,2*HalfY/100,2*HalfZ/100));
     }
+    UInstancedStaticMeshComponent* CoverageMesh = nullptr;
+    if (Coverage.StripeCount > 0)
+    {
+        constexpr double AX = .700037113670545;
+        constexpr double AY = .32475948421789075;
+        constexpr double Depth = 600;
+        const FVector Scale(.0002, (2 * Depth * AX * 2 * .3 / 1552) / 100,
+                            (2 * Depth * AY * 2 * Coverage.HalfHeightRows / 720) / 100);
+        AActor* Owner = World->SpawnActor<AActor>();
+        CoverageMesh = NewObject<UInstancedStaticMeshComponent>(Owner);
+        Owner->AddInstanceComponent(CoverageMesh);
+        Owner->SetRootComponent(CoverageMesh);
+        CoverageMesh->SetMobility(EComponentMobility::Movable);
+        CoverageMesh->SetStaticMesh(Cube);
+        CoverageMesh->SetMaterial(0, MID);
+        CoverageMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+        CoverageMesh->SetCanEverAffectNavigation(false);
+        TArray<FTransform> Instances;
+        Instances.Reserve(Coverage.StripeCount);
+        for (int32 Index = 0; Index < Coverage.StripeCount; ++Index)
+        {
+            const int32 Column = Coverage.FirstColumn + 2 * Index;
+            const double Y = Depth * AX * (2 * (Column + .5) / 1552 - 1);
+            Instances.Emplace(FQuat::Identity, FVector(Depth + .01, Y, 0), Scale);
+        }
+        CoverageMesh->AddInstances(Instances, false, false, false);
+        CoverageMesh->RegisterComponent();
+    }
     auto* Camera=World->SpawnActor<ACameraActor>(FVector::ZeroVector,FRotator::ZeroRotator);
     Camera->GetCameraComponent()->SetFieldOfView(60);Camera->GetCameraComponent()->bConstrainAspectRatio=false;
     if(auto* PC=World->GetFirstPlayerController())PC->SetViewTarget(Camera);
@@ -58,10 +89,32 @@ bool StartFogLabMobileReconstructionFixture(UWorld* World)
     J->SetNumberField(TEXT("nearCm"),Near);J->SetNumberField(TEXT("farCm"),1200);J->SetNumberField(TEXT("meshActors"),Stripe?3:2);
     J->SetStringField(TEXT("material"),Material->GetPathName());J->SetNumberField(TEXT("blendMode"),int32(Material->GetBlendMode()));
     J->SetNumberField(TEXT("shadingModels"),Material->GetShadingModels().GetShadingModelField());
+    auto Array=[](FVector V){TArray<TSharedPtr<FJsonValue>> A;A.Add(MakeShared<FJsonValueNumber>(V.X));A.Add(MakeShared<FJsonValueNumber>(V.Y));A.Add(MakeShared<FJsonValueNumber>(V.Z));return A;};
     if(Stripe)
     {
-        auto Array=[](FVector V){TArray<TSharedPtr<FJsonValue>> A;A.Add(MakeShared<FJsonValueNumber>(V.X));A.Add(MakeShared<FJsonValueNumber>(V.Y));A.Add(MakeShared<FJsonValueNumber>(V.Z));return A;};
         J->SetArrayField(TEXT("stripeActorLocationCm"),Array(Stripe->GetActorLocation()));J->SetArrayField(TEXT("stripeActorScale"),Array(Stripe->GetActorScale3D()));
+    }
+    if (CoverageMesh)
+    {
+        TArray<TSharedPtr<FJsonValue>> Transforms;
+        const int32 InstanceCount = CoverageMesh->GetInstanceCount();
+        for (int32 Index = 0; Index < InstanceCount; ++Index)
+        {
+            FTransform Actual;
+            const bool bFound = CoverageMesh->GetInstanceTransform(Index, Actual, true);
+            check(bFound);
+            auto Transform = MakeShared<FJsonObject>();
+            Transform->SetNumberField(TEXT("requestedColumn"), Coverage.FirstColumn + 2 * Index);
+            Transform->SetArrayField(TEXT("locationCm"), Array(Actual.GetLocation()));
+            Transform->SetArrayField(TEXT("scale"), Array(Actual.GetScale3D()));
+            Transform->SetArrayField(TEXT("rotationEulerDegrees"), Array(Actual.GetRotation().Euler()));
+            Transforms.Add(MakeShared<FJsonValueObject>(Transform));
+        }
+        J->SetNumberField(TEXT("coverageFixtureVersion"), 1);
+        J->SetStringField(TEXT("coverageComponentClass"), CoverageMesh->GetClass()->GetName());
+        J->SetStringField(TEXT("coverageMesh"), CoverageMesh->GetStaticMesh()->GetPathName());
+        J->SetNumberField(TEXT("coverageInstanceCount"), InstanceCount);
+        J->SetArrayField(TEXT("coverageTransforms"), Transforms);
     }
     UEFogMobileStartupSceneReady(World,Cube,Camera);UEFogMobileReconstructionFixtureReady(World,J);return true;
 #else

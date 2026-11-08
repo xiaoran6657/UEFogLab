@@ -10,6 +10,8 @@ On a fixed MEIZU21 / Vulkan ES3_1 ThinStripe test, the half grid missed a one-pi
 
 ![Actual GPU depth samples and transmittance before and after local repair](docs/mobile-fog/media/thinstripe-gpu-crop.png)
 
+The WIDE follow-up measured where this saving reversed in the tested fixtures. In a separate same-APK experiment on MEIZU21, repair used **21.6% less FogTotal at 19.70% reintegration coverage** and **4.4% more at 34.00%** than each fixture's FullN. Both modes passed the quality budgets at these endpoints. [Wide fixture launch guide](docs/mobile-fog/README.md#wide-coverage-reproduction) · [Compact WIDE data](docs/mobile-fog/wide-results.json) · [Cost and quality figure](docs/mobile-fog/media/wide-cost-quality.png)
+
 ## Desktop motion and earlier studies
 
 The [36-second dynamic comparison](docs/showcase/releases/m6-dynamic-20261031/media/dynamic-showcase.mp4) uses real engine frames: camera orbit, moving opaque geometry, rigid local fog translation, rotating sun and Full64/HalfB64/HalfG64 edges. [Reproduce the controlled shots](docs/DYNAMIC-SHOWCASE.md), read the [capture protocol](docs/design/M6-DYNAMIC-CAPTURE.md), or inspect the [media/frame provenance](docs/showcase/releases/m6-dynamic-20261031/README.md). 30fps is offline simulation/playback time, not measured rendering FPS. [Independent review](docs/DYNAMIC-REVIEW.md) accepts this controlled display and its stated limits; the initial author candidate remains identifiable in Git history.

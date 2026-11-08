@@ -1,4 +1,4 @@
-# Recovering a thin occluder in half-resolution mobile fog
+# Repairing thin occluders in mobile fog and measuring the cost crossover
 
 UEFogLab · UE 5.8.4 · C++ / HLSL / Vulkan · [中文](CASE.zh.md)
 
@@ -30,4 +30,20 @@ Quality used a matched Full1024 reference after checking **256 → 512 → 1024*
 
 The preset thin-hit T MAE limit was **0.05**. The repair met that limit and the other frozen quality budgets. Against the original Half path, the median paired cost was **+0.057 ms**. Against FullN, every author block and the independent block observed lower FogTotal. The two comparisons show the cost of restoring the occluder and the savings against integrating the whole image. [Quality and cost figure](media/repair-cost-quality.png) · [Timing protocol summary](README.md#timing)
 
-This result covers the fog span in a fixed 1552×720 fixture on MEIZU21 / Adreno 750, using Vulkan ES3_1 Mobile Forward HDR. Full/High remains the default. Only **0.011%** of pixels required repair here. A follow-up should vary the measured coverage of repair work to find when the savings shrink or disappear. [Launch and reproduction notes](README.md) · [Compact data](results.json)
+The sparse fixture reintegrated about **0.011%** of the image. Full/High is the default.
+
+## When does local reintegration become more expensive?
+
+The WIDE follow-up used a separate Development Android ASTC APK on the same MEIZU21. Each fixture was compared within that APK. The two wide fixtures shared 632 stripe columns, an occluder depth of 600 cm and a 1552×720 scene. Only stripe height differed between them. Coverage counts pixels that executed the density loop. Of the 400,032 fallback pixels in the highest tier, 20,118 had an empty visible fog segment and executed zero iterations.
+
+| Measured reintegration coverage | Reintegrated pixels | FullN → repair (author FogTotal) | Repair / FullN (author / independent) |
+|---:|---:|---:|---:|
+| 1.37457% | 15,360 | 3.367 → 1.483 ms | 44.04% / 44.23% |
+| 19.69734% | 220,106 | 3.434 → 2.694 ms | 78.44% / 79.13% |
+| 33.99860% | 379,914 | 3.493 → 3.646 ms | 104.39% / 104.49% |
+
+FullN and repair met the per-fixture quality budgets against converged references. Original Half exceeded the 0.05 thin-hit transmittance MAE limit in all three. The author values are medians of three trial p50s per profile and fixture. The independent block ran each profile once per fixture. **The 19.70% fixture retained the 10% timing margin. At 34.00%, repair took longer than FullN in all four matched blocks.** Intermediate heights remain unmeasured. Stripe height also changes occlusion and the fog ray lengths, so the conclusion applies to this device, fixture family and fog interval.
+
+![WIDE results for three fixtures, showing fog GPU time, repair-to-FullN ratios, paired differences and thin-hit transmittance error](media/wide-cost-quality.png)
+
+[Compact WIDE data](wide-results.json) · [Source and figure provenance](wide-source-provenance.json) · [Run the wide fixtures](README.md#wide-coverage-reproduction)

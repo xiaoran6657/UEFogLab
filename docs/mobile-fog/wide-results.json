@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "experiment": "M8-REPAIR-WIDE",
+  "source": {
+    "repository": "https://github.com/xiaoran6657/UEFogLab",
+    "measuredNativeRevision": "12ddcd7475c4eccc63498665eaa18575c8bc3c84",
+    "measuredApkSha256": "8ee7dfb4c262f3d39a2fb008cd2dc3800983cc56d398680371108228bdf80fe5"
+  },
+  "conditions": {
+    "engine": "5.8.4",
+    "device": "MEIZU21",
+    "gpu": "Adreno 750",
+    "renderer": "Vulkan ES3_1 Mobile Forward HDR",
+    "package": "Development Android ASTC",
+    "density": "SmoothNoise",
+    "scene": [
+      1552,
+      720
+    ],
+    "halfGrid": [
+      776,
+      360
+    ],
+    "occluderDepthCm": 600,
+    "preExposure": 1,
+    "integrationSteps": 64
+  },
+  "quality": {
+    "referenceSteps": [
+      256,
+      512,
+      1024
+    ],
+    "thinHitTMAELimit": 0.05
+  },
+  "timing": {
+    "metric": "FogTotal",
+    "scope": "Vulkan bottom-of-pipe timestamps 1 to 4",
+    "diagnosticsEnabled": false,
+    "authorTrials": 27,
+    "independentTrials": 9,
+    "marginRatio": 0.9,
+    "parityRatio": 1.0
+  },
+  "fixtures": [
+    {
+      "fixture": "RepairCoverage128",
+      "firstColumn": 872,
+      "columnStride": 2,
+      "stripeCount": 128,
+      "rows": [
+        300,
+        420
+      ],
+      "fullResolutionThinHits": 15360,
+      "halfGridThinHits": 0,
+      "fallbackPixels": 15360,
+      "selectedZeroWorkPixels": 0,
+      "positiveWorkPixels": 15360,
+      "positiveWorkPercent": 1.3745704467353952,
+      "densityIterations": 983040,
+      "profiles": {
+        "FullN": {
+          "authorMedianMs": 3.367395751121521,
+          "independentP50Ms": 3.355052001422882,
+          "thinHitTMAE": 2.447764078776042e-06,
+          "qualityPassed": true
+        },
+        "FusedHalfGN": {
+          "authorMedianMs": 1.3605728834495545,
+          "independentP50Ms": 1.3576562168540955,
+          "thinHitTMAE": 0.38064292271931965,
+          "qualityPassed": false
+        },
+        "FusedHalfRepairN": {
+          "authorMedianMs": 1.4828645471305848,
+          "independentP50Ms": 1.4838541304397583,
+          "thinHitTMAE": 2.447764078776042e-06,
+          "qualityPassed": true
+        }
+      },
+      "repairToFullRatio": {
+        "author": 0.4403594518513936,
+        "independent": 0.44227455485353245
+      },
+      "trials": [
+        {
+          "role": "author",
+          "block": "A",
+          "profile": "FullN",
+          "p50Ms": 3.37296866765213
+        },
+        {
+          "role": "author",
+          "block": "A",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.3373958006820679
+        },
+        {
+          "role": "author",
+          "block": "A",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 1.4865103803749085
+        },
+        {
+          "role": "author",
+          "block": "F",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.3744270497779847
+        },
+        {
+          "role": "author",
+          "block": "F",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 1.4707812140922547
+        },
+        {
+          "role": "author",
+          "block": "F",
+          "profile": "FullN",
+          "p50Ms": 3.367395751121521
+        },
+        {
+          "role": "author",
+          "block": "H",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 1.4828645471305848
+        },
+        {
+          "role": "author",
+          "block": "H",
+          "profile": "FullN",
+          "p50Ms": 3.3669270011329653
+        },
+        {
+          "role": "author",
+          "block": "H",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.3605728834495545
+        },
+        {
+          "role": "independent",
+          "block": "A",
+          "profile": "FullN",
+          "p50Ms": 3.355052001422882
+        },
+        {
+          "role": "independent",
+          "block": "A",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.3576562168540955
+        },
+        {
+          "role": "independent",
+          "block": "A",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 1.4838541304397583
+        }
+      ]
+    },
+    {
+      "fixture": "RepairCoverageWide432",
+      "firstColumn": 144,
+      "columnStride": 2,
+      "stripeCount": 632,
+      "rows": [
+        144,
+        576
+      ],
+      "fullResolutionThinHits": 223962,
+      "halfGridThinHits": 0,
+      "fallbackPixels": 223072,
+      "selectedZeroWorkPixels": 2966,
+      "positiveWorkPixels": 220106,
+      "positiveWorkPercent": 19.697343928980526,
+      "densityIterations": 14086784,
+      "profiles": {
+        "FullN": {
+          "authorMedianMs": 3.434010332828522,
+          "independentP50Ms": 3.4157290832748415,
+          "thinHitTMAE": 1.65040902586153e-06,
+          "qualityPassed": true
+        },
+        "FusedHalfGN": {
+          "authorMedianMs": 1.382395799583435,
+          "independentP50Ms": 1.366302049976349,
+          "thinHitTMAE": 0.21143401803375125,
+          "qualityPassed": false
+        },
+        "FusedHalfRepairN": {
+          "authorMedianMs": 2.6936197259044645,
+          "independentP50Ms": 2.703020767341614,
+          "thinHitTMAE": 2.4549016685866352e-06,
+          "qualityPassed": true
+        }
+      },
+      "repairToFullRatio": {
+        "author": 0.784394764382024,
+        "independent": 0.7913451861791345
+      },
+      "trials": [
+        {
+          "role": "author",
+          "block": "B",
+          "profile": "FullN",
+          "p50Ms": 3.434010332828522
+        },
+        {
+          "role": "author",
+          "block": "B",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.382395799583435
+        },
+        {
+          "role": "author",
+          "block": "B",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 2.6936197259044645
+        },
+        {
+          "role": "author",
+          "block": "D",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.387135382801056
+        },
+        {
+          "role": "author",
+          "block": "D",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 2.698906184108734
+        },
+        {
+          "role": "author",
+          "block": "D",
+          "profile": "FullN",
+          "p50Ms": 3.4164322082576755
+        },
+        {
+          "role": "author",
+          "block": "I",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 2.6922395176048277
+        },
+        {
+          "role": "author",
+          "block": "I",
+          "profile": "FullN",
+          "p50Ms": 3.4387499160461426
+        },
+        {
+          "role": "author",
+          "block": "I",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.361562466758728
+        },
+        {
+          "role": "independent",
+          "block": "B",
+          "profile": "FullN",
+          "p50Ms": 3.4157290832748415
+        },
+        {
+          "role": "independent",
+          "block": "B",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.366302049976349
+        },
+        {
+          "role": "independent",
+          "block": "B",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 2.703020767341614
+        }
+      ]
+    },
+    {
+      "fixture": "RepairCoverageWide712",
+      "firstColumn": 144,
+      "columnStride": 2,
+      "stripeCount": 632,
+      "rows": [
+        4,
+        716
+      ],
+      "fullResolutionThinHits": 400922,
+      "halfGridThinHits": 0,
+      "fallbackPixels": 400032,
+      "selectedZeroWorkPixels": 20118,
+      "positiveWorkPixels": 379914,
+      "positiveWorkPercent": 33.99860395189003,
+      "densityIterations": 24314496,
+      "profiles": {
+        "FullN": {
+          "authorMedianMs": 3.492812414726257,
+          "independentP50Ms": 3.490416581451416,
+          "thinHitTMAE": 1.3932728810092736e-06,
+          "qualityPassed": true
+        },
+        "FusedHalfGN": {
+          "authorMedianMs": 1.4086457989425658,
+          "independentP50Ms": 1.3424478838920593,
+          "thinHitTMAE": 0.17838587743727272,
+          "qualityPassed": false
+        },
+        "FusedHalfRepairN": {
+          "authorMedianMs": 3.6462499109802247,
+          "independentP50Ms": 3.647083244293213,
+          "thinHitTMAE": 1.8426764588872648e-06,
+          "qualityPassed": true
+        }
+      },
+      "repairToFullRatio": {
+        "author": 1.043929498076407,
+        "independent": 1.0448848036289842
+      },
+      "trials": [
+        {
+          "role": "author",
+          "block": "C",
+          "profile": "FullN",
+          "p50Ms": 3.492812414726257
+        },
+        {
+          "role": "author",
+          "block": "C",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.4086457989425658
+        },
+        {
+          "role": "author",
+          "block": "C",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 3.6462499109802247
+        },
+        {
+          "role": "author",
+          "block": "E",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.4121874655227662
+        },
+        {
+          "role": "author",
+          "block": "E",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 3.649322827571869
+        },
+        {
+          "role": "author",
+          "block": "E",
+          "profile": "FullN",
+          "p50Ms": 3.486979081535339
+        },
+        {
+          "role": "author",
+          "block": "G",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 3.6298436613807676
+        },
+        {
+          "role": "author",
+          "block": "G",
+          "profile": "FullN",
+          "p50Ms": 3.4953124146652224
+        },
+        {
+          "role": "author",
+          "block": "G",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.3907291327133178
+        },
+        {
+          "role": "independent",
+          "block": "C",
+          "profile": "FullN",
+          "p50Ms": 3.490416581451416
+        },
+        {
+          "role": "independent",
+          "block": "C",
+          "profile": "FusedHalfGN",
+          "p50Ms": 1.3424478838920593
+        },
+        {
+          "role": "independent",
+          "block": "C",
+          "profile": "FusedHalfRepairN",
+          "p50Ms": 3.647083244293213
+        }
+      ]
+    }
+  ],
+  "intermediateMeasurements": 0,
+  "figure": {
+    "path": "media/wide-cost-quality.png",
+    "width": 2000,
+    "height": 1344,
+    "bytes": 140349,
+    "sha256": "b699bc2635cb8c12f9deeb5f8377959b185b7fa47392c0b47b7628d20672483d"
+  }
+}
